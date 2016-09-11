@@ -8,7 +8,6 @@ Meteor.methods({
 
     user = Accounts.findUserByEmail(userEmail);
     if (user) {
-      console.log(user);
       Accounts.sendResetPasswordEmail(user._id, [userEmail]);
     } else {
 

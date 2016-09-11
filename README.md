@@ -17,6 +17,7 @@ Experimenting with Meteor, React, Mocha and I18n all at once.
     meteor add seba:minifiers-autoprefixer
     meteor add universe:i18n  - https://atmospherejs.com/universe/i18n
     meteor npm install react-s-alert --save
+    meteor add alanning:roles
 
 
 
