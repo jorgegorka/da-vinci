@@ -1,5 +1,18 @@
 # Da Vinci
-Experimenting with Meteor, React, Mocha and I18n all at once.
+Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
+
+#### What is available:
+* Basic login and password recovery
+* Create account desactivated (only admins can create accounts).
+* Setup script that bootstrap the app and database created.
+  * To execute run meteor:
+      `meteor shell`
+  * Import script and instantiate it: `import SetupDaVinci from './server/setup/setup_da_vinci.js';` then `new SetupDaVinci('your@email.com', 'password', 'Your name');`
+  * A new admin user will be created with provided info.
+* Basic route schema with react-router.
+  * Public routes
+  * Private routes: Require login.
+
 
 
 ### Dependencies
