@@ -14,8 +14,12 @@ export default class MainHeader extends Component {
     return (
       <header>
         <LeftColumn />
-        <TopNavigation />
+        <TopNavigation currentUser={ this.props.currentUser }/>
       </header>
     );
   }
 }
+
+MainHeader.propTypes = {
+  currentUser: PropTypes.object,
+};
