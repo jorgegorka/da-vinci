@@ -2,7 +2,6 @@
   "name": "da-vinci",
   "private": true,
   "scripts": {
-    "test": "meteor test --once --driver-package practicalmeteor:mocha --port 5555",
     "start": "meteor run"
   },
   "dependencies": {
@@ -12,7 +11,6 @@
     "meteor-node-stubs": "^0.2.3",
     "react": "^15.3.1",
     "react-addons-pure-render-mixin": "^15.3.1",
-    "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-router": "^2.8.0",
     "react-s-alert": "^1.1.4"
@@ -27,6 +25,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-meteor": "^4.0.0",
     "eslint-plugin-react": "^6.2.0",
+    "react-addons-test-utils": "^15.3.1",
     "faker": "^3.1.0"
   }
 }

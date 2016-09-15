@@ -7,7 +7,8 @@ describe('Dashboard', function() {
   it('should render', function() {
     const item = shallow(<DaVinci />);
     chai.assert(item.hasClass('body'));
-    chai.assert(!item.hasClass('main_containerfdsa'));
+
+    chai.assert(!item.hasClass('main_container'));
 
     //chai.assert.equal(item.find('.editing').length, 0);
     //chai.assert.equal(item.find('input[type="text"]').prop('defaultValue'), 'testing');
