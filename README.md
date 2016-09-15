@@ -40,6 +40,8 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor add hwillson:stub-collections
     meteor npm install --save meteor-node-stubs react react-addons-test-utils
     meteor add practicalmeteor:mocha-console-runner
+    meteor add practicalmeteor:mocha-console-reporter
+    meteor add practicalmeteor:loglevel
 
 
 
