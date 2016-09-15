@@ -22,7 +22,6 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor npm install --save react-router
     meteor npm install --save bcrypt
     meteor npm install --save classnames
-    meteor add practicalmeteor:mocha
     meteor add accounts-ui accounts-password
     meteor add twbs:bootstrap
     meteor add fourseven:scss
@@ -31,6 +30,15 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor add universe:i18n  - https://atmospherejs.com/universe/i18n
     meteor npm install react-s-alert --save
     meteor add alanning:roles
+
+    *Testing*
+    meteor add dispatch:mocha-phantomjs
+    meteor add xolvio:cleaner
+    meteor npm i --save-dev enzyme
+    meteor add dburles:factory
+    meteor npm i --save-dev faker
+    meteor add hwillson:stub-collections
+    meteor npm install --save meteor-node-stubs react react-addons-test-utils
 
 
 

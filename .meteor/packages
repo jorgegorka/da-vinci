@@ -18,7 +18,6 @@ ecmascript@0.5.8              # Enable ECMAScript2015+ syntax in app code
 
 shell-server
 react-meteor-data
-practicalmeteor:mocha
 accounts-ui
 accounts-password
 twbs:bootstrap
@@ -26,3 +25,7 @@ universe:i18n
 fourseven:scss
 seba:minifiers-autoprefixer
 alanning:roles
+xolvio:cleaner
+dburles:factory
+hwillson:stub-collections
+dispatch:mocha-phantomjs
