@@ -2,6 +2,7 @@
   "name": "da-vinci",
   "private": true,
   "scripts": {
+    "test": "meteor test --once --driver-package practicalmeteor:mocha --port 5555",
     "start": "meteor run"
   },
   "dependencies": {

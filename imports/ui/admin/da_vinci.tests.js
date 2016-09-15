@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { chai } from 'meteor/practicalmeteor:chai';
 import DaVinci from './da_vinci.jsx'
 
-describe('DaVinci', function() {
+describe('Dashboard', function() {
   it('should render', function() {
     const item = shallow(<DaVinci />);
     chai.assert(item.hasClass('body'));

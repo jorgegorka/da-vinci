@@ -28,4 +28,5 @@ alanning:roles
 xolvio:cleaner
 dburles:factory
 hwillson:stub-collections
-dispatch:mocha-phantomjs
+practicalmeteor:mocha
+practicalmeteor:mocha-console-runner
