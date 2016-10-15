@@ -26,30 +26,23 @@ export default class LoginForm extends Component {
 
   render() {
     return (
-      <div className="animate form login_form">
-        <section className="login_content">
-          <form role="form" onSubmit={this.loginUser.bind(this)}>
-            <h1>Login Form</h1>
-            <div>
-              <input type="email" ref="email" className="form-control" placeholder="Email" required="" />
-            </div>
-            <div>
-              <input type="password" ref="password" className="form-control" placeholder="Password" required="" />
-            </div>
-            <div>
-              <button className="reset_pass to_register" href="#signup">Access</button>
-            </div>
-
-            <div className="clearfix"></div>
-
-            <div className="separator">
-              <a className="reset_pass to_register" href="#signup">Lost your password?</a>
-
-              <LoginFooter />
-            </div>
-          </form>
-        </section>
-      </div>
+      <form role="form" onSubmit={ this.loginUser.bind(this) }>
+        <div className="form-group has-feedback">
+          <input className="form-control" placeholder="Email" ref="email" type="email" />
+          <span className="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div className="form-group has-feedback">
+          <input className="form-control" placeholder="Password" ref="password" type="password" />
+          <span className="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div className="row">
+          <div className="col-xs-8">
+          </div>
+          <div className="col-xs-4">
+            <button type="submit" className="btn btn-primary btn-block btn-flat">Sign In</button>
+          </div>
+        </div>
+      </form>
     )
   }
 }

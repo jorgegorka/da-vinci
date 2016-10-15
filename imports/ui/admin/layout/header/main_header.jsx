@@ -3,8 +3,7 @@ import React, { Component, PropTypes } from 'react';
 //import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 
-import LeftColumn from './left_column.jsx'
-import TopNavigation from './top_navigation.jsx'
+import TopNavigation from '../navigation/top_navigation.jsx'
 
 const T = i18n.createComponent();
 
@@ -12,8 +11,11 @@ const T = i18n.createComponent();
 export default class MainHeader extends Component {
   render() {
     return (
-      <header>
-        <LeftColumn />
+      <header  className="main-header">
+        <a href="index2.html" className="logo">
+          <span className="logo-mini"><b>A</b>LT</span>
+          <span className="logo-lg"><b>Admin</b>LTE</span>
+        </a>
         <TopNavigation currentUser={ this.props.currentUser }/>
       </header>
     );

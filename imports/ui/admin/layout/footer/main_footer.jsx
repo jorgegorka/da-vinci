@@ -9,11 +9,11 @@ const T = i18n.createComponent();
 export default class MainFooter extends Component {
   render() {
     return (
-      <footer>
-        <div className="pull-right">
-          Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+      <footer className="main-footer">
+        <div className="pull-right hidden-xs">
+          <b>Version</b> 0.0.1
         </div>
-        <div className="clearfix"></div>
+        <strong>Copyright &copy; 2016 <a href="http://alvareznavarro.es">Jorge Alvarez</a>.</strong> MIT License
       </footer>
     );
   }

@@ -8,8 +8,8 @@ import LoginFooter from './login_footer.jsx'
 i18n.setLocale('en')
 
 export default class RecoverPassword extends Component {
-  recoverPassword(e) {
-    e.preventDefault();
+  recoverPassword(event) {
+    event.preventDefault();
     const userEmail = ReactDOM.findDOMNode(this.refs.userEmail).value.trim();
     if (userEmail.length < 3) {
       Alert.warning('Please add a valid email.', { position: 'top' });
@@ -21,29 +21,19 @@ export default class RecoverPassword extends Component {
 
   render() {
     return (
-      <div id="register" className="animate form registration_form">
-        <section className="login_content">
-          <form role="form" onSubmit={ this.recoverPassword.bind(this) }>
-            <h1>Password recovery</h1>
-            <div>
-              <label htmlFor="user-email">Enter your email:</label>
-              <input type="email" ref="userEmail" name="user-email" className="form-control" placeholder="Email fdsa fdsafdsa" required="" />
-            </div>
-            <div>
-              <button className="btn btn-default">Send email</button>
-            </div>
-
-            <div className="clearfix"></div>
-            <p className="change_link">Already a member?
-              <a href="#signin" className="to_register"> Log in </a>
-            </p>
-
-            <div className="separator">
-              <LoginFooter />
-            </div>
-          </form>
-        </section>
-      </div>
+      <form role="form" onSubmit={ this.recoverPassword.bind(this) }>
+        <div className="form-group has-feedback">
+          <input className="form-control" placeholder="Email" ref="userEmail" type="email" />
+          <span className="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div className="row">
+          <div className="col-xs-4">
+          </div>
+          <div className="col-xs-8">
+            <button type="submit" className="btn btn-primary btn-block btn-flat">Recover my password</button>
+          </div>
+        </div>
+      </form>
     )
   }
 }

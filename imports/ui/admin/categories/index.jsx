@@ -7,21 +7,21 @@ class CategoriesIndex extends Component {
 
   renderCategories() {
     return this.props.categories.map((category) => (
-      <CategoryItem key={category._id} category={category} />
+      <CategoryItem key={ category._id } category={ category } />
     ));
   }
 
   render() {
     return(
-      <div>
-        <div className="page-title">
-          <div>
-            <h3>Tables <small>Some examples to get you started</small></h3>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <div className="row">
-          <table>
+      <div className="content-wrapper">
+        <section className="content-header">
+          <h1>
+            Categories
+            <small>List of categories</small>
+          </h1>
+        </section>
+        <section className="content">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th>Name</th>
@@ -31,7 +31,7 @@ class CategoriesIndex extends Component {
               { this.renderCategories() }
             </tbody>
           </table>
-        </div>
+        </section>
       </div>
     );
   }

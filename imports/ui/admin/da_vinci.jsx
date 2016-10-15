@@ -6,7 +6,11 @@ import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 
 import MainHeader from './layout/header/main_header.jsx';
+import LeftColumn from './layout/header/left_column.jsx';
+
 import MainFooter from './layout/footer/main_footer.jsx';
+import ControlSidebar from './layout/footer/control_sidebar.jsx';
+
 
 i18n.setLocale('en');
 
@@ -35,19 +39,18 @@ class DaVinci extends Component {
   }
 
   componentDidMount() {
-    document.body.classList.add('nav-md')
+    document.body.classList.add('sidebar-mini');
+    document.body.classList.add('skin-black-light');
   }
 
   render() {
     return (
-      <div id="main-app" className="container body">
-        <div className="main_container">
-          <MainHeader currentUser={ this.props.currentUser }/>
-          <div className="right_col" role="main">
-            { this.props.children }
-          </div>
-          <MainFooter />
-        </div>
+      <div id="main-app" className="wrapper">
+        <MainHeader currentUser={ this.props.currentUser } />
+        <LeftColumn />
+        { this.props.children }
+        <MainFooter />
+        <ControlSidebar />
       </div>
     )
   }

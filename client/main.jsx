@@ -4,5 +4,13 @@ import { renderRoutes } from '../imports/routes.jsx';
 import '../imports/ui/main.html';
 
 Meteor.startup(() => {
+  let fontStyle = document.createElement('link');
+  fontStyle.setAttribute('rel', 'stylesheet');  // optional
+  fontStyle.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css');
+  document.getElementsByTagName('head')[0].appendChild(fontStyle);
+  let iconsStyle = document.createElement('link');
+  iconsStyle.setAttribute('rel', 'stylesheet');  // optional
+  iconsStyle.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css');
+  document.getElementsByTagName('head')[0].appendChild(iconsStyle);
   render(renderRoutes(), document.getElementById('main-app'));
 });
