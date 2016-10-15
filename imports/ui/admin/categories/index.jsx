@@ -13,16 +13,26 @@ class CategoriesIndex extends Component {
 
   render() {
     return(
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          { this.renderCategories() }
-        </tbody>
-      </table>
+      <div>
+        <div className="page-title">
+          <div>
+            <h3>Tables <small>Some examples to get you started</small></h3>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div className="row">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.renderCategories() }
+            </tbody>
+          </table>
+        </div>
+      </div>
     );
   }
 };

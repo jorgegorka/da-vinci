@@ -3,7 +3,7 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
 
 #### What is available:
 * Basic login and password recovery
-* Create account desactivated (only admins can create accounts).
+* Create account deactivated (only admins can create accounts).
 * Setup script that bootstrap the app and database created.
   * To execute run meteor:
       `meteor shell`
@@ -45,5 +45,12 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor add practicalmeteor:loglevel
 
 
+### Acknowledgments
 
-    meteor npm install gentelella --save
+This project uses a lot of awesome open source libraries, plugins and templates.  We would like to thank the open source community for his hard work.
+
+[AdminLTE admin template](https://almsaeedstudio.com/themes/AdminLTE/index2.html).  
+
+### License
+
+Da-Vinci is licensed under the [MIT License](http://opensource.org/licenses/MIT).
