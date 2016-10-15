@@ -31,6 +31,7 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor npm install react-s-alert --save
     meteor add alanning:roles
     meteor add aldeed:collection2
+    meteor npm install moment --save
 
     *Testing*
     meteor add practicalmeteor:mocha

@@ -25,6 +25,7 @@ class CategoriesIndex extends Component {
             <thead>
               <tr>
                 <th>Name</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
