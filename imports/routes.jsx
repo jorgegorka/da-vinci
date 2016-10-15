@@ -9,6 +9,7 @@ import Login from './ui/public/login/login.jsx';
 // route admin
 import DaVinci from './ui/admin/da_vinci.jsx';
 import Dashboard from './ui/admin/dashboard.jsx';
+import CategoriesIndex from './ui/admin/categories/index.jsx';
 
 export const renderRoutes = () => (
   <Router history={ browserHistory }>
@@ -18,6 +19,7 @@ export const renderRoutes = () => (
     </Route>
     <Route path="/admin" component={ DaVinci }>
       <IndexRoute component={ Dashboard } />
+      <Route path="/admin/categories" component={ CategoriesIndex } />
     </Route>
     <Route path="*" component={ NotFound } />
   </Router>
