@@ -41,16 +41,17 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor npm i --save-dev faker
     meteor add hwillson:stub-collections
     meteor npm install --save meteor-node-stubs react react-addons-test-utils
-    meteor add practicalmeteor:mocha-console-runner
-    meteor add practicalmeteor:mocha-console-reporter
-    meteor add practicalmeteor:loglevel
 
 
 ### Acknowledgments
 
-This project uses a lot of awesome open source libraries, plugins and templates.  We would like to thank the open source community for his hard work.
+This project uses some awesome open source frameworks, libraries, plugins and templates.  We would like to thank the open source community for their hard work.
 
-[AdminLTE admin template](https://almsaeedstudio.com/themes/AdminLTE/index2.html).  
+[Meteor](https://www.meteor.com)
+[MongoDb](https://www.mongodb.com)
+[React](https://facebook.github.io/react/)
+[AdminLTE admin template](https://almsaeedstudio.com/themes/AdminLTE/index2.html)
+... and many others.
 
 ### License
 

@@ -29,7 +29,4 @@ xolvio:cleaner
 dburles:factory
 hwillson:stub-collections
 practicalmeteor:mocha
-practicalmeteor:mocha-console-runner
-practicalmeteor:mocha-console-reporter
-practicalmeteor:loglevel
 aldeed:collection2
