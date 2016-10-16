@@ -12,6 +12,16 @@ export default class CategoryForm extends Component {
     this.setState({ parentId: event.target.value });
   }
 
+  methodParams() {
+    let methodParams = [this.props.methodName]
+
+    if (this.props.categoryId) {
+      methodParams.push(this.props.categoryId);
+    }
+
+    return methodParams;
+  }
+
   submitEvent(event) {
     event.preventDefault();
     let that = this;
@@ -27,7 +37,9 @@ export default class CategoryForm extends Component {
     };
     category.parentId = parentId;
 
-    Meteor.call('categories.addCategory', category, function(error, result) {
+    let methodParams = this.methodParams();
+
+    Meteor.call(...methodParams, category, function(error, result) {
       if (error) {
         that.setState({ errorMessage: error.message });
         return

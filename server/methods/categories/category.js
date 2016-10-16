@@ -1,11 +1,17 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
-import { Accounts } from 'meteor/accounts-base';
 import { Category } from '../../middleware/categories/category.js';
 
 Meteor.methods({
-  'categories.addCategory'(category) {
-    newCategory = new Category(category);
-    newCategory.create();
+  'categories.addCategory'(params) {
+    newCategory = new Category();
+    newCategory.create(params);
+  }
+});
+
+
+Meteor.methods({
+  'categories.updateCategory'(cId, params) {
+    // newCategory = new Category(cId);
+    // newCategory.update(params);
   }
 });
