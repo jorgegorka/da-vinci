@@ -20,8 +20,8 @@ export default class MainNavigation extends Component {
       <ul className="sidebar-menu">
         <li className="header">Main menu</li>
         <li>
-          <a href="/admin/categories">
-            <i className="fa fa-th"></i> <span>Categories</span>
+          <a href="/admin/sections">
+            <i className="fa fa-th"></i> <span>Sections</span>
           </a>
         </li>
         <li>

@@ -2,17 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 
-export default class CategoryItem extends Component {
+export default class SectionItem extends Component {
   render() {
     let btnClass = classNames({
       'btn btn-danger': true,
-      'disabled': this.props.subcategories > 0,
+      'disabled': this.props.subsections > 0,
     });
 
     return(
       <tr>
-        <td>{ this.props.category.name }</td>
-        <td>{ this.props.subcategories }</td>
+        <td>{ this.props.section.name }</td>
+        <td>{ this.props.subsections }</td>
         <td>
           <button type="button" className="btn bg-purple margin">Edit</button>
 

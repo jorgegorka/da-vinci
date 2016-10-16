@@ -15,14 +15,14 @@ It's in an early stage and not suitable to be used in production.
 * Basic route schema with react-router.
   * Public routes
   * Private routes: Require login.
-* Categories. Categories can be nested into subcategories.
+* Sections. Sections can be nested into subsections.
 
 #### TODO (prioritised)
 
-* Pages. A page belongs to a category.
+* Pages. A page belongs to a section.
 * Images. A page can have many images associated with it.
 * Each image can have different sizes for different parts of the page (thumbnails, medium, large, etc...). Sizes are configurable by user.
-* Reorder of categories. Drag and drop reorder of categories.
+* Reorder of sections. Drag and drop reorder of sections.
 * Contact form. Customisable contact form.
 * Multi-language.
 * Tags. A page can get multiple tags assigned to it.

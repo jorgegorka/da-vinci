@@ -1,1 +1,1 @@
-import '../lib/collections/categories.js';
+import '../lib/collections/sections.js';
