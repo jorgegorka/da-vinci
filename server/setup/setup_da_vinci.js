@@ -20,9 +20,11 @@ export default class SetupDaVinci {
     });
 
     Roles.createRole('admin');
+    Roles.createRole('manager');
     Roles.createRole('publisher');
     Roles.createRole('editor');
     Roles.createRole('writer');
+    Roles.createRole('viewer');
 
     adminUser = Accounts.findUserByUsername('admin');
 

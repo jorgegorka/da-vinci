@@ -5,7 +5,11 @@ import Alert from 'react-s-alert';
 export default class CategoryForm extends Component {
   constructor(props) {
     super(props)
-    this.state = { errorMessage: '', parentId: '0' }
+    let defaultParentId = 'top';
+    if (this.props.category) {
+      defaultParentId = this.props.category.parentId;
+    };
+    this.state = { errorMessage: '', parentId: defaultParentId }
   }
 
   updateParentId(event) {
@@ -15,8 +19,8 @@ export default class CategoryForm extends Component {
   methodParams() {
     let methodParams = [this.props.methodName]
 
-    if (this.props.categoryId) {
-      methodParams.push(this.props.categoryId);
+    if (this.props.category) {
+      methodParams.push(this.props.category._id);
     }
 
     return methodParams;
@@ -27,7 +31,7 @@ export default class CategoryForm extends Component {
     let that = this;
     let name = ReactDOM.findDOMNode(this.refs.categoryName).value.trim();
     let parentId = this.state.parentId;
-    //let order = ReactDOM.findDOMNode(this.refs.order).value.trim();
+    let order = ReactDOM.findDOMNode(this.refs.categoryOrder).value.trim();
     let category = {};
 
     if (!name) {
@@ -36,6 +40,7 @@ export default class CategoryForm extends Component {
       category.name = name;
     };
     category.parentId = parentId;
+    category.order = parseInt(order);
 
     let methodParams = this.methodParams();
 
@@ -52,9 +57,18 @@ export default class CategoryForm extends Component {
   }
 
   render() {
-    let allItems = this.props.selectItems.map(function(selectItem, index) {
+    let categoryName, categoryOrder = '';
+    let categoryParentId = 'top';
+    let allItems = this.props.selectItems.map((selectItem, index) => {
       return (<option key={ index } value={ selectItem.value }>{ selectItem.title }</option>);
     });
+
+    if (this.props.category) {
+      categoryName  = this.props.category.name
+      categoryOrder = this.props.category.order
+      categoryParentId = this.props.category.parentId
+    }
+
 
     return(
       <div className="modal" id="category-form">
@@ -64,7 +78,7 @@ export default class CategoryForm extends Component {
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
-              <h4 className="modal-title">Add new category</h4>
+              <h4 className="modal-title">{ this.props.formTitle }</h4>
             </div>
             <form role="form" onSubmit={ this.submitEvent.bind(this) }>
               <div className="modal-body">
@@ -74,14 +88,18 @@ export default class CategoryForm extends Component {
                     { this.state.errorMessage }
                   </div> : null }
                 <div className="form-group">
-                  <label htmlFor="name">Category name</label>
-                  <input className="form-control" autoFocus ref="categoryName" name="name" required type="text" />
+                  <label htmlFor="name">Name</label>
+                  <input className="form-control" autoFocus ref="categoryName" name="name" required type="text" defaultValue={ categoryName } />
                 </div>
                 <div className="form-group">
                   <label htmlFor="categoryParentId">Select parent category (leave it blank if none).</label>
-                  <select onChange={ this.updateParentId.bind(this) } className="form-control" name="categoryParentId">
+                  <select onChange={ this.updateParentId.bind(this) } value={ categoryParentId } className="form-control" name="categoryParentId">
                     { allItems }
                   </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="order">Order</label>
+                  <input className="form-control" ref="categoryOrder" name="order" required type="text" defaultValue={ categoryOrder } />
                 </div>
               </div>
               <div className="modal-footer">
@@ -98,4 +116,7 @@ export default class CategoryForm extends Component {
 
 CategoryForm.propTypes = {
   selectItems: PropTypes.array.isRequired,
+  formTitle: PropTypes.string.isRequired,
+  methodName: PropTypes.string.isRequired,
+  category: PropTypes.object,
 };

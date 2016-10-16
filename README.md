@@ -1,7 +1,10 @@
 # Da Vinci
-Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
+Da Vinci is a website generator created as a way of experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
+
+It's in an early stage and not suitable to be used in production.
 
 #### What is available:
+
 * Basic login and password recovery
 * Create account deactivated (only admins can create accounts).
 * Setup script that bootstrap the app and database created.
@@ -12,8 +15,21 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
 * Basic route schema with react-router.
   * Public routes
   * Private routes: Require login.
+* Categories. Categories can be nested into subcategories.
 
+#### TODO (prioritised)
 
+* Pages. A page belongs to a category.
+* Images. A page can have many images associated with it.
+* Each image can have different sizes for different parts of the page (thumbnails, medium, large, etc...). Sizes are configurable by user.
+* Reorder of categories. Drag and drop reorder of categories.
+* Contact form. Customisable contact form.
+* Multi-language.
+* Tags. A page can get multiple tags assigned to it.
+* Public templates. Instructions about how to install a template for the public pages.  Everything is based on bootstrap so adding a template created with bootstrap should require almost no effort.
+* Blog/News section.
+* User accounts with roles (viewer, writer, editor, publisher, manager, admin)
+* Public pages accessible via login. Some pages on the public site can only be accessible by logged in users.
 
 ### Dependencies
     meteor npm install --save react react-dom

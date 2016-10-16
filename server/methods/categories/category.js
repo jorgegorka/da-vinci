@@ -11,7 +11,7 @@ Meteor.methods({
 
 Meteor.methods({
   'categories.updateCategory'(cId, params) {
-    // newCategory = new Category(cId);
-    // newCategory.update(params);
+    newCategory = new Category(cId);
+    newCategory.update(params);
   }
 });

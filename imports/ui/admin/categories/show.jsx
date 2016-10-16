@@ -29,7 +29,7 @@ class CategoriesShow extends Component {
           <button type="button" className="btn btn-info pull-right" data-toggle="modal" data-target="#category-form">Edit category</button>
         </section>
         <section className="content">
-          <CategoryForm selectItems={ this.selectItems() } methodName={ 'categories.updateCategory' } categoryId={ this.props.category._id } />
+          <CategoryForm selectItems={ this.selectItems() } methodName={ 'categories.updateCategory' } category={ this.props.category } formTitle='Edit category' />
         </section>
       </div>
     )

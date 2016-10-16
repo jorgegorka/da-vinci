@@ -33,7 +33,7 @@ class CategoriesIndex extends Component {
         </section>
         <section className="content">
           <CategoryList key="top" parentId="top" categories={ Categories.find({ parentId: 'top' }).fetch() } />
-          <CategoryForm selectItems={ this.selectItems() } methodName={ 'categories.addCategory' } />
+          <CategoryForm selectItems={ this.selectItems() } methodName={ 'categories.addCategory' } formTitle='Add new category' />
         </section>
       </div>
     );
