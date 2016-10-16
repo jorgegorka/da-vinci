@@ -5,7 +5,8 @@ export class Category {
   constructor(category) {
     check(category, {
       name: String,
-      parentId: Match.Maybe(Number),
+      parentId: Match.Maybe(String),
+      order: Match.Maybe(Number),
       languages: Match.Maybe([Object])
     });
 

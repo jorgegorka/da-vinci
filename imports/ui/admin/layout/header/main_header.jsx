@@ -13,8 +13,8 @@ export default class MainHeader extends Component {
     return (
       <header  className="main-header">
         <a href="index2.html" className="logo">
-          <span className="logo-mini"><b>A</b>LT</span>
-          <span className="logo-lg"><b>Mario</b> Jorge</span>
+          <span className="logo-mini"><b>D</b>V</span>
+          <span className="logo-lg"><b>Da</b> Vinci</span>
         </a>
         <TopNavigation currentUser={ this.props.currentUser }/>
       </header>

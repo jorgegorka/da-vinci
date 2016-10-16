@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { browserHistory } from 'react-router'
-//import ReactDOM from 'react-dom';
+import Alert from 'react-s-alert';
 import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 
@@ -48,6 +48,7 @@ class DaVinci extends Component {
       <div id="main-app" className="wrapper">
         <MainHeader currentUser={ this.props.currentUser } />
         <LeftColumn />
+        <Alert stack={{ limit: 5 }} />
         { this.props.children }
         <MainFooter />
         <ControlSidebar />
