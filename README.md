@@ -42,15 +42,22 @@ Experimenting with Meteor JS, React, React router, Mocha and I18n all at once.
     meteor add hwillson:stub-collections
     meteor npm install --save meteor-node-stubs react react-addons-test-utils
 
-
 ### Acknowledgments
 
-This project uses some awesome open source frameworks, libraries, plugins and templates.  We would like to thank the open source community for their hard work.
+This project uses some awesome open source frameworks, libraries, plugins and templates.  I would like to thank the open source community for their hard work.
 
 [Meteor](https://www.meteor.com)
+
 [MongoDb](https://www.mongodb.com)
+
 [React](https://facebook.github.io/react/)
+
+[Bootstrap](http://getbootstrap.com/)
+
+[jQuery](https://jquery.com/)
+
 [AdminLTE admin template](https://almsaeedstudio.com/themes/AdminLTE/index2.html)
+
 ... and many others.
 
 ### License

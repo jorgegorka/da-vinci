@@ -11,8 +11,17 @@ class CategoriesIndex extends Component {
 
   renderCategories() {
     return this.props.categories.map((category) => (
-      <CategoryItem key={ category._id } category={ category } subcategories={ this.countSubcategories(category) }/>
+      <CategoryItem key={ category._id } category={ category } subcategories={ this.countSubcategories(category) } />
     ));
+  }
+
+  selectItems() {
+    let allItems = this.props.categories.map((category) => (
+      { value: category._id, title: category.name }
+    ));
+
+    allItems.unshift({ value: '0', title: '---' });
+    return allItems;
   }
 
   countSubcategories(category) {
@@ -42,7 +51,7 @@ class CategoriesIndex extends Component {
               { this.renderCategories() }
             </tbody>
           </table>
-          <CategoryForm />
+          <CategoryForm selectItems={ this.selectItems() }/>
         </section>
       </div>
     );
@@ -57,6 +66,6 @@ export default createContainer(() => {
   Meteor.subscribe('categories');
 
   return {
-    categories: Categories.find({}, { sort: { createdAt: -1 }}).fetch(),
+    categories: Categories.find({}, { sort: { name: 0 }}).fetch(),
   };
 }, CategoriesIndex);

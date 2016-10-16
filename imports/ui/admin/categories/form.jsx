@@ -5,15 +5,19 @@ import Alert from 'react-s-alert';
 export default class CategoryForm extends Component {
   constructor(props) {
     super(props)
-    this.state = { errorMessage: '' }
+    this.state = { errorMessage: '', parentId: '0' }
+  }
+
+  updateParentId(event) {
+    this.setState({ parentId: event.target.value });
   }
 
   submitEvent(event) {
     event.preventDefault();
     let that = this;
     let name = ReactDOM.findDOMNode(this.refs.categoryName).value.trim();
-    let parentId; //= ReactDOM.findDOMNode(this.refs.parentId).value.trim();
-    let order; //= ReactDOM.findDOMNode(this.refs.order).value.trim();
+    let parentId = this.state.parentId;
+    //let order = ReactDOM.findDOMNode(this.refs.order).value.trim();
     let category = {};
 
     if (!name) {
@@ -22,7 +26,6 @@ export default class CategoryForm extends Component {
       category.name = name;
     };
     category.parentId = parentId;
-    category.order = order || 0;
 
     Meteor.call('categories.addCategory', category, function(error, result) {
       if (error) {
@@ -37,6 +40,10 @@ export default class CategoryForm extends Component {
   }
 
   render() {
+    let allItems = this.props.selectItems.map(function(selectItem, index) {
+      return (<option key={ index } value={ selectItem.value }>{ selectItem.title }</option>);
+    });
+
     return(
       <div className="modal" id="category-form">
         <div className="modal-dialog">
@@ -58,6 +65,12 @@ export default class CategoryForm extends Component {
                   <label htmlFor="name">Category name</label>
                   <input className="form-control" autoFocus ref="categoryName" name="name" required type="text" />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="categoryParentId">Select parent category (leave it blank if none).</label>
+                  <select onChange={ this.updateParentId.bind(this) } className="form-control" name="categoryParentId">
+                    { allItems }
+                  </select>
+                </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default pull-left" data-dismiss="modal">Discard</button>
@@ -70,3 +83,7 @@ export default class CategoryForm extends Component {
     );
   }
 }
+
+CategoryForm.propTypes = {
+  selectItems: PropTypes.array.isRequired,
+};
