@@ -15,19 +15,27 @@ It's in an early stage and not suitable to be used in production.
 * Basic route schema with react-router.
   * Public routes
   * Private routes: Require login.
-* Sections. Sections can be nested into subsections.
+
+#### In progress
+
+* Pages. Pages can be nested into subpages.
+* There are some predefined layouts for pages. When a new page is created it must be linked to one of those layouts.
+  * Standard generic text.
+  * 3x3 box display
+  * 4x2 box display
+  * 2 box display
+  * Product page
+  * Contact page
 
 #### TODO (prioritised)
 
-* Pages. A page belongs to a section.
-* Images. A page can have many images associated with it.
-* Each image can have different sizes for different parts of the page (thumbnails, medium, large, etc...). Sizes are configurable by user.
-* Reorder of sections. Drag and drop reorder of sections.
-* Contact form. Customisable contact form.
+* Images. Depending on the layout a page can have images associated with it.
+* Each image can have different sizes for different parts of the page (thumbnails, medium, large, etc...).
+* Reorder of pages. Drag and drop reorder of pages.
 * Multi-language.
 * Tags. A page can get multiple tags assigned to it.
 * Public templates. Instructions about how to install a template for the public pages.  Everything is based on bootstrap so adding a template created with bootstrap should require almost no effort.
-* Blog/News section.
+* Blog/News page.
 * User accounts with roles (viewer, writer, editor, publisher, manager, admin)
 * Public pages accessible via login. Some pages on the public site can only be accessible by logged in users.
 

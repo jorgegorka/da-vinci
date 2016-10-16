@@ -4,7 +4,7 @@ export default class Dashboard extends Component {
   render() {
     return(
       <div className="content-wrapper">
-        <section className="content-header">
+        <page className="content-header">
           <h1>
             Widgets
             <small>Preview page</small>
@@ -13,8 +13,8 @@ export default class Dashboard extends Component {
             <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
             <li className="active">Widgets</li>
           </ol>
-        </section>
-        <section className="content">
+        </page>
+        <page className="content">
           <div className="row">
             <div className="col-md-3 col-sm-6 col-xs-12">
               <div className="info-box">
@@ -134,7 +134,7 @@ export default class Dashboard extends Component {
             <div className="col-lg-3 col-xs-6">
               <div className="small-box bg-green">
                 <div className="inner">
-                  <h3>53<sup style={{ 'font-size': '20px' }}>%</sup></h3>
+                  <h3>53<sup style={{ fontSize: '20px' }}>%</sup></h3>
                   <p>Bounce Rate</p>
                 </div>
                 <div className="icon">
@@ -174,7 +174,7 @@ export default class Dashboard extends Component {
               </div>
             </div>
           </div>
-        </section>
+        </page>
       </div>
     );
   }

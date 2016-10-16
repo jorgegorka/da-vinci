@@ -9,7 +9,7 @@ export default class CreateAccount extends Component {
   render() {
     return (
       <div id="register" className="animate form registration_form">
-        <section className="login_content">
+        <page className="login_content">
           <form>
             <h1>Create Account</h1>
             <div>
@@ -38,7 +38,7 @@ export default class CreateAccount extends Component {
               <LoginFooter />
             </div>
           </form>
-        </section>
+        </page>
       </div>
     )
   }

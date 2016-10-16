@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Alert from 'react-s-alert';
 
-export default class SectionForm extends Component {
+export default class PageForm extends Component {
   constructor(props) {
     super(props)
     let defaultParentId = 'top';
-    if (this.props.section) {
-      defaultParentId = this.props.section.parentId;
+    if (this.props.page) {
+      defaultParentId = this.props.page.parentId;
     };
     this.state = { errorMessage: '', parentId: defaultParentId }
   }
@@ -19,8 +19,8 @@ export default class SectionForm extends Component {
   methodParams() {
     let methodParams = [this.props.methodName]
 
-    if (this.props.section) {
-      methodParams.push(this.props.section._id);
+    if (this.props.page) {
+      methodParams.push(this.props.page._id);
     }
 
     return methodParams;
@@ -29,49 +29,49 @@ export default class SectionForm extends Component {
   submitEvent(event) {
     event.preventDefault();
     let that = this;
-    let name = ReactDOM.findDOMNode(this.refs.sectionName).value.trim();
+    let name = ReactDOM.findDOMNode(this.refs.pageName).value.trim();
     let parentId = this.state.parentId;
-    let order = ReactDOM.findDOMNode(this.refs.sectionOrder).value.trim();
-    let section = {};
+    let order = ReactDOM.findDOMNode(this.refs.pageOrder).value.trim();
+    let page = {};
 
     if (!name) {
       return;
     } else {
-      section.name = name;
+      page.name = name;
     };
-    section.parentId = parentId;
-    section.order = parseInt(order);
+    page.parentId = parentId;
+    page.order = parseInt(order);
 
     let methodParams = this.methodParams();
 
-    Meteor.call(...methodParams, section, function(error, result) {
+    Meteor.call(...methodParams, page, function(error, result) {
       if (error) {
         that.setState({ errorMessage: error.message });
         return
       } else {
-        Alert.info('Section created successfully', { position: 'top' });
-        $('#section-form').modal('hide');
+        Alert.info('Page created successfully', { position: 'top' });
+        $('#page-form').modal('hide');
         return
       }
     });
   }
 
   render() {
-    let sectionName, sectionOrder = '';
-    let sectionParentId = 'top';
+    let pageName, pageOrder = '';
+    let pageParentId = 'top';
     let allItems = this.props.selectItems.map((selectItem, index) => {
       return (<option key={ index } value={ selectItem.value }>{ selectItem.title }</option>);
     });
 
-    if (this.props.section) {
-      sectionName  = this.props.section.name
-      sectionOrder = this.props.section.order
-      sectionParentId = this.props.section.parentId
+    if (this.props.page) {
+      pageName  = this.props.page.name
+      pageOrder = this.props.page.order
+      pageParentId = this.props.page.parentId
     }
 
 
     return(
-      <div className="modal" id="section-form">
+      <div className="modal" id="page-form">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -89,17 +89,17 @@ export default class SectionForm extends Component {
                   </div> : null }
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
-                  <input className="form-control" autoFocus ref="sectionName" name="name" required type="text" defaultValue={ sectionName } />
+                  <input className="form-control" autoFocus ref="pageName" name="name" required type="text" defaultValue={ pageName } />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="sectionParentId">Select parent section (leave it blank if none).</label>
-                  <select onChange={ this.updateParentId.bind(this) } value={ sectionParentId } className="form-control" name="sectionParentId">
+                  <label htmlFor="pageParentId">Select parent page (leave it blank if none).</label>
+                  <select onChange={ this.updateParentId.bind(this) } value={ pageParentId } className="form-control" name="pageParentId">
                     { allItems }
                   </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="order">Order</label>
-                  <input className="form-control" ref="sectionOrder" name="order" required type="text" defaultValue={ sectionOrder } />
+                  <input className="form-control" ref="pageOrder" name="order" required type="text" defaultValue={ pageOrder } />
                 </div>
               </div>
               <div className="modal-footer">
@@ -114,9 +114,9 @@ export default class SectionForm extends Component {
   }
 }
 
-SectionForm.propTypes = {
+PageForm.propTypes = {
   selectItems: PropTypes.array.isRequired,
   formTitle: PropTypes.string.isRequired,
   methodName: PropTypes.string.isRequired,
-  section: PropTypes.object,
+  page: PropTypes.object,
 };
