@@ -1,5 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles'
+import { PageTypes } from '../../lib/collections/page_types.js';
 
 export default class SetupDaVinci {
   constructor(email, password, name) {
@@ -7,6 +8,7 @@ export default class SetupDaVinci {
     this.adminPassword = password;
     this.adminName     = name;
     this.addAdminAndRoles();
+    this.addPageTypes();
   }
 
   addAdminAndRoles() {
@@ -29,5 +31,11 @@ export default class SetupDaVinci {
     adminUser = Accounts.findUserByUsername('admin');
 
     Roles.addUsersToRoles(adminUser._id, 'admin', Roles.GLOBAL_GROUP);
+  }
+
+  addPageTypes() {
+    let pageTypes = ['Home 1', 'Contact 1', 'About Us 1', 'Section 1', 'Product 1', 'Blog 1', 'Legal stuff 1', 'Footer 1'];
+
+    pageTypes.forEach(function(pageType) { PageTypes.insert({ name: pageType }); });
   }
 }

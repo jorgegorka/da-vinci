@@ -10,7 +10,11 @@ It's in an early stage and not suitable to be used in production.
 * Setup script that bootstrap the app and database created.
   * To execute run meteor:
       `meteor shell`
-  * Import script and instantiate it: `import SetupDaVinci from './server/setup/setup_da_vinci.js';` then `new SetupDaVinci('your@email.com', 'password', 'Your name');`
+  * Import script and instantiate it:
+  ```
+  import SetupDaVinci from './server/setup/setup_da_vinci.js';
+  new SetupDaVinci('your@email.com', 'password', 'Your name');
+  ```
   * A new admin user will be created with provided info.
 * Basic route schema with react-router.
   * Public routes
