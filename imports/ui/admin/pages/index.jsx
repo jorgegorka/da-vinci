@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Pages } from '../../../../lib/collections/pages.js';
 import { PageTypes } from '../../../../lib/collections/page_types.js';
 
+import Loading from '../../utils/containers/loading.jsx';
 import PageForm from './form.jsx';
 import PageList from './list.jsx';
 
@@ -31,6 +32,10 @@ class PagesIndex extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return(<Loading />);
+    };
+
     return(
       <div className="content-wrapper">
         <page className="content-header">
@@ -56,10 +61,11 @@ PagesIndex.propTypes = {
 
 export default createContainer(() => {
   Meteor.subscribe('pages');
-  Meteor.subscribe('pageTypes');
+  let subscription = Meteor.subscribe('pageTypes');
 
   return {
     pages: Pages.find({}, { $sort: { name: 0 }}).fetch(),
+    loading: !subscription.ready(),
     pageTypes: PageTypes.find({}, { $sort: { name: 0 }}).fetch(),
   };
 }, PagesIndex);

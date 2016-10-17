@@ -19,9 +19,19 @@ export class Page {
   validate(pageParams) {
     check(pageParams, {
       name: String,
+      isHomePage: Boolean,
+      pageTypeId: String,
       parentId: Match.Maybe(String),
       order: Match.Maybe(Number),
-      languages: Match.Maybe([Object])
+      languages: Match.Maybe([Object]),
     });
+
+    if ((pageParams.isHomePage === true) && _homePageTaken()) {
+      throw new Meteor.Error("homepage", "There is another page already marked as Homepage.");
+    }
+  }
+
+  _homePageTaken() {
+    Pages.findOne({ isHomePage: true })
   }
 }

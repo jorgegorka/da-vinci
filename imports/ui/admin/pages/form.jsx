@@ -19,12 +19,18 @@ export default class PageForm extends Component {
     let defaultOrder;
     let defaultName;
 
-    if (this.props.page) {
-      defaultParentId = this.props.page.parentId || 'top';
-      defaultPageTypeId = this.props.page.pageTypeId || '';
-      defaultHomePage = this.props.page.isHomePage || false;
-      defaultOrder = this.props.page.order || 0;
-      defaultName = this.props.page.name || '';
+    if (props.page) {
+      defaultParentId = props.page.parentId;
+      defaultPageTypeId = props.page.pageTypeId;
+      defaultHomePage = props.page.isHomePage;
+      defaultOrder = props.page.order.toString();
+      defaultName = props.page.name;
+    } else {
+      defaultParentId = 'top';
+      defaultPageTypeId = props.selectPageTypes[0].title;
+      defaultHomePage = false;
+      defaultOrder = '0';
+      defaultName = '';
     };
 
     this.state = {
@@ -80,10 +86,12 @@ export default class PageForm extends Component {
     let methodParams = [this.props.methodName, page]
 
     if (this.props.page) {
-      methodParams.push(this.props.page._id);
+      methodParams.splice(1, 0, this.props.page._id);
     }
 
-    Meteor.call(...methodParams, page, function(error, result) {
+    console.log(methodParams);
+
+    Meteor.call(...methodParams, function(error, result) {
       if (error) {
         that.setState({ errorMessage: error.message });
         return
@@ -128,11 +136,11 @@ export default class PageForm extends Component {
                 </FormGroup>
                 <FormGroup>
                   <FormLabel text='Select the type of page' htmlFor="pageType" />
-                  <FormSelect selectOptions={ pageTypeOptions } updatePageTypeId={ this.updateParentId.bind(this) }/>
+                  <FormSelect selectOptions={ pageTypeOptions } onChange={ this.updatePageTypeId.bind(this) }/>
                 </FormGroup>
                 <FormGroup>
                   <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                  <FormSelect selectOptions={ parentOptions } updateParentId={ this.updateParentId.bind(this) }/>
+                  <FormSelect selectOptions={ parentOptions } onChange={ this.updateParentId.bind(this) }/>
                 </FormGroup>
                 <FormGroup>
                   <FormLabel text='Order' htmlFor="order" />

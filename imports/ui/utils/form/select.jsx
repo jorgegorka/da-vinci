@@ -6,8 +6,8 @@ export default class FormSelect extends Component {
     super(props)
   }
 
-  updateParentId(event) {
-    this.props.updateParentId(event.target.value);
+  onChange(event) {
+    this.props.onChange(event.target.value);
   }
 
   render() {
@@ -16,7 +16,7 @@ export default class FormSelect extends Component {
     });
 
     return(
-      <select onChange={ this.updateParentId.bind(this) } value={ this.props.selectOptions.defaultValue } className="form-control" name={ this.props.selectOptions.selectName }>
+      <select onChange={ this.onChange.bind(this) } value={ this.props.selectOptions.defaultValue } className="form-control" name={ this.props.selectOptions.selectName }>
         { allItems }
       </select>
     );
