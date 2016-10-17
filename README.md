@@ -19,17 +19,21 @@ It's in an early stage and not suitable to be used in production.
 * Basic route schema with react-router.
   * Public routes
   * Private routes: Require login.
+* Page types. Pages can be of one of the predefined page types. Each type has its own layout with some predefined blocks of texts, images, forms, etc...
+  * **Available layouts**
+  * Home
+  * Contact
+  * About us
+  * Section
+  * Product
+  * Blog
+  * Legal stuff
+  * Footer
 
 #### In progress
 
 * Pages. Pages can be nested into subpages.
-* There are some predefined layouts for pages. When a new page is created it must be linked to one of those layouts.
-  * Standard generic text.
-  * 3x3 box display
-  * 4x2 box display
-  * 2 box display
-  * Product page
-  * Contact page
+
 
 #### TODO (prioritised)
 
