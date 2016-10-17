@@ -2,24 +2,43 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Alert from 'react-s-alert';
 
+import FormTag from '../../utils/form/tag.jsx'
 import FormGroup from '../../utils/form/group.jsx'
 import FormSelect from '../../utils/form/select.jsx'
 import FormLabel from '../../utils/form/label.jsx'
+import FormCheckBox from '../../utils/form/check_box.jsx'
+import FormInput from '../../utils/form/input.jsx'
+import ErrorMessage from '../../utils/containers/error_message.jsx'
 
 export default class PageForm extends Component {
   constructor(props) {
     super(props)
     let defaultParentId = 'top';
     let defaultPageTypeId;
+    let defaultHomePage;
+    let defaultOrder;
+    let defaultName;
+
     if (this.props.page) {
-      defaultParentId = this.props.page.parentId;
-      defaultPageTypeId = this.props.page.pageTypeId;
+      defaultParentId = this.props.page.parentId || 'top';
+      defaultPageTypeId = this.props.page.pageTypeId || '';
+      defaultHomePage = this.props.page.isHomePage || false;
+      defaultOrder = this.props.page.order || 0;
+      defaultName = this.props.page.name || '';
     };
+
     this.state = {
       errorMessage: '',
       parentId: defaultParentId,
       pageTypeId: defaultPageTypeId,
+      isHomePage: defaultHomePage,
+      order: defaultOrder,
+      name: defaultName,
     };
+  }
+
+  updateName(name) {
+    this.setState({ name: name });
   }
 
   updateParentId(parentId) {
@@ -28,6 +47,14 @@ export default class PageForm extends Component {
 
   updatePageTypeId(pageTypeId) {
     this.setState({ pageTypeId: pageTypeId });
+  }
+
+  updateHomePage(isHomePage) {
+    this.setState({ isHomePage: isHomePage });
+  }
+
+  updateOrder(order) {
+    this.setState({ order: order });
   }
 
   methodParams() {
@@ -40,23 +67,21 @@ export default class PageForm extends Component {
     return methodParams;
   }
 
-  submitEvent(event) {
-    event.preventDefault();
+  submitEvent() {
     let that = this;
-    let name = ReactDOM.findDOMNode(this.refs.pageName).value.trim();
-    let parentId = this.state.parentId;
-    let order = ReactDOM.findDOMNode(this.refs.pageOrder).value.trim();
-    let page = {};
-
-    if (!name) {
-      return;
-    } else {
-      page.name = name;
+    let page = {
+      name: this.state.name,
+      parentId: this.state.parentId,
+      order: parseInt(this.state.order),
+      isHomePage: this.state.isHomePage,
+      pageTypeId: this.state.pageTypeId,
     };
-    page.parentId = parentId;
-    page.order = parseInt(order);
 
-    let methodParams = this.methodParams();
+    let methodParams = [this.props.methodName, page]
+
+    if (this.props.page) {
+      methodParams.push(this.props.page._id);
+    }
 
     Meteor.call(...methodParams, page, function(error, result) {
       if (error) {
@@ -71,13 +96,6 @@ export default class PageForm extends Component {
   }
 
   render() {
-    let pageName, pageOrder = '';
-
-    if (this.props.page) {
-      pageName  = this.props.page.name;
-      pageOrder = this.props.page.order;
-    }
-
     let pageTypeOptions = {
       selectItems: this.props.selectPageTypes,
       defaultValue: this.state.pageTypeId,
@@ -101,17 +119,13 @@ export default class PageForm extends Component {
               </button>
               <h4 className="modal-title">{ this.props.formTitle }</h4>
             </div>
-            <form role="form" onSubmit={ this.submitEvent.bind(this) }>
+            <FormTag onSubmit={ this.submitEvent.bind(this) }>
               <div className="modal-body">
-                { this.state.errorMessage ?
-                  <div className="alert alert-danger alert-dismissible">
-                    <h4><i className="icon fa fa-ban"></i> An error has occurred!</h4>
-                    { this.state.errorMessage }
-                  </div> : null }
-                <div className="form-group">
-                  <label htmlFor="name">Name</label>
-                  <input className="form-control" autoFocus ref="pageName" name="name" required type="text" defaultValue={ pageName } />
-                </div>
+                <ErrorMessage errorMessage={ this.state.errorMessage } />
+                <FormGroup>
+                  <FormLabel text='Name' htmlFor="name" />
+                  <FormInput defaultValue={ this.state.name } onChange={ this.updateName.bind(this) } name="name" />
+                </FormGroup>
                 <FormGroup>
                   <FormLabel text='Select the type of page' htmlFor="pageType" />
                   <FormSelect selectOptions={ pageTypeOptions } updatePageTypeId={ this.updateParentId.bind(this) }/>
@@ -121,15 +135,18 @@ export default class PageForm extends Component {
                   <FormSelect selectOptions={ parentOptions } updateParentId={ this.updateParentId.bind(this) }/>
                 </FormGroup>
                 <FormGroup>
-                  <label htmlFor="order">Order</label>
-                  <input className="form-control" ref="pageOrder" name="order" required type="text" defaultValue={ pageOrder } />
+                  <FormLabel text='Order' htmlFor="order" />
+                  <FormInput defaultValue={ this.state.order } onChange={ this.updateOrder.bind(this) } name="order" />
+                </FormGroup>
+                <FormGroup>
+                  <FormCheckBox text='Set page as Homepage?' htmlFor="homePage" />
                 </FormGroup>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default pull-left" data-dismiss="modal">Discard</button>
                 <button type="submit" className="btn btn-primary">Save</button>
               </div>
-            </form>
+            </FormTag>
           </div>
         </div>
       </div>
