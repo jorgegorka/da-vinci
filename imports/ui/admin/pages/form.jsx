@@ -2,18 +2,32 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Alert from 'react-s-alert';
 
+import FormGroup from '../../utils/form/group.jsx'
+import FormSelect from '../../utils/form/select.jsx'
+import FormLabel from '../../utils/form/label.jsx'
+
 export default class PageForm extends Component {
   constructor(props) {
     super(props)
     let defaultParentId = 'top';
+    let defaultPageTypeId;
     if (this.props.page) {
       defaultParentId = this.props.page.parentId;
+      defaultPageTypeId = this.props.page.pageTypeId;
     };
-    this.state = { errorMessage: '', parentId: defaultParentId }
+    this.state = {
+      errorMessage: '',
+      parentId: defaultParentId,
+      pageTypeId: defaultPageTypeId,
+    };
   }
 
-  updateParentId(event) {
-    this.setState({ parentId: event.target.value });
+  updateParentId(parentId) {
+    this.setState({ parentId: parentId });
+  }
+
+  updatePageTypeId(pageTypeId) {
+    this.setState({ pageTypeId: pageTypeId });
   }
 
   methodParams() {
@@ -58,16 +72,23 @@ export default class PageForm extends Component {
 
   render() {
     let pageName, pageOrder = '';
-    let pageParentId = 'top';
-    let allItems = this.props.selectItems.map((selectItem, index) => {
-      return (<option key={ index } value={ selectItem.value }>{ selectItem.title }</option>);
-    });
 
     if (this.props.page) {
-      pageName  = this.props.page.name
-      pageOrder = this.props.page.order
-      pageParentId = this.props.page.parentId
+      pageName  = this.props.page.name;
+      pageOrder = this.props.page.order;
     }
+
+    let pageTypeOptions = {
+      selectItems: this.props.selectPageTypes,
+      defaultValue: this.state.pageTypeId,
+      selectName: 'pageType',
+    };
+
+    let parentOptions = {
+      selectItems: this.props.selectParentPages,
+      defaultValue: this.state.parentId,
+      selectName: 'pageParentId',
+    };
 
 
     return(
@@ -91,16 +112,18 @@ export default class PageForm extends Component {
                   <label htmlFor="name">Name</label>
                   <input className="form-control" autoFocus ref="pageName" name="name" required type="text" defaultValue={ pageName } />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="pageParentId">Select parent page (leave it blank if none).</label>
-                  <select onChange={ this.updateParentId.bind(this) } value={ pageParentId } className="form-control" name="pageParentId">
-                    { allItems }
-                  </select>
-                </div>
-                <div className="form-group">
+                <FormGroup>
+                  <FormLabel text='Select the type of page' htmlFor="pageType" />
+                  <FormSelect selectOptions={ pageTypeOptions } updatePageTypeId={ this.updateParentId.bind(this) }/>
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
+                  <FormSelect selectOptions={ parentOptions } updateParentId={ this.updateParentId.bind(this) }/>
+                </FormGroup>
+                <FormGroup>
                   <label htmlFor="order">Order</label>
                   <input className="form-control" ref="pageOrder" name="order" required type="text" defaultValue={ pageOrder } />
-                </div>
+                </FormGroup>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default pull-left" data-dismiss="modal">Discard</button>
@@ -115,7 +138,8 @@ export default class PageForm extends Component {
 }
 
 PageForm.propTypes = {
-  selectItems: PropTypes.array.isRequired,
+  selectParentPages: PropTypes.array.isRequired,
+  selectPageTypes: PropTypes.array.isRequired,
   formTitle: PropTypes.string.isRequired,
   methodName: PropTypes.string.isRequired,
   page: PropTypes.object,
