@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import i18n from 'meteor/universe:i18n';
 
+import ShowPageTempalte from './show_page_template.jsx';
 import ContentBox from '../../utils/containers/content_box.jsx';
 import ContentBoxHeader from '../../utils/containers/content_box_header.jsx';
 import ContentBoxBody from '../../utils/containers/content_box_body.jsx';
@@ -15,7 +16,7 @@ export default class PagesContentList extends Component {
         <ContentBox>
           <ContentBoxHeader headerTitle="Page content" />
           <ContentBoxBody>
-            <ShowPageTempalte pageId={ this.props.pageId } />
+            <ShowPageTempalte page={ this.props.page } />
           </ContentBoxBody>
         </ContentBox>
       </div>
@@ -25,5 +26,5 @@ export default class PagesContentList extends Component {
 
 
 PagesContentList.propTypes = {
-  pageId: PropTypes.string.isRequired,
+  page: PropTypes.object.isRequired,
 };

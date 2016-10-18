@@ -72,7 +72,7 @@ class PagesShow extends Component {
         </section>
         <section className="content">
           <div className="row">
-            <PagesContentList pageId={ this.props.page._id } />
+            <PagesContentList page={ this.props.page } />
             <PageForm selectParentPages={ this.selectParentPages() } selectPageTypes={ this.selectPageTypes() } methodName={ 'pages.update' } page={ this.props.page } formTitle='Edit page' />
           </div>
         </section>
