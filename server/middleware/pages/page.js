@@ -16,6 +16,11 @@ export class Page {
     Pages.update({ _id: this.pageId }, { $set: pageParams });
   }
 
+  destroy() {
+    //destroy page contents.
+    Pages.remove({ _id: this.pageId });
+  }
+
   validate(pageParams) {
     check(pageParams, {
       name: String,
