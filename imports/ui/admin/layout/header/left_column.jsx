@@ -12,7 +12,7 @@ export default class LeftColumn extends Component {
   render() {
     return (
       <aside className="main-sidebar">
-        <page className="sidebar">
+        <section className="sidebar">
           <form action="#" method="get" className="sidebar-form">
             <div className="input-group">
               <input type="text" name="q" className="form-control" placeholder="Search..." />
@@ -24,7 +24,7 @@ export default class LeftColumn extends Component {
             </div>
           </form>
           <MainNavigation />
-        </page>
+        </section>
       </aside>
     );
   }

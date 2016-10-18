@@ -8,7 +8,8 @@ import Login from './ui/public/login/login.jsx';
 
 // route admin
 import DaVinci from './ui/admin/da_vinci.jsx';
-import Dashboard from './ui/admin/dashboard.jsx';
+import DashboardIndex from './ui/admin/dashboard/index.jsx';
+import SettingsIndex from './ui/admin/settings/index.jsx';
 import PagesIndex from './ui/admin/pages/index.jsx';
 import PagesShow from './ui/admin/pages/show.jsx';
 
@@ -19,7 +20,8 @@ export const renderRoutes = () => (
       <Route path="login" component={ Login } />
     </Route>
     <Route path="/admin" component={ DaVinci }>
-      <IndexRoute component={ Dashboard } />
+      <IndexRoute component={ DashboardIndex } />
+      <Route path="settings" component={ SettingsIndex } />
       <Route path="pages" component={ PagesIndex } />
       <Route path="page/:pageId" component={ PagesShow } />
     </Route>

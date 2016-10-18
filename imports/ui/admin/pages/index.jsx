@@ -38,17 +38,17 @@ class PagesIndex extends Component {
 
     return(
       <div className="content-wrapper">
-        <page className="content-header">
+        <section className="content-header">
           <h1>
             Pages
             <small>List of pages</small>
           </h1>
           <button type="button" className="btn btn-primary pull-right" data-toggle="modal" data-target="#page-form">New page</button>
-        </page>
-        <page className="content">
+        </section>
+        <section className="content">
           <PageList key="top" parentId="top" pages={ Pages.find({ parentId: 'top' }).fetch() } />
-          <PageForm selectParentPages={ this.selectParentPages() } selectPageTypes={ this.selectPageTypes() } methodName={ 'pages.addPage' } formTitle='Add new page' />
-        </page>
+          <PageForm selectParentPages={ this.selectParentPages() } selectPageTypes={ this.selectPageTypes() } methodName={ 'pages.create' } formTitle='Add new page' />
+        </section>
       </div>
     );
   }

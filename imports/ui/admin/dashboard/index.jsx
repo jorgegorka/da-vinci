@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Dashboard extends Component {
+export default class DashboardIndex extends Component {
   render() {
     return(
       <div className="content-wrapper">
-        <page className="content-header">
+        <section className="content-header">
           <h1>
             Widgets
             <small>Preview page</small>
@@ -13,8 +13,8 @@ export default class Dashboard extends Component {
             <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
             <li className="active">Widgets</li>
           </ol>
-        </page>
-        <page className="content">
+        </section>
+        <section className="content">
           <div className="row">
             <div className="col-md-3 col-sm-6 col-xs-12">
               <div className="info-box">
@@ -174,7 +174,7 @@ export default class Dashboard extends Component {
               </div>
             </div>
           </div>
-        </page>
+        </section>
       </div>
     );
   }

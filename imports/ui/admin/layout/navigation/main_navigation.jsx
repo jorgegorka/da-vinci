@@ -20,13 +20,13 @@ export default class MainNavigation extends Component {
       <ul className="sidebar-menu">
         <li className="header">Main menu</li>
         <li>
-          <a href="/admin/pages">
+          <a href="/admin/pages" title="Manage your pages">
             <i className="fa fa-th"></i> <span>Pages</span>
           </a>
         </li>
         <li>
-          <a href="/admin/pages">
-            <i className="fa fa-th"></i> <span>Page type</span>
+          <a href="/admin/settings" title="Update site configuration options">
+            <i className="fa fa-th"></i> <span>Settings</span>
           </a>
         </li>
         <li>
