@@ -6,11 +6,21 @@ export default class FormCheckBox extends Component {
     super(props)
   }
 
+  handleChange(event) {
+    this.props.onChange(event.target.checked);
+  }
+
   render() {
     return(
       <div className="checkbox">
         <label htmlFor={ this.props.htmlFor }>
-          <input type="checkbox" name={ this.props.htmlFor } ref={ this.props.htmlFor } />
+          <input
+            type="checkbox"
+            name={ this.props.htmlFor }
+            ref={ this.props.htmlFor }
+            id={ this.props.htmlFor }
+            onChange={ this.handleChange.bind(this) }
+          />
           { this.props.text }
         </label>
       </div>

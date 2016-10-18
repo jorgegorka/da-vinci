@@ -20,6 +20,7 @@ export default class FormInput extends Component {
         required={ this.props.required }
         autoFocus={ this.props.autoFocus }
         name={ this.props.name }
+        id={ this.props.name }
       />
     );
   }

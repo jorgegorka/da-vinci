@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import Alert from 'react-s-alert';
 
 import FormTag from '../../utils/form/tag.jsx'
 import FormGroup from '../../utils/form/group.jsx'
@@ -8,7 +7,7 @@ import FormSelect from '../../utils/form/select.jsx'
 import FormLabel from '../../utils/form/label.jsx'
 import FormCheckBox from '../../utils/form/check_box.jsx'
 import FormInput from '../../utils/form/input.jsx'
-import ErrorMessage from '../../utils/containers/error_message.jsx'
+import AlertMessage from '../../utils/containers/alert_message.jsx'
 
 export default class PageForm extends Component {
   constructor(props) {
@@ -18,6 +17,7 @@ export default class PageForm extends Component {
     let defaultHomePage;
     let defaultOrder;
     let defaultName;
+    let defaultShowInMenu;
 
     if (props.page) {
       defaultParentId = props.page.parentId;
@@ -25,10 +25,12 @@ export default class PageForm extends Component {
       defaultHomePage = props.page.isHomePage;
       defaultOrder = props.page.order.toString();
       defaultName = props.page.name;
+      defaultShowInMenu = props.page.showInMenu;
     } else {
       defaultParentId = 'top';
       defaultPageTypeId = props.selectPageTypes[0].title;
       defaultHomePage = false;
+      defaultShowInMenu = true;
       defaultOrder = '0';
       defaultName = '';
     };
@@ -38,6 +40,7 @@ export default class PageForm extends Component {
       parentId: defaultParentId,
       pageTypeId: defaultPageTypeId,
       isHomePage: defaultHomePage,
+      showInMenu: defaultShowInMenu,
       order: defaultOrder,
       name: defaultName,
     };
@@ -57,6 +60,10 @@ export default class PageForm extends Component {
 
   updateHomePage(isHomePage) {
     this.setState({ isHomePage: isHomePage });
+  }
+
+  updateShowInMenu(showInMenu) {
+    this.setState({ showInMenu: showInMenu });
   }
 
   updateOrder(order) {
@@ -80,6 +87,8 @@ export default class PageForm extends Component {
       parentId: this.state.parentId,
       order: parseInt(this.state.order),
       isHomePage: this.state.isHomePage,
+      showInMenu: this.state.showInMenu,
+      showInMenu: this.state.showInMenu,
       pageTypeId: this.state.pageTypeId,
     };
 
@@ -88,8 +97,6 @@ export default class PageForm extends Component {
     if (this.props.page) {
       methodParams.splice(1, 0, this.props.page._id);
     }
-
-    console.log(methodParams);
 
     Meteor.call(...methodParams, function(error, result) {
       if (error) {
@@ -129,7 +136,7 @@ export default class PageForm extends Component {
             </div>
             <FormTag onSubmit={ this.submitEvent.bind(this) }>
               <div className="modal-body">
-                <ErrorMessage errorMessage={ this.state.errorMessage } />
+                <AlertMessage alertText={ this.state.errorMessage } alertTitle="An error has occurred!" alertType="danger" />
                 <FormGroup>
                   <FormLabel text='Name' htmlFor="name" />
                   <FormInput defaultValue={ this.state.name } onChange={ this.updateName.bind(this) } name="name" />
@@ -147,7 +154,10 @@ export default class PageForm extends Component {
                   <FormInput defaultValue={ this.state.order } onChange={ this.updateOrder.bind(this) } name="order" />
                 </FormGroup>
                 <FormGroup>
-                  <FormCheckBox text='Set page as Homepage?' htmlFor="homePage" />
+                  <FormCheckBox text='Set page as homepage?' htmlFor="homePage" onChange={ this.updateHomePage.bind(this) } />
+                </FormGroup>
+                <FormGroup>
+                  <FormCheckBox text='Show page in main menu?' htmlFor="showMenu" onChange={ this.updateShowInMenu.bind(this) } />
                 </FormGroup>
               </div>
               <div className="modal-footer">

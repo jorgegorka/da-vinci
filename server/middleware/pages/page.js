@@ -26,12 +26,12 @@ export class Page {
       languages: Match.Maybe([Object]),
     });
 
-    if ((pageParams.isHomePage === true) && _homePageTaken()) {
-      throw new Meteor.Error("homepage", "There is another page already marked as Homepage.");
+    if ((pageParams.isHomePage === true) && this._homePageTaken()) {
+      throw new Meteor.Error("homepage-already-set", "There is another page already marked as Homepage.");
     }
   }
 
   _homePageTaken() {
-    Pages.findOne({ isHomePage: true })
+    return Pages.find({ isHomePage: true }).count() > 0
   }
 }
