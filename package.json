@@ -12,8 +12,10 @@
     "react": "^15.3.1",
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-inline-edit": "^3.0.0",
     "react-router": "^2.8.0",
-    "react-s-alert": "^1.1.4"
+    "react-s-alert": "^1.1.4",
+    "react-wysiwyg": "^2.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
@@ -25,7 +27,8 @@
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-meteor": "^4.0.0",
     "eslint-plugin-react": "^6.2.0",
+    "faker": "^3.1.0",
     "react-addons-test-utils": "^15.3.1",
-    "faker": "^3.1.0"
+    "riek": "^1.0.5"
   }
 }
