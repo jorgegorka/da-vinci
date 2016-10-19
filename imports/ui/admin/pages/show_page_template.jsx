@@ -5,7 +5,7 @@ import i18n from 'meteor/universe:i18n';
 import { PageTypes } from '../../../../lib/collections/page_types.js';
 
 import Loading from '../../utils/containers/loading.jsx';
-import Home1Template from './templates/home1_template.jsx';
+import Home1Template from './templates/home1/index.jsx';
 
 
 class ShowPageTemplate extends Component {
