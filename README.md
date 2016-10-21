@@ -50,6 +50,7 @@ It's in an early stage and not suitable to be used in production.
 ### Dependencies
     meteor npm install --save react react-dom
     meteor npm install --save react-addons-pure-render-mixin
+    meteor npm install react-addons-update --save
     meteor add react-meteor-data
     meteor npm install --save react-router
     meteor npm install --save bcrypt
@@ -64,7 +65,7 @@ It's in an early stage and not suitable to be used in production.
     meteor add alanning:roles
     meteor add aldeed:collection2
     meteor npm install moment --save
-    npm install riek --save-dev
+
 
     *Testing*
     meteor add practicalmeteor:mocha

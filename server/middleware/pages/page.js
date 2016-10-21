@@ -25,10 +25,12 @@ export class Page {
     check(pageParams, {
       name: String,
       isHomePage: Boolean,
+      showInMenu: Boolean,
       pageTypeId: String,
       parentId: Match.Maybe(String),
+      language: Match.Maybe(String),
       order: Match.Maybe(Number),
-      languages: Match.Maybe([Object]),
+      content: Match.Maybe(Object),
     });
 
     if ((pageParams.isHomePage === true) && this._homePageTaken()) {
@@ -37,6 +39,10 @@ export class Page {
   }
 
   _homePageTaken() {
-    return Pages.find({ isHomePage: true }).count() > 0
+    let query = { isHomePage: true }
+    if (this.pageId) {
+      query['_id'] = { $ne: this.pageId }
+    }
+    return Pages.find(query).count() > 0
   }
 }

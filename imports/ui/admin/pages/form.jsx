@@ -88,7 +88,6 @@ export default class PageForm extends Component {
       order: parseInt(this.state.order),
       isHomePage: this.state.isHomePage,
       showInMenu: this.state.showInMenu,
-      showInMenu: this.state.showInMenu,
       pageTypeId: this.state.pageTypeId,
     };
 
