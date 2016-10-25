@@ -1,2 +1,4 @@
 node_modules/
 /public
+/customer_assets
+settings*.json

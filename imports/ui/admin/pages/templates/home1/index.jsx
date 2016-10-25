@@ -3,6 +3,7 @@ import update from 'react-addons-update';
 import { createContainer } from 'meteor/react-meteor-data';
 import i18n from 'meteor/universe:i18n';
 
+import ContentColumn from '../../../../utils/containers/column.jsx';
 import HomeSlider from './slider.jsx';
 import HomeMainContent from './main_content.jsx';
 import HomeBottomContent from './bottom_content.jsx';
@@ -13,15 +14,18 @@ export default class Home1Template extends Component {
     this.state = { page: this.props.page };
   }
 
-  bottomContentChange(content) {
+  contentChange(fieldName, fieldValue) {
     let newPage = update(this.state.page, {
-       content: { $set: { content1: '', content2: '', content3: '', content4: '', content5: content } }
+       content: { [fieldName]: { $set: fieldValue } }
     });
+
+    console.log(newPage);
 
     this.setState({ page: newPage });
   }
 
-  savePage() {
+  savePage(event) {
+    event.preventDefault();
     let that = this;
     let pageData = {
       name: this.state.page.name,
@@ -40,7 +44,7 @@ export default class Home1Template extends Component {
         console.log(error.message);
         return
       } else {
-        Alert.info('Page created successfully', { position: 'top' });
+        //Alert.info('Page created successfully', { position: 'top' });
         return
       }
     });
@@ -48,12 +52,14 @@ export default class Home1Template extends Component {
 
   render() {
     return(
-      <div className="col-lg-12 col-xs-12 col-md-12">
-        <HomeSlider page={ this.props.page } />
-        <HomeMainContent page={ this.props.page } />
-        <HomeBottomContent page={ this.props.page } onChange={ this.bottomContentChange.bind(this) }/>
-        <button onClick={ this.savePage.bind(this) } className="btn-primary">Save page</button>
-      </div>
+      <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
+        <form onSubmit={ this.savePage.bind(this) } id="MainContentForm">
+          <HomeSlider pageId={ this.props.page._id } content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
+          <HomeMainContent content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
+          <HomeBottomContent content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
+          <button type="submit" className="btn-primary">Save page</button>
+        </form>
+      </ContentColumn>
     );
   }
 }

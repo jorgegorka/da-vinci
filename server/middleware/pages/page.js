@@ -16,6 +16,13 @@ export class Page {
     Pages.update({ _id: this.pageId }, { $set: pageParams });
   }
 
+  updateContent(contentId, value) {
+    let currentPage = Pages.findOne({ _id: this.pageId });
+    currentPage.content[contentId] = value;
+    console.log(currentPage.content);
+    Pages.update({ _id: this.pageId }, { $set: { content: currentPage.content } });
+  }
+
   destroy() {
     //destroy page contents.
     Pages.remove({ _id: this.pageId });

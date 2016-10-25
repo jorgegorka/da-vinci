@@ -21,7 +21,7 @@ export default class RichTextEditor extends Component {
 
   render() {
     return(
-      <div id={ this.props.editorName } className="col-lg-8" dangerouslySetInnerHTML={ { __html: this.props.defaultValue } } >
+      <div id={ this.props.editorName } className={ this.props.className } dangerouslySetInnerHTML={ { __html: this.props.defaultValue } } >
       </div>
     );
   }
@@ -29,6 +29,7 @@ export default class RichTextEditor extends Component {
 
 RichTextEditor.propTypes = {
   defaultValue: PropTypes.string,
+  className: PropTypes.string,
   editorName: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };

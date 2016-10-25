@@ -15,8 +15,8 @@ export default class HomeMainContent extends Component {
       <ContentRow>
         <h2>Main content</h2>
         <ContentRow>
-          <HomeMainContentText content={ this.props.page.content } sliderId="1" />
-          <HomeMainContentImg content={ this.props.page.content } sliderId="3" />
+          <HomeMainContentText content={ this.props.content } sliderId="1" onChange={ this.props.onChange } />
+          <HomeMainContentImg content={ this.props.content } sliderId="3" onChange={ this.props.onChange } />
         </ContentRow>
       </ContentRow>
     );
@@ -24,5 +24,6 @@ export default class HomeMainContent extends Component {
 }
 
 HomeMainContent.propTypes = {
-  page: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
