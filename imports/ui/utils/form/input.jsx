@@ -15,7 +15,7 @@ export default class FormInput extends Component {
       <input
         className="form-control"
         type={ this.props.inputType || 'text' }
-        value={ this.props.defaultValue }
+        defaultValue={ this.props.defaultValue }
         onChange={ this.handleChange.bind(this) }
         required={ this.props.required }
         autoFocus={ this.props.autoFocus }

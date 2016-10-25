@@ -16,10 +16,9 @@ export class Page {
     Pages.update({ _id: this.pageId }, { $set: pageParams });
   }
 
-  updateContent(contentId, value) {
+  updateContent(contentId, value, title) {
     let currentPage = Pages.findOne({ _id: this.pageId });
-    currentPage.content[contentId] = value;
-    console.log(currentPage.content);
+    currentPage.content[contentId] = { path: value, title: title} ;
     Pages.update({ _id: this.pageId }, { $set: { content: currentPage.content } });
   }
 

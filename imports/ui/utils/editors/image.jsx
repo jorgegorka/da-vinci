@@ -14,14 +14,14 @@ export default class ImageEditor extends Component {
 
   render() {
     return(
-      <input type="file" onChange={ this.onChange.bind(this) } />
+      <input type="file" id={ this.props.id } onChange={ this.onChange.bind(this) } />
     );
   }
 }
 
 ImageEditor.propTypes = {
-  defaultValue: PropTypes.string,
   className: PropTypes.string,
   editorName: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };

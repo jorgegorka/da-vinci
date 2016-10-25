@@ -12,29 +12,14 @@ export default class HomeSlider extends Component {
     super(props)
   }
 
-  onImageChange(contentId, file) {
-    let that = this;
-    let reader = new FileReader();
-    reader.onload = function(fileLoadEvent) {
-      Meteor.call('pages.addImage', that.props.pageId, contentId, file.name, file.size, file.type, reader.result, function(error) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('all fine');
-        }
-      });
-    };
-    reader.readAsBinaryString(file);
-  }
-
   render() {
     return(
       <ContentRow>
         <h2>Slider</h2>
         <ContentRow>
-          <ContentImageEditor content={ this.props.content.image1 } contentId="image1" onChange={ this.onImageChange.bind(this) } className="col-lg-4 col-md-4 col-xs-6" />
-          <HomeSliderImg content={ this.props.content.image2 } contentId="image2" />
-          <HomeSliderImg content={ this.props.content.image3 } contentId="image3" />
+          <ContentImageEditor imageContent={ this.props.content.image1 } contentId="image1" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentImageEditor imageContent={ this.props.content.image2 } contentId="image2" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentImageEditor imageContent={ this.props.content.image3 } contentId="image3" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
         </ContentRow>
         <ContentRow>
           <ContentRichTextEditor content={ this.props.content.content1 } contentId="content1" onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />

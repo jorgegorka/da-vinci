@@ -19,8 +19,6 @@ export default class Home1Template extends Component {
        content: { [fieldName]: { $set: fieldValue } }
     });
 
-    console.log(newPage);
-
     this.setState({ page: newPage });
   }
 
@@ -55,7 +53,7 @@ export default class Home1Template extends Component {
       <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
         <form onSubmit={ this.savePage.bind(this) } id="MainContentForm">
           <HomeSlider pageId={ this.props.page._id } content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
-          <HomeMainContent content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
+          <HomeMainContent page={ this.props.page } onChange={ this.contentChange.bind(this) } />
           <HomeBottomContent content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
           <button type="submit" className="btn-primary">Save page</button>
         </form>

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Page } from '../../middleware/pages/page.js';
+import { ImagesUploader } from '../../middleware/images/uploader.js';
 const fs = require('fs');
 
 Meteor.methods({
@@ -25,16 +26,16 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'pages.addImage'(pageId, contentId, fileName, fileSize, fileType, fileData) {
-    console.log(fileName);
-    console.log(fileSize);
-    console.log(fileType);
-    let fileExtension = fileName.split('.').pop();
-    let newFileName = pageId + '_' + Date.now().toString() + '.' + fileExtension;
-    let fullFileName = process.cwd() + '/../../../../../public/page_images/' + newFileName;
-    fs.writeFile(fullFileName, new Buffer(fileData, 'binary'));
-    console.log('File saved');
+  'pages.addImage'(pageId, contentId, title, fileName, fileType, fileData) {
+    let image = {
+      fileName: pageId + '/' + Date.now().toString() + '.' + fileName.split('.').pop(),
+      fileType: fileType,
+      fileData: new Buffer(fileData, 'binary'),
+    };
+
+    imageUploader = new ImagesUploader(image);
+    data = imageUploader.upload();
     newPage = new Page(pageId);
-    newPage.updateContent(contentId, newFileName);
+    newPage.updateContent(contentId, data.Location, title)
   }
 });
