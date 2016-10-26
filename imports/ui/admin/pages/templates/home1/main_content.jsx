@@ -5,8 +5,6 @@ import ContentColumn from '../../../../utils/containers/column.jsx';
 import ContentRow from '../../../../utils/containers/row.jsx';
 import ContentRichTextEditor from '../../../../utils/containers/rich_text_editor.jsx';
 import ContentImageEditor from '../../../../utils/containers/image_editor.jsx';
-import HomeMainContentText from './main_content_text.jsx';
-import HomeMainContentImg from './main_content_img.jsx';
 
 export default class HomeMainContent extends Component {
   constructor(props) {

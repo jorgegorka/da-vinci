@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import update from 'react-addons-update';
 
 import FormTag from '../../utils/form/tag.jsx'
 import FormGroup from '../../utils/form/group.jsx'
@@ -7,6 +8,7 @@ import FormSelect from '../../utils/form/select.jsx'
 import FormLabel from '../../utils/form/label.jsx'
 import FormCheckBox from '../../utils/form/check_box.jsx'
 import FormInput from '../../utils/form/input.jsx'
+import FormTextArea from '../../utils/form/text_area.jsx'
 import AlertMessage from '../../utils/containers/alert_message.jsx'
 
 export default class PageForm extends Component {
@@ -27,6 +29,7 @@ export default class PageForm extends Component {
       defaultName = props.page.name;
       defaultShowInMenu = props.page.showInMenu;
       defaultMetaInfo = props.page.metaInfo;
+      defaultMetaInfo = { title: '', description: '' };
     } else {
       defaultParentId = 'top';
       defaultPageTypeId = props.selectPageTypes[0].title;
@@ -50,8 +53,15 @@ export default class PageForm extends Component {
   }
 
   updateContent(fieldName, fieldValue) {
-    console.log(fieldName + ' updating ' + fieldValue);
     this.setState({ [fieldName]: fieldValue });
+  }
+
+  updateMetaInfoContent(fieldName, fieldValue) {
+    let newMetaInfo = update(this.state.metaInfo, {
+       [fieldName]: { $set: fieldValue }
+    });
+
+    this.setState({ metaInfo: newMetaInfo });
   }
 
   methodParams() {
@@ -73,6 +83,7 @@ export default class PageForm extends Component {
       isHomePage: this.state.isHomePage,
       showInMenu: this.state.showInMenu,
       pageTypeId: this.state.pageTypeId,
+      metaInfo: this.state.metaInfo,
     };
 
     let methodParams = [this.props.methodName, page]
@@ -94,19 +105,6 @@ export default class PageForm extends Component {
   }
 
   render() {
-    let pageTypeOptions = {
-      selectItems: this.props.selectPageTypes,
-      defaultValue: this.state.pageTypeId,
-      selectName: 'pageType',
-    };
-
-    let parentOptions = {
-      selectItems: this.props.selectParentPages,
-      defaultValue: this.state.parentId,
-      selectName: 'pageParentId',
-    };
-
-
     return(
       <div className="modal" id="page-form">
         <div className="modal-dialog">
@@ -122,8 +120,12 @@ export default class PageForm extends Component {
                 <AlertMessage alertText={ this.state.errorMessage } alertTitle="An error has occurred!" alertType="danger" />
                 <div className="nav-tabs-custom">
                   <ul className="nav nav-tabs">
-                    <li className="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Page info</a></li>
-                    <li className=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Metadata</a></li>
+                    <li className="active">
+                      <a href="#tab_1" data-toggle="tab" aria-expanded="false">Page info</a>
+                    </li>
+                    <li className="">
+                      <a href="#tab_2" data-toggle="tab" aria-expanded="false">Metadata</a>
+                    </li>
                   </ul>
                   <div className="tab-content">
                     <div className="tab-pane active" id="tab_1">
@@ -132,12 +134,12 @@ export default class PageForm extends Component {
                         <FormInput defaultValue={ this.state.name } onChange={ this.updateContent.bind(this, 'name') } name="name" />
                       </FormGroup>
                       <FormGroup>
-                        <FormLabel text='Select the type of page' htmlFor="pageType" />
-                        <FormSelect selectOptions={ pageTypeOptions } onChange={ this.updateContent.bind(this, 'pageTypeId') }/>
+                        <FormLabel text='Select the type of page' htmlFor="pageTypeId" />
+                        <FormSelect selectOptions={ this.props.selectPageTypes } name="pageTypeId" defaultValue={ this.state.pageTypeId } onChange={ this.updateContent.bind(this, 'pageTypeId') }/>
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                        <FormSelect selectOptions={ parentOptions } onChange={ this.updateContent.bind(this, 'pageParentId') }/>
+                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.pageParentId } onChange={ this.updateContent.bind(this, 'pageParentId') }/>
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Order' htmlFor="order" />
@@ -153,11 +155,11 @@ export default class PageForm extends Component {
                     <div className="tab-pane" id="tab_2">
                       <FormGroup>
                         <FormLabel text='Title' htmlFor="metaTitle" />
-                        <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateContent.bind(this, 'title') } name="metaTitle" />
+                        <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateMetaInfoContent.bind(this, 'title') } name="metaTitle" />
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Description' htmlFor="metaDescription" />
-                        <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateContent.bind(this, 'description') } name="metaDescription" />
+                        <FormTextArea defaultValue={ this.state.metaInfo.description } onChange={ this.updateMetaInfoContent.bind(this, 'description') } name="metaDescription" />
                       </FormGroup>
                     </div>
                   </div>

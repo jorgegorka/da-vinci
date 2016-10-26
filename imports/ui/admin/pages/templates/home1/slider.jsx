@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import ContentRow from '../../../../utils/containers/row.jsx';
 import ContentRichTextEditor from '../../../../utils/containers/rich_text_editor.jsx';
 import ContentImageEditor from '../../../../utils/containers/image_editor.jsx';
-import HomeSliderImg from './slider_img.jsx';
-import HomeSliderText from './slider_text.jsx';
 
 export default class HomeSlider extends Component {
   constructor(props) {
