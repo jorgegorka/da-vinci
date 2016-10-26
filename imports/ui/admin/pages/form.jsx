@@ -26,6 +26,7 @@ export default class PageForm extends Component {
       defaultOrder = props.page.order.toString();
       defaultName = props.page.name;
       defaultShowInMenu = props.page.showInMenu;
+      defaultMetaInfo = props.page.metaInfo;
     } else {
       defaultParentId = 'top';
       defaultPageTypeId = props.selectPageTypes[0].title;
@@ -33,6 +34,7 @@ export default class PageForm extends Component {
       defaultShowInMenu = true;
       defaultOrder = '0';
       defaultName = '';
+      defaultMetaInfo = { title: '', description: '' };
     };
 
     this.state = {
@@ -43,31 +45,13 @@ export default class PageForm extends Component {
       showInMenu: defaultShowInMenu,
       order: defaultOrder,
       name: defaultName,
+      metaInfo: defaultMetaInfo,
     };
   }
 
-  updateName(name) {
-    this.setState({ name: name });
-  }
-
-  updateParentId(parentId) {
-    this.setState({ parentId: parentId });
-  }
-
-  updatePageTypeId(pageTypeId) {
-    this.setState({ pageTypeId: pageTypeId });
-  }
-
-  updateHomePage(isHomePage) {
-    this.setState({ isHomePage: isHomePage });
-  }
-
-  updateShowInMenu(showInMenu) {
-    this.setState({ showInMenu: showInMenu });
-  }
-
-  updateOrder(order) {
-    this.setState({ order: order });
+  updateContent(fieldName, fieldValue) {
+    console.log(fieldName + ' updating ' + fieldValue);
+    this.setState({ [fieldName]: fieldValue });
   }
 
   methodParams() {
@@ -136,28 +120,48 @@ export default class PageForm extends Component {
             <FormTag onSubmit={ this.submitEvent.bind(this) }>
               <div className="modal-body">
                 <AlertMessage alertText={ this.state.errorMessage } alertTitle="An error has occurred!" alertType="danger" />
-                <FormGroup>
-                  <FormLabel text='Name' htmlFor="name" />
-                  <FormInput defaultValue={ this.state.name } onChange={ this.updateName.bind(this) } name="name" />
-                </FormGroup>
-                <FormGroup>
-                  <FormLabel text='Select the type of page' htmlFor="pageType" />
-                  <FormSelect selectOptions={ pageTypeOptions } onChange={ this.updatePageTypeId.bind(this) }/>
-                </FormGroup>
-                <FormGroup>
-                  <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                  <FormSelect selectOptions={ parentOptions } onChange={ this.updateParentId.bind(this) }/>
-                </FormGroup>
-                <FormGroup>
-                  <FormLabel text='Order' htmlFor="order" />
-                  <FormInput defaultValue={ this.state.order } onChange={ this.updateOrder.bind(this) } name="order" />
-                </FormGroup>
-                <FormGroup>
-                  <FormCheckBox text='Set page as homepage?' htmlFor="homePage" onChange={ this.updateHomePage.bind(this) } />
-                </FormGroup>
-                <FormGroup>
-                  <FormCheckBox text='Show page in main menu?' htmlFor="showMenu" onChange={ this.updateShowInMenu.bind(this) } />
-                </FormGroup>
+                <div className="nav-tabs-custom">
+                  <ul className="nav nav-tabs">
+                    <li className="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Page info</a></li>
+                    <li className=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Metadata</a></li>
+                  </ul>
+                  <div className="tab-content">
+                    <div className="tab-pane active" id="tab_1">
+                      <FormGroup>
+                        <FormLabel text='Name' htmlFor="name" />
+                        <FormInput defaultValue={ this.state.name } onChange={ this.updateContent.bind(this, 'name') } name="name" />
+                      </FormGroup>
+                      <FormGroup>
+                        <FormLabel text='Select the type of page' htmlFor="pageType" />
+                        <FormSelect selectOptions={ pageTypeOptions } onChange={ this.updateContent.bind(this, 'pageTypeId') }/>
+                      </FormGroup>
+                      <FormGroup>
+                        <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
+                        <FormSelect selectOptions={ parentOptions } onChange={ this.updateContent.bind(this, 'pageParentId') }/>
+                      </FormGroup>
+                      <FormGroup>
+                        <FormLabel text='Order' htmlFor="order" />
+                        <FormInput defaultValue={ this.state.order } onChange={ this.updateContent.bind(this, 'order') } name="order" />
+                      </FormGroup>
+                      <FormGroup>
+                        <FormCheckBox text='Set page as homepage?' htmlFor="homePage" onChange={ this.updateContent.bind(this, 'isHomePage') } />
+                      </FormGroup>
+                      <FormGroup>
+                        <FormCheckBox text='Show page in main menu?' htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
+                      </FormGroup>
+                    </div>
+                    <div className="tab-pane" id="tab_2">
+                      <FormGroup>
+                        <FormLabel text='Title' htmlFor="metaTitle" />
+                        <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateContent.bind(this, 'title') } name="metaTitle" />
+                      </FormGroup>
+                      <FormGroup>
+                        <FormLabel text='Description' htmlFor="metaDescription" />
+                        <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateContent.bind(this, 'description') } name="metaDescription" />
+                      </FormGroup>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default pull-left" data-dismiss="modal">Discard</button>
