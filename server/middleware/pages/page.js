@@ -37,6 +37,7 @@ export class Page {
       language: Match.Maybe(String),
       order: Match.Maybe(Number),
       content: Match.Maybe(Object),
+      metaInfo: Match.Maybe(Object),
     });
 
     if ((pageParams.isHomePage === true) && this._homePageTaken()) {
