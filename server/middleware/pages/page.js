@@ -1,4 +1,6 @@
 import { Pages } from '../../../lib/collections/pages.js';
+import { PageTypes } from '../../../lib/collections/page_types.js';
+import { PageContents } from '../../../lib/collections/page_contents.js';
 import { check, Match } from 'meteor/check'
 
 export class Page {
@@ -8,7 +10,9 @@ export class Page {
 
   create(pageParams) {
     this.validate(pageParams);
-    Pages.insert(pageParams);
+    pId = Pages.insert(pageParams);
+    this._updateContentAreas(pId);
+    return pId;
   }
 
   update(pageParams) {
@@ -51,5 +55,27 @@ export class Page {
       query['_id'] = { $ne: this.pageId }
     }
     return Pages.find(query).count() > 0
+  }
+
+  _updateContentAreas(pId) {
+    let contentAreas = {};
+    let page = Pages.findOne({ _id: pId });
+    let pageType = PageTypes.findOne({ _id: page.pageTypeId });
+
+    pageType.textAreas.forEach( function(textArea) {
+      let pageContent = {
+        pageId: pId,
+        contentType: textArea
+      }
+      PageContents.insert(pageContent);
+    });
+
+    pageType.imageAreas.forEach( function(imageArea) {
+      let pageContent = {
+        pageId: pId,
+        contentType: imageArea
+      }
+      PageContents.insert(pageContent);
+    });
   }
 }

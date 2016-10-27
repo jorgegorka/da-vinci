@@ -6,6 +6,7 @@ import { PageTypes } from '../../../../lib/collections/page_types.js';
 
 import Loading from '../../utils/containers/loading.jsx';
 import Home1Template from './templates/home1/index.jsx';
+import Product1Template from './templates/product1/index.jsx';
 
 
 class ShowPageTemplate extends Component {
@@ -30,7 +31,7 @@ class ShowPageTemplate extends Component {
         pageTemplate = <Home1Template page={ this.props.page } />
         break;
       case 'Product 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Product1Template page={ this.props.page } />
         break;
       case 'Blog 1':
         pageTemplate = <Home1Template page={ this.props.page } />
@@ -55,11 +56,11 @@ ShowPageTemplate.propTypes = {
 };
 
 export default createContainer((props) => {
-  let subscription = Meteor.subscribe('pages');
-  Meteor.subscribe('pageTypes');
+  let subscription = Meteor.subscribe('pageTypes');
 
+  console.log(props.page.pageTypeId);
   return {
     loading: !subscription.ready(),
-    pageType: PageTypes.find({ _id: props.page.pageTypeId }).fetch(),
+    pageType: PageTypes.findOne({ _id: props.page.pageTypeId }),
   };
 }, ShowPageTemplate);

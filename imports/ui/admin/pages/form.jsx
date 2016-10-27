@@ -32,7 +32,7 @@ export default class PageForm extends Component {
       defaultMetaInfo = { title: '', description: '' };
     } else {
       defaultParentId = 'top';
-      defaultPageTypeId = props.selectPageTypes[0].title;
+      defaultPageTypeId = props.selectPageTypes[0].value;
       defaultHomePage = false;
       defaultShowInMenu = true;
       defaultOrder = '0';
@@ -97,7 +97,7 @@ export default class PageForm extends Component {
         that.setState({ errorMessage: error.message });
         return
       } else {
-        Alert.info('Page created successfully', { position: 'top' });
+        //Alert.info('Page created successfully', { position: 'top' });
         $('#page-form').modal('hide');
         return
       }
@@ -139,7 +139,7 @@ export default class PageForm extends Component {
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.pageParentId } onChange={ this.updateContent.bind(this, 'pageParentId') }/>
+                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.pageParentId } onChange={ this.updateContent.bind(this, 'parentId') }/>
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Order' htmlFor="order" />

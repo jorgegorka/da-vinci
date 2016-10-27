@@ -1,6 +1,7 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles'
 import { PageTypes } from '../../lib/collections/page_types.js';
+import { SetupContents } from '../lib/setup/contents.js';
 
 export default class SetupDaVinci {
   constructor(email, password, name) {
@@ -33,9 +34,10 @@ export default class SetupDaVinci {
     Roles.addUsersToRoles(adminUser._id, 'admin', Roles.GLOBAL_GROUP);
   }
 
+  // This is hardcoded now.  It will be possible to create and modify page types in future versions.
   addPageTypes() {
-    let pageTypes = ['Home 1', 'Contact 1', 'About Us 1', 'Section 1', 'Product 1', 'Blog 1', 'Legal stuff 1', 'Footer 1'];
+    let pageTypes = SetupContents.availablePages();
 
-    pageTypes.forEach(function(pageType) { PageTypes.insert({ name: pageType }); });
+    pageTypes.forEach(function(pageType) { PageTypes.insert({ name: pageType['name'], textAreas: pageType['content'], imageAreas: pageType['images'] }) });
   }
 }
