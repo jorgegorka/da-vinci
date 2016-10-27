@@ -20,12 +20,6 @@ export class Page {
     Pages.update({ _id: this.pageId }, { $set: pageParams });
   }
 
-  updateContent(contentId, value, title) {
-    let currentPage = Pages.findOne({ _id: this.pageId });
-    currentPage.content[contentId] = { path: value, title: title} ;
-    Pages.update({ _id: this.pageId }, { $set: { content: currentPage.content } });
-  }
-
   destroy() {
     //destroy page contents.
     Pages.remove({ _id: this.pageId });
@@ -54,28 +48,6 @@ export class Page {
     if (this.pageId) {
       query['_id'] = { $ne: this.pageId }
     }
-    return Pages.find(query).count() > 0
-  }
-
-  _updateContentAreas(pId) {
-    let contentAreas = {};
-    let page = Pages.findOne({ _id: pId });
-    let pageType = PageTypes.findOne({ _id: page.pageTypeId });
-
-    pageType.textAreas.forEach( function(textArea) {
-      let pageContent = {
-        pageId: pId,
-        contentType: textArea
-      }
-      PageContents.insert(pageContent);
-    });
-
-    pageType.imageAreas.forEach( function(imageArea) {
-      let pageContent = {
-        pageId: pId,
-        contentType: imageArea
-      }
-      PageContents.insert(pageContent);
-    });
+    return(Pages.find(query).count() > 0);
   }
 }

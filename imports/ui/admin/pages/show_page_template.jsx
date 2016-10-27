@@ -19,31 +19,31 @@ class ShowPageTemplate extends Component {
 
     switch (this.props.pageType.name) {
       case 'Home 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template pageId={ this.props.page._id } />
         break;
       case 'Contact 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'About Us 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'Section 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'Product 1':
-        pageTemplate = <Product1Template page={ this.props.page } />
+        pageTemplate = <Product1Template pageId={ this.props.page._id } />
         break;
       case 'Blog 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'Legal stuff 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'Footer 1':
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       default:
-        pageTemplate = <Home1Template page={ this.props.page } />
+        pageTemplate = <Home1Template page={ this.props.page._id } />
     }
 
     return pageTemplate;

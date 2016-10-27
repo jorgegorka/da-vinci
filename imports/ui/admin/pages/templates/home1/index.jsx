@@ -11,32 +11,22 @@ import HomeBottomContent from './bottom_content.jsx';
 export default class Home1Template extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: this.props.page };
+    this.state = { pageContent: {} };
   }
 
   contentChange(fieldName, fieldValue) {
-    let newPage = update(this.state.page, {
-       content: { [fieldName]: { $set: fieldValue } }
+    let newPageContent = update(this.state.pageContent, {
+       [fieldName]: { $set: fieldValue }
     });
 
-    this.setState({ page: newPage });
+    this.setState({ pageContent: newPageContent });
   }
 
   savePage(event) {
     event.preventDefault();
     let that = this;
-    let pageData = {
-      name: this.state.page.name,
-      parentId: this.state.page.parentId,
-      order: parseInt(this.state.page.order),
-      isHomePage: this.state.page.isHomePage,
-      showInMenu: this.state.page.showInMenu,
-      pageTypeId: this.state.page.pageTypeId,
-      content: this.state.page.content,
-      language: i18n.getLocale(),
-    };
 
-    Meteor.call('pages.update', this.state.page._id, pageData, function(error, result) {
+    Meteor.call('pageContents.update', this.props.pageId, this.state.pageContent, function(error, result) {
       if (error) {
         that.setState({ errorMessage: error.message });
         console.log(error.message);
@@ -52,9 +42,9 @@ export default class Home1Template extends Component {
     return(
       <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
         <form onSubmit={ this.savePage.bind(this) } id="MainContentForm">
-          <HomeSlider pageId={ this.props.page._id } content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
-          <HomeMainContent page={ this.props.page } onChange={ this.contentChange.bind(this) } />
-          <HomeBottomContent content={ this.props.page.content } onChange={ this.contentChange.bind(this) } />
+          <HomeSlider pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } />
+          <HomeMainContent pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } />
+          <HomeBottomContent pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } />
           <button type="submit" className="btn-primary">Save page</button>
         </form>
       </ContentColumn>
@@ -63,5 +53,5 @@ export default class Home1Template extends Component {
 }
 
 Home1Template.propTypes = {
-  page: PropTypes.object.isRequired,
+  pageId: PropTypes.string.isRequired,
 };

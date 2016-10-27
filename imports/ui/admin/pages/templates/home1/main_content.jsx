@@ -16,8 +16,8 @@ export default class HomeMainContent extends Component {
       <ContentRow>
         <h2>Main content</h2>
         <ContentRow>
-          <ContentRichTextEditor onChange={ this.props.onChange } content={ this.props.page.content.content4 } contentId="content4" className="col-lg-6 col-xs-6 col-md-6" />
-          <ContentImageEditor imageContent={ this.props.page.content.image4 } contentId="image4" pageId={ this.props.page._id } className="col-lg-6 col-xs-6 col-md-6" />
+          <ContentRichTextEditor onChange={ this.props.onChange } pageId={ this.props.pageId } contentType="main-text" className="col-lg-6 col-xs-6 col-md-6" />
+          <ContentImageEditor contentType="main-image" pageId={ this.props.pageId } className="col-lg-6 col-xs-6 col-md-6" />
         </ContentRow>
       </ContentRow>
     );
@@ -25,6 +25,6 @@ export default class HomeMainContent extends Component {
 }
 
 HomeMainContent.propTypes = {
-  page: PropTypes.object.isRequired,
+  pageId: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };

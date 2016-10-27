@@ -15,14 +15,14 @@ export default class HomeSlider extends Component {
       <ContentRow>
         <h2>Slider</h2>
         <ContentRow>
-          <ContentImageEditor imageContent={ this.props.content.image1 } contentId="image1" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
-          <ContentImageEditor imageContent={ this.props.content.image2 } contentId="image2" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
-          <ContentImageEditor imageContent={ this.props.content.image3 } contentId="image3" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentImageEditor contentType="slider-image-1" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentImageEditor contentType="slider-image-2" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentImageEditor contentType="slider-image-3" pageId={ this.props.pageId } className="col-lg-4 col-md-4 col-xs-6" />
         </ContentRow>
         <ContentRow>
-          <ContentRichTextEditor content={ this.props.content.content1 } contentId="content1" onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />
-          <ContentRichTextEditor content={ this.props.content.content2 } contentId="content2" onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />
-          <ContentRichTextEditor content={ this.props.content.content3 } contentId="content3" onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentRichTextEditor contentType="slider-text-1" pageId={ this.props.pageId } onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentRichTextEditor contentType="slider-text-2" pageId={ this.props.pageId } onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />
+          <ContentRichTextEditor contentType="slider-text-3" pageId={ this.props.pageId } onChange={ this.props.onChange } className="col-lg-4 col-md-4 col-xs-6" />
         </ContentRow>
       </ContentRow>
     );
@@ -30,7 +30,6 @@ export default class HomeSlider extends Component {
 }
 
 HomeSlider.propTypes = {
-  content: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   pageId: PropTypes.string.isRequired,
 };
