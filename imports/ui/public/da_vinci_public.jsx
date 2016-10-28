@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Alert from 'react-s-alert';
-
 import i18n from 'meteor/universe:i18n';
+
+import MainHeader from './layout/header/main.jsx';
 
 i18n.setLocale('en')
 
@@ -13,34 +14,36 @@ export default class DaVinciPublic extends Component {
   }
 
   loadAdminCssResources() {
-    let adminStyles = [
+    let publicStyles = [
+      '/public/css/style.css'
     ];
 
-    adminStyles.forEach( function(cssStyle) {
-      let adminStyle = document.createElement('link');
-      adminStyle.setAttribute('rel', 'stylesheet');
-      adminStyle.setAttribute('href', cssStyle);
-      document.getElementsByTagName('head')[0].appendChild(adminStyle);
+    publicStyles.forEach( function(cssStyle) {
+      let publicStyle = document.createElement('link');
+      publicStyle.setAttribute('rel', 'stylesheet');
+      publicStyle.setAttribute('href', cssStyle);
+      document.getElementsByTagName('head')[0].appendChild(publicStyle);
     });
   }
 
   loadAdminJavascriptResources() {
-    let adminStyles = [
+    let publicStyles = [
     ];
 
-    adminStyles.forEach( function(jssStyle) {
-      let adminStyle = document.createElement('script');
-      adminStyle.setAttribute('src', jssStyle);
-      document.getElementsByTagName('head')[0].appendChild(adminStyle);
+    publicStyles.forEach( function(jssStyle) {
+      let publicStyle = document.createElement('script');
+      publicStyle.setAttribute('src', jssStyle);
+      document.getElementsByTagName('head')[0].appendChild(publicStyle);
     });
   }
 
 
   render() {
     return (
-      <div className="container body">
+      <div>
+        <div className="preloader" style={ { display: 'none' } }></div>
+        <MainHeader />
         {this.props.children}
-        <Alert stack={{ limit: 5 }} />
       </div>
     )
   }

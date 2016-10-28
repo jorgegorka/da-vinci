@@ -8,3 +8,7 @@ Meteor.publish('pages', function() {
 
   return Pages.find({}, { $sort: { order: 0 }});
 });
+
+Meteor.publish('publicMenuPages', function() {
+  return Pages.find({ showInMenu: true }, { $sort: { order: 0 }});
+});
