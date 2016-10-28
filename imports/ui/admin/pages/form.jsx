@@ -15,11 +15,13 @@ export default class PageForm extends Component {
   constructor(props) {
     super(props)
     let defaultParentId = 'top';
-    let defaultPageTypeId;
-    let defaultHomePage;
-    let defaultOrder;
-    let defaultName;
-    let defaultShowInMenu;
+    let defaultPageTypeId = props.selectPageTypes[0].value;
+    let defaultHomePage = false;
+    let defaultOrder = '0';
+    let defaultName = '';
+    let defaultShowInMenu = false ;
+    let defaultDraft = false;
+    let defaultMetaInfo = { title: '', description: '' };
 
     if (props.page) {
       defaultParentId = props.page.parentId;
@@ -28,16 +30,8 @@ export default class PageForm extends Component {
       defaultOrder = props.page.order.toString();
       defaultName = props.page.name;
       defaultShowInMenu = props.page.showInMenu;
+      defaultDraft = props.page.draft;
       defaultMetaInfo = props.page.metaInfo;
-      defaultMetaInfo = { title: '', description: '' };
-    } else {
-      defaultParentId = 'top';
-      defaultPageTypeId = props.selectPageTypes[0].value;
-      defaultHomePage = false;
-      defaultShowInMenu = true;
-      defaultOrder = '0';
-      defaultName = '';
-      defaultMetaInfo = { title: '', description: '' };
     };
 
     this.state = {
@@ -45,6 +39,7 @@ export default class PageForm extends Component {
       parentId: defaultParentId,
       pageTypeId: defaultPageTypeId,
       isHomePage: defaultHomePage,
+      draft: defaultDraft,
       showInMenu: defaultShowInMenu,
       order: defaultOrder,
       name: defaultName,
@@ -81,6 +76,7 @@ export default class PageForm extends Component {
       parentId: this.state.parentId,
       order: parseInt(this.state.order),
       isHomePage: this.state.isHomePage,
+      draft: this.state.draft,
       showInMenu: this.state.showInMenu,
       pageTypeId: this.state.pageTypeId,
       metaInfo: this.state.metaInfo,
@@ -150,6 +146,9 @@ export default class PageForm extends Component {
                       </FormGroup>
                       <FormGroup>
                         <FormCheckBox text='Show page in main menu?' htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
+                      </FormGroup>
+                      <FormGroup>
+                        <FormCheckBox text='This page is a draft (Draft pages do not appear in the public website).' htmlFor="draft" onChange={ this.updateContent.bind(this, 'draft') } />
                       </FormGroup>
                     </div>
                     <div className="tab-pane" id="tab_2">

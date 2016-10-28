@@ -30,6 +30,7 @@ export class Page {
       name: String,
       isHomePage: Boolean,
       showInMenu: Boolean,
+      draft: Boolean,
       pageTypeId: String,
       parentId: Match.Maybe(String),
       language: Match.Maybe(String),

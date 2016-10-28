@@ -58,7 +58,6 @@ ShowPageTemplate.propTypes = {
 export default createContainer((props) => {
   let subscription = Meteor.subscribe('pageTypes');
 
-  console.log(props.page.pageTypeId);
   return {
     loading: !subscription.ready(),
     pageType: PageTypes.findOne({ _id: props.page.pageTypeId }),
