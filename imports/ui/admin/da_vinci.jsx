@@ -27,6 +27,10 @@ class DaVinci extends Component {
   }
 
   componentWillMount(){
+    // Load resorces only used in admin pages
+    this.loadAdminCssResources();
+    this.loadAdminJavascriptResources();
+
     if (!this.state.isAuthenticated) {
       browserHistory.push('/login');
     }
@@ -41,6 +45,36 @@ class DaVinci extends Component {
   componentDidMount() {
     document.body.classList.add('sidebar-mini');
     document.body.classList.add('skin-black-light');
+  }
+
+  loadAdminCssResources() {
+    let adminStyles = [
+      '/admin/css/admin_lte_black_light.css',
+      '/admin/css/quill.css',
+      '/admin/css/s-alert-default.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
+      'http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css'
+    ];
+
+    adminStyles.forEach( function(cssStyle) {
+      let adminStyle = document.createElement('link');
+      adminStyle.setAttribute('rel', 'stylesheet');
+      adminStyle.setAttribute('href', cssStyle);
+      document.getElementsByTagName('head')[0].appendChild(adminStyle);
+    });
+  }
+
+  loadAdminJavascriptResources() {
+    let adminStyles = [
+      'http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js'
+    ];
+
+    adminStyles.forEach( function(jssStyle) {
+      let adminStyle = document.createElement('script');
+      adminStyle.setAttribute('src', jssStyle);
+      document.getElementsByTagName('head')[0].appendChild(adminStyle);
+    });
   }
 
   render() {
