@@ -3,6 +3,8 @@ Da Vinci is a website generator created as a way of experimenting with Meteor JS
 
 It's in an early stage and not suitable to be used in production.
 
+[![Code Climate](https://codeclimate.com/github/jorgegorka/da-vinci/badges/gpa.svg)](https://codeclimate.com/github/jorgegorka/da-vinci)
+
 #### What is available:
 
 * Basic login and password recovery
@@ -33,12 +35,12 @@ It's in an early stage and not suitable to be used in production.
 #### In progress
 
 * Pages. Pages can be nested into subpages.
+* Images. Depending on the layout a page can have images associated with it.
+* Downloadable resources.  A page can have resources like pdf files associated with it available for users to download them.
 
 
 #### TODO (prioritised)
 
-* Images. Depending on the layout a page can have images associated with it.
-* Each image can have different sizes for different parts of the page (thumbnails, medium, large, etc...).
 * Reorder of pages. Drag and drop reorder of pages.
 * Multi-language.
 * Tags. A page can get multiple tags assigned to it.
