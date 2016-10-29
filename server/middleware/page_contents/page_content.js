@@ -4,13 +4,30 @@ import { PageContents } from '../../../lib/collections/page_contents.js';
 import { check, Match } from 'meteor/check';
 
 export class PageContent {
-  constructor(pageContentId=null) {
-    this.pageContentId = pageContentId;
+  constructor(pageContentId) {
+    if (pageContentId !== 'new') {
+      this.pageContentId = pageContentId;
+    }
   }
 
-  updateContent(path, text) {
-    this.validate({ path: path, text: text });
-    PageContents.update({ _id: this.pageContentId }, { $set: { text: text, path: path } });
+  upsertContent(pageContentParams) {
+    if (this.pageContentId) {
+      delete pageContentParams["pageId"];
+      delete pageContentParams["contentType"];
+      this.updateContent(pageContentParams);
+    } else {
+      this.insertContent(pageContentParams)
+    }
+  }
+
+  insertContent(pageContentParams) {
+    this.validate(pageContentParams);
+    PageContents.insert(pageContentParams);
+  }
+
+  updateContent(pageContentParams) {
+    this.validate(pageContentParams);
+    PageContents.update({ _id: this.pageContentId }, { $set: pageContentParams });
   }
 
   updatePageContent(pageId, pageContent) {
@@ -24,11 +41,14 @@ export class PageContent {
     });
   }
 
-  validate(pageParams) {
-    check(pageParams, {
+  validate(pageContentParams) {
+    check(pageContentParams, {
+      pageId: Match.Maybe(String),
+      contentType: Match.Maybe(String),
       text: Match.Maybe(String),
-      path: Match.Maybe(String),
-      order: Match.Maybe(Number)
+      imagePath: Match.Maybe(String),
+      imageTitle: Match.Maybe(String),
+      order: Match.Maybe(Number),
     });
   }
 }

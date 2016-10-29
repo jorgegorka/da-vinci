@@ -14,7 +14,6 @@ export default class PagesContentList extends Component {
     return(
       <div className="col-lg-12 col-xs-12 col-md-12">
         <ContentBox>
-          <ContentBoxHeader headerTitle="Page content" />
           <ContentBoxBody>
             <ShowPageTempalte page={ this.props.page } />
           </ContentBoxBody>

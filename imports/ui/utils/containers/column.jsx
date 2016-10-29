@@ -16,5 +16,5 @@ export default class ContentColumn extends Component {
 }
 
 ContentColumn.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };

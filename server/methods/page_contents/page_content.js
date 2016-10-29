@@ -4,18 +4,26 @@ import { ImagesUploader } from '../../middleware/images/uploader.js';
 import { PageContent } from '../../middleware/page_contents/page_content.js';
 
 Meteor.methods({
-  'pageContents.addImage'(pageId, pageContentId, text, fileName, fileType, fileData) {
+  'pageContents.addImage'(pageContentParams, fileData) {
     if (Roles.userIsInRole(this.userId, ['admin', 'manager', 'publisher'])) {
       let image = {
-        fileName: pageId + '/' + Date.now().toString() + '.' + fileName.split('.').pop(),
-        fileType: fileType,
+        fileName: pageContentParams.pageId + '/' + Date.now().toString() + '.' + pageContentParams.fileName.split('.').pop(),
+        fileType: pageContentParams.fileType,
         fileData: new Buffer(fileData, 'binary'),
       };
 
       imageUploader = new ImagesUploader(image);
       data = imageUploader.upload();
-      pageContent = new PageContent(pageContentId);
-      pageContent.updateContent(data.Location, text)
+      pageContentData = {
+        pageId: pageContentParams.pageId,
+        contentType: pageContentParams.contentType,
+        imagePath: data.Location,
+        imageTitle: pageContentParams.imageTitle,
+        text: pageContentParams.text,
+        order: parseInt(pageContentParams.order)
+      }
+      pageContent = new PageContent(pageContentParams.pageContentId);
+      pageContent.upsertContent(pageContentData)
     }
 
   },

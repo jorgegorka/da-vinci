@@ -43,7 +43,7 @@ export default class Home1Template extends Component {
       <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
         <form onSubmit={ this.savePage.bind(this) } id="MainContentForm">
           <HomeSlider pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } />
-          <HomeMainContent pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } />
+          {/* <HomeMainContent pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } /> */}
           <HomeBottomContent pageId={ this.props.pageId } onChange={ this.contentChange.bind(this) } />
           <button type="submit" className="btn-primary">Save page</button>
         </form>
