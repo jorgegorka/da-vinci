@@ -15,7 +15,10 @@ export default class DaVinciPublic extends Component {
 
   loadAdminCssResources() {
     let publicStyles = [
-      '/public/css/style.css'
+      '/public/css/style.css',
+      '/public/css/settings.css',
+      '/public/css/layers.css',
+      '/public/css/navigation.css'
     ];
 
     publicStyles.forEach( function(cssStyle) {
@@ -28,6 +31,8 @@ export default class DaVinciPublic extends Component {
 
   loadAdminJavascriptResources() {
     let publicStyles = [
+      '/public/js/jquery.themepunch.tools.min.js',
+      '/public/js/jquery.themepunch.revolution.min.js'
     ];
 
     publicStyles.forEach( function(jssStyle) {

@@ -6,7 +6,11 @@ import HomePage from './ui/public/home_page.jsx';
 import NotFound from './ui/public/not_found.jsx';
 import Login from './ui/public/login/login.jsx';
 
-// route admin
+
+// public routes
+import PublicPagesShow from './ui/public/pages/show.jsx';
+
+// admin routes
 import DaVinci from './ui/admin/da_vinci.jsx';
 import DashboardIndex from './ui/admin/dashboard/index.jsx';
 import SettingsIndex from './ui/admin/settings/index.jsx';
@@ -18,6 +22,7 @@ export const renderRoutes = () => (
     <Route path="/" component={ DaVinciPublic }>
       <IndexRoute component={ HomePage } />
       <Route path="login" component={ Login } />
+      <Route path="page/:pageId" component={ PublicPagesShow } />
     </Route>
     <Route path="/admin" component={ DaVinci }>
       <IndexRoute component={ DashboardIndex } />
