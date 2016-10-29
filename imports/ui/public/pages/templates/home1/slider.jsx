@@ -5,12 +5,12 @@ import i18n from 'meteor/universe:i18n';
 
 export default class PublicHome1Slider extends Component {
   componentDidMount() {
-    $(".bannercontainer").revolution({
+    $("#homeSlider").revolution({
       sliderType:"standard",
       sliderLayout:"auto",
       delay:9000,
       navigation: {
-          arrows:{enable:true}
+          arrows: { enable:true }
       },
       gridwidth:1230,
       gridheight:720
@@ -19,7 +19,7 @@ export default class PublicHome1Slider extends Component {
   render() {
     return(
       <div className="bannercontainer">
-    		<div className="banner" data-fullscreen="on" data-auto="true" data-hidetimerbar="off" data-fullscreenoffsetcontainer=".header" data-soloarrowrighthoffset="80" data-soloarrowlefthoffset="80" data-navigationstyle="round-old" data-navigationtype="thumb">
+    		<div className="rev_slider" data-fullscreen="on" id="homeSlider"  data-version="5.0">
     			<ul>
     				<li data-thumb="http://placehold.it/1600x882" data-transition="fade" data-slotamount="7" data-saveperformance="on" className="background overlay overlay-light" style={{backgroundImage: 'url(http://placehold.it/1600x882)'}}>
     					<div className="tp-caption sft large_bold_white"  data-x="center" data-y="center" data-voffset="-85" data-speed="700" data-start="700" data-easing="easeOutBack">Welcome to Mexico</div>
