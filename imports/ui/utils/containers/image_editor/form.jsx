@@ -9,6 +9,7 @@ import FormInput from '../../form/input.jsx';
 
 export default class ContentImageEditorForm extends Component {
   render() {
+    let editorName = 'rteId' + Math.floor(Math.random() * 1500);
     return(
       <ContentColumn className="col-lg-6 col-md-6 col-xs-12">
         <FormGroup>
@@ -25,7 +26,7 @@ export default class ContentImageEditorForm extends Component {
         </FormGroup>
         { this.props.includeText === true ?
           <FormGroup>
-            <RichTextEditor onChange={ this.props.onChange.bind(this, 'text') } defaultValue={ this.props.pageContent.text } editorName="sliderText" />
+            <RichTextEditor onChange={ this.props.onChange.bind(this, 'text') } defaultValue={ this.props.pageContent.text } editorName={ editorName } />
           </FormGroup> : null
         }
         <FormGroup>
