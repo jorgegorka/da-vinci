@@ -3,7 +3,8 @@ Da Vinci is a website generator created as a way of experimenting with Meteor JS
 
 It's in an early stage and not suitable to be used in production.
 
-[![Code Climate](https://codeclimate.com/github/jorgegorka/da-vinci/badges/gpa.svg)](https://codeclimate.com/github/jorgegorka/da-vinci)
+[![Code Climate](https://codeclimate.com/github/jorgegorka/da-vinci/badges/gpa.svg)](https://codeclimate.com/github/jorgegorka/da-vinci)  
+[![bitHound Code](https://www.bithound.io/github/jorgegorka/da-vinci/badges/code.svg)](https://www.bithound.io/github/jorgegorka/da-vinci)
 
 #### What is available:
 
