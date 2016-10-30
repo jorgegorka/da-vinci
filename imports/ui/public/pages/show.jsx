@@ -5,7 +5,6 @@ import i18n from 'meteor/universe:i18n';
 import { Pages } from '../../../../lib/collections/pages.js';
 import { PageTypes } from '../../../../lib/collections/page_types.js';
 
-
 import Loading from '../../utils/containers/loading.jsx';
 import PublicHome1Template from './templates/home1/index.jsx';
 
