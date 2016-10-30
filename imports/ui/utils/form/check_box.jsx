@@ -20,6 +20,7 @@ export default class FormCheckBox extends Component {
             ref={ this.props.htmlFor }
             id={ this.props.htmlFor }
             onChange={ this.handleChange.bind(this) }
+            checked={ this.props.checked }
           />
           { this.props.text }
         </label>
@@ -31,4 +32,5 @@ export default class FormCheckBox extends Component {
 FormCheckBox.propTypes = {
   htmlFor: PropTypes.string,
   text: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
 };

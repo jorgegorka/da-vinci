@@ -10,14 +10,12 @@ export class Page {
 
   create(pageParams) {
     this.validate(pageParams);
-    pId = Pages.insert(pageParams);
-    this._updateContentAreas(pId);
-    return pId;
+    return Pages.insert(pageParams);
   }
 
   update(pageParams) {
     this.validate(pageParams);
-    Pages.update({ _id: this.pageId }, { $set: pageParams });
+    return Pages.update({ _id: this.pageId }, { $set: pageParams });
   }
 
   destroy() {

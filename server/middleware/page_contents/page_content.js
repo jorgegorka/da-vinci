@@ -14,20 +14,20 @@ export class PageContent {
     if (this.pageContentId) {
       delete pageContentParams["pageId"];
       delete pageContentParams["contentType"];
-      this.updateContent(pageContentParams);
+      return this.updateContent(pageContentParams);
     } else {
-      this.insertContent(pageContentParams)
+      return this.insertContent(pageContentParams)
     }
   }
 
   insertContent(pageContentParams) {
     this.validate(pageContentParams);
-    PageContents.insert(pageContentParams);
+    return PageContents.insert(pageContentParams);
   }
 
   updateContent(pageContentParams) {
     this.validate(pageContentParams);
-    PageContents.update({ _id: this.pageContentId }, { $set: pageContentParams });
+    return PageContents.update({ _id: this.pageContentId }, { $set: pageContentParams });
   }
 
   updatePageContent(pageId, pageContent) {

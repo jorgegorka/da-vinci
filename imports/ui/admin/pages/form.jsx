@@ -142,13 +142,13 @@ export default class PageForm extends Component {
                         <FormInput defaultValue={ this.state.order } onChange={ this.updateContent.bind(this, 'order') } name="order" />
                       </FormGroup>
                       <FormGroup>
-                        <FormCheckBox text='Set page as homepage?' htmlFor="homePage" onChange={ this.updateContent.bind(this, 'isHomePage') } />
+                        <FormCheckBox text='Set page as homepage?' checked={ this.state.isHomePage } htmlFor="homePage" onChange={ this.updateContent.bind(this, 'isHomePage') } />
                       </FormGroup>
                       <FormGroup>
-                        <FormCheckBox text='Show page in main menu?' htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
+                        <FormCheckBox text='Show page in main menu?' checked={ this.state.showInMenu } htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
                       </FormGroup>
                       <FormGroup>
-                        <FormCheckBox text='This page is a draft (Draft pages do not appear in the public website).' htmlFor="draft" onChange={ this.updateContent.bind(this, 'draft') } />
+                        <FormCheckBox text='This page is a draft (Draft pages do not appear in the public website).' checked={ this.state.draft } htmlFor="draft" onChange={ this.updateContent.bind(this, 'draft') } />
                       </FormGroup>
                     </div>
                     <div className="tab-pane" id="tab_2">
