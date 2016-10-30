@@ -10,11 +10,11 @@ export default class HeaderMenu extends Component {
   }
 
   countSubPages(page) {
-    return Pages.find({ parentId: page._id }).count();
+    return Pages.find({ showInMenu: true, parentId: page._id }).count();
   }
 
   findSubPages(page) {
-    return Pages.find({ parentId: page._id }).fetch();
+    return Pages.find({ showInMenu: true, parentId: page._id }).fetch();
   }
 
   activeClassNames(page) {
