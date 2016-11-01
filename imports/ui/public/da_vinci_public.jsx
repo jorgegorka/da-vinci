@@ -10,12 +10,14 @@ i18n.setLocale('en')
 export default class DaVinciPublic extends Component {
   componentWillMount(){
     // Load resorces only used in public pages
-    this.loadAdminCssResources();
-    this.loadAdminJavascriptResources();
+    this.loadPublicCssResources();
+    this.loadPublicJavascriptResources();
   }
 
-  loadAdminCssResources() {
+  loadPublicCssResources() {
     let publicStyles = [
+      'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
       '/public/css/style.css',
       '/public/css/settings.css',
       '/public/css/layers.css',
@@ -30,7 +32,7 @@ export default class DaVinciPublic extends Component {
     });
   }
 
-  loadAdminJavascriptResources() {
+  loadPublicJavascriptResources() {
     let publicStyles = [
       '/public/js/jquery.themepunch.tools.min.js',
       '/public/js/jquery.themepunch.revolution.min.js'
@@ -47,7 +49,6 @@ export default class DaVinciPublic extends Component {
   render() {
     return (
       <div>
-        <div className="preloader" style={ { display: 'none' } }></div>
         <PublicHeader />
         {this.props.children}
         <PublicFooter />

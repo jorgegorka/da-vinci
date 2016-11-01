@@ -1,9 +1,27 @@
 import React, { Component, PropTypes } from 'react';
-import Alert from 'react-s-alert';
+import { createContainer } from 'meteor/react-meteor-data';
 import i18n from 'meteor/universe:i18n';
 
-export default class PublicFooter extends Component {
+import { Pages } from '../../../../../lib/collections/pages.js';
+
+import Loading from '../../../utils/containers/loading.jsx';
+
+class PublicFooter extends Component {
+  topMenuItems() {
+    return this.props.pages.map( function(page){
+      return(
+        <a key={ page._id } href={ '/page/' + page._id }>
+          { page.name }
+        </a>
+      );
+    });
+  }
+
   render() {
+    if (this.props.loading) {
+      return(<Loading />);
+    };
+
     return(
       <footer className="footer footer-dark">
         <div className="footer-extra">
@@ -13,10 +31,7 @@ export default class PublicFooter extends Component {
       				<a href="mailto:info@sample.com" className="email"><i className="fa fa-envelope-o"></i> info@sample.com</a>
       			</nav>
       			<nav className="extra-menu pull-right">
-      				<a href=""><i className="fa fa-lock"></i>Account</a>
-      				<a href="">Wishlist</a>
-      				<a href="">Shopping Cart</a>
-      				<a href="">Logout</a>
+      				{ this.topMenuItems() }
       			</nav>
       		</div>
       	</div>
@@ -24,3 +39,12 @@ export default class PublicFooter extends Component {
     );
   }
 }
+
+export default createContainer(() => {
+  let subscription = Meteor.subscribe('publicMenuPages');
+
+  return {
+    pages: Pages.find({ parentId: 'top' }, { $sort: { order: 0 }}).fetch(),
+    loading: !subscription.ready()
+  };
+}, PublicFooter);

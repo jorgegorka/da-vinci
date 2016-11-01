@@ -52,7 +52,7 @@ class DaVinci extends Component {
       '/admin/css/admin_lte_black_light.css',
       '/admin/css/quill.css',
       '/admin/css/s-alert-default.css',
-      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css',
+      'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
       'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
       'http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css'
     ];
