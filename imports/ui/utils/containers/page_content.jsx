@@ -8,7 +8,7 @@ import ContentColumn from './column.jsx';
 import ContentRow from './row.jsx';
 import ContentImageEditor from './image_editor/index.jsx';
 
-export default class PageContentContainer extends Component {
+class PageContentContainer extends Component {
   constructor(props) {
     super(props)
   }
