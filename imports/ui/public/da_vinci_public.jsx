@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Alert from 'react-s-alert';
 import i18n from 'meteor/universe:i18n';
 
-import MainHeader from './layout/header/main.jsx';
+import PublicHeader from './layout/header/index.jsx';
+import PublicFooter from './layout/footer/index.jsx';
 
 i18n.setLocale('en')
 
@@ -47,8 +48,9 @@ export default class DaVinciPublic extends Component {
     return (
       <div>
         <div className="preloader" style={ { display: 'none' } }></div>
-        <MainHeader />
+        <PublicHeader />
         {this.props.children}
+        <PublicFooter />
       </div>
     )
   }

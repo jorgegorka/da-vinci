@@ -4,7 +4,7 @@ import i18n from 'meteor/universe:i18n';
 
 import TopNavigationBar from './top_navigation_bar.jsx'
 
-export default class MainHeader extends Component {
+export default class PublicHeader extends Component {
   render() {
     return(
       <header className="header affix" data-spy="affix">
