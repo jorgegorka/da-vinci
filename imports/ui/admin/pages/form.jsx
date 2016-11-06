@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import update from 'react-addons-update';
 
-import FormTag from '../../utils/form/tag.jsx'
+import FormTag from '../../utils/form/index.jsx'
 import FormGroup from '../../utils/form/group.jsx'
 import FormSelect from '../../utils/form/select.jsx'
 import FormLabel from '../../utils/form/label.jsx'
 import FormCheckBox from '../../utils/form/check_box.jsx'
 import FormInput from '../../utils/form/input.jsx'
 import FormTextArea from '../../utils/form/text_area.jsx'
+import FormInputTag from '../../utils/form/tag.jsx'
 import AlertMessage from '../../utils/containers/alert_message.jsx'
 
 export default class PageForm extends Component {
@@ -21,6 +22,7 @@ export default class PageForm extends Component {
     let defaultShowInMenu = false ;
     let defaultDraft = false;
     let defaultMetaInfo = { title: '', description: '' };
+    let defaultTags = [];
 
     if (props.page) {
       defaultParentId = props.page.parentId;
@@ -31,6 +33,7 @@ export default class PageForm extends Component {
       defaultShowInMenu = props.page.showInMenu;
       defaultDraft = props.page.draft;
       defaultMetaInfo = props.page.metaInfo;
+      defaultTags = props.page.tags || [];
     };
 
     this.state = {
@@ -43,6 +46,7 @@ export default class PageForm extends Component {
       order: defaultOrder,
       name: defaultName,
       metaInfo: defaultMetaInfo,
+      tags: defaultTags,
     };
   }
 
@@ -79,6 +83,7 @@ export default class PageForm extends Component {
       showInMenu: this.state.showInMenu,
       pageTypeId: this.state.pageTypeId,
       metaInfo: this.state.metaInfo,
+      tags: this.state.tags
     };
 
     let methodParams = [this.props.methodName, page]
@@ -158,6 +163,10 @@ export default class PageForm extends Component {
                       <FormGroup>
                         <FormLabel text='Description' htmlFor="metaDescription" />
                         <FormTextArea defaultValue={ this.state.metaInfo.description } onChange={ this.updateMetaInfoContent.bind(this, 'description') } name="metaDescription" />
+                      </FormGroup>
+                      <FormGroup>
+                        <FormLabel text='Tags (Press tab or comma to separate tags)' />
+                        <FormInputTag defaultValue={ this.state.tags } onChange={ this.updateMetaInfoContent.bind(this, 'tags') } />
                       </FormGroup>
                     </div>
                   </div>

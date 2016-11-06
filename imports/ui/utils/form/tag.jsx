@@ -1,25 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import TagsInput from 'react-tagsinput';
 
-export default class FormTag extends Component {
+export default class FormInputTag extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = { tags: props.defaultValue }
   }
 
-  onSubmit(event) {
-    event.preventDefault();
-    this.props.onSubmit();
+  handleChange(tags) {
+    this.setState({ tags: tags })
+    this.props.onChange(tags);
   }
 
   render() {
     return(
-      <form role="form" onSubmit={ this.onSubmit.bind(this) }>
-        { this.props.children }
-      </form>
-    )
+      <TagsInput value={ this.state.tags } onChange={ this.handleChange.bind(this) } className="form-control" addKeys={ [9, 13, 188] } />
+    );
   }
 }
-
-FormTag.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+FormInputTag.propTypes = {
+  defaultValue: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

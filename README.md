@@ -69,6 +69,7 @@ It's in an early stage and not suitable to be used in production.
     meteor add alanning:roles
     meteor add aldeed:collection2
     meteor npm install moment --save
+    meteor npm install react-tagsinput --save
 
 
     *Testing*
