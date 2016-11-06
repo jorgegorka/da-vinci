@@ -1,54 +1,85 @@
-import { Pages } from '../../../lib/collections/pages.js';
-import { PageTypes } from '../../../lib/collections/page_types.js';
-import { PageContents } from '../../../lib/collections/page_contents.js';
 import { check, Match } from 'meteor/check';
+
+import { PageContents } from '../../../lib/collections/page_contents.js';
+import { ImagesUploader } from '../../middleware/images/uploader.js';
 
 export class PageContent {
   constructor(pageContentId) {
+    check(pageContentId, String);
     if (pageContentId !== 'new') {
       this.pageContentId = pageContentId;
     }
+    this.pageContentData = {};
   }
 
   upsertContent(pageContentParams) {
+    this.pageContentData["pageId"] = pageContentParams.pageId;
+    this.pageContentData["text"] = pageContentParams.text;
+    this.pageContentData["contentType"] = pageContentParams.contentType;
+    this.pageContentData["imageTitle"] = pageContentParams.imageTitle;
+    this.pageContentData["order"] = pageContentParams.order;
+    this._uploadImage(pageContentParams);
+
     if (this.pageContentId) {
-      delete pageContentParams["pageId"];
-      delete pageContentParams["contentType"];
-      return this.updateContent(pageContentParams);
+      return this._updateContent();
     } else {
-      return this.insertContent(pageContentParams)
+      return this._insertContent()
     }
   }
 
-  insertContent(pageContentParams) {
-    this.validate(pageContentParams);
-    return PageContents.insert(pageContentParams);
+  _insertContent() {
+    this._validate();
+    return PageContents.insert(this.pageContentData);
   }
 
-  updateContent(pageContentParams) {
-    this.validate(pageContentParams);
-    return PageContents.update({ _id: this.pageContentId }, { $set: pageContentParams });
+  _updateContent(pageContentParams) {
+    delete this.pageContentData["pageId"];
+    delete this.pageContentData["contentType"];
+    this._validate();
+    return PageContents.update({ _id: this.pageContentId }, { $set: this.pageContentData });
   }
 
-  updatePageContent(pageId, pageContent) {
-    let page = Pages.findOne({ _id: pageId });
-    let pageType = PageTypes.findOne({ _id: page.pageTypeId });
-    pageType.textAreas.forEach( function(textArea) {
-      if (pageContent[textArea]) {
-        check(pageContent[textArea], String);
-        PageContents.update({ pageId: pageId, contentType: textArea }, { $set: { text: pageContent[textArea] } });
-      }
-    });
-  }
-
-  validate(pageContentParams) {
-    check(pageContentParams, {
+  _validate() {
+    check(this.pageContentData, {
       pageId: Match.Maybe(String),
       contentType: Match.Maybe(String),
       text: Match.Maybe(String),
       imagePath: Match.Maybe(String),
       imageTitle: Match.Maybe(String),
+      originalImageName: Match.Maybe(String),
+      originalImageSize: Match.Maybe(Number),
       order: Match.Maybe(Number),
     });
+  }
+
+  _uploadImage(pageContentParams) {
+    if (this._imageIsValid(pageContentParams)) {
+      let image = {
+        fileName: pageContentParams.pageId + '/' + Date.now().toString() + '.' + pageContentParams.fileName.split('.').pop(),
+        fileType: pageContentParams.fileType,
+        fileData: pageContentParams.fileData
+      };
+      let imageUploader = new ImagesUploader(image);
+      this.pageContentData["imagePath"] = imageUploader.upload().Location;
+      this.pageContentData["originalImageName"] = pageContentParams.originalImageName;
+      this.pageContentData["originalImageSize"] = pageContentParams.originalImageSize;
+    };
+  }
+
+  _imageIsValid(pageContentParams) {
+    return this._imageIsPresent(pageContentParams) && this._imageHasChanged(pageContentParams)
+  }
+
+  _imageIsPresent(pageContentParams) {
+    return (pageContentParams.pageId && pageContentParams.fileName && pageContentParams.fileData && pageContentParams.fileType);
+  }
+
+  _imageHasChanged(pageContentParams) {
+    if (this.pageContentId) {
+      currentContent = PageContents.findOne({ _id: this.pageContentId });
+      return ((pageContentParams.fileName !== currentContent.originalImageName) || (pageContentParams.fileSize !== currentContent.originalImageSize))
+    } else {
+      return true;
+    }
   }
 }

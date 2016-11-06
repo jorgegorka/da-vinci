@@ -12,11 +12,21 @@ class ContentImageEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: '',
+      file: { name: '', type: '', size: 0 },
       imageTitle: props.pageContent.imageTitle,
       text: props.pageContent.text,
       order: 0,
     }
+  }
+
+  addImage(pageContentParams, fileData) {
+    Meteor.call('pageContents.addImage', pageContentParams, fileData, function(error) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('all fine');
+      }
+    });
   }
 
   onChange(fieldName, fieldValue) {
@@ -24,8 +34,6 @@ class ContentImageEditor extends Component {
   }
 
   onSubmit() {
-    if (!this.state.file) { return }
-
     let pageContentParams = {
       pageId: this.props.imageOptions.pageId,
       pageContentId: this.props.imageOptions.pageContentId,
@@ -33,22 +41,22 @@ class ContentImageEditor extends Component {
       imageTitle: this.state.imageTitle,
       order: this.state.order,
       fileName: this.state.file.name,
+      fileSize: this.state.file.size,
       fileType: this.state.file.type,
       contentType: this.props.imageOptions.contentType
+    };
+
+    if (this.state.file.name !== '') {
+      let that = this;
+      let reader = new FileReader();
+      reader.onload = function(fileLoadEvent) {
+        that.addImage(pageContentParams, reader.result);
+      };
+      reader.readAsBinaryString(this.state.file);
+    } else {
+      this.addImage(pageContentParams, '');
     }
 
-    let reader = new FileReader();
-
-    reader.onload = function(fileLoadEvent) {
-      Meteor.call('pageContents.addImage', pageContentParams, reader.result, function(error) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('all fine');
-        }
-      });
-    };
-    reader.readAsBinaryString(this.state.file);
   }
 
   render() {

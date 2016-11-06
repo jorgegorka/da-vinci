@@ -30,20 +30,3 @@ Meteor.methods({
     }
   }
 });
-
-Meteor.methods({
-  'pages.addImage'(pageId, contentId, title, fileName, fileType, fileData) {
-    if (Roles.userIsInRole(this.userId, ['admin', 'manager', 'publisher'])) {
-      let image = {
-        fileName: pageId + '/' + Date.now().toString() + '.' + fileName.split('.').pop(),
-        fileType: fileType,
-        fileData: new Buffer(fileData, 'binary'),
-      };
-
-      imageUploader = new ImagesUploader(image);
-      data = imageUploader.upload();
-      newPage = new Page(pageId);
-      newPage.updateContent(contentId, data.Location, title);
-    }
-  }
-});

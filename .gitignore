@@ -3,3 +3,4 @@ node_modules/
 /customer_assets
 settings*.json
 server/conf
+.vscode
