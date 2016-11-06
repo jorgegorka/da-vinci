@@ -11,6 +11,16 @@ import ContentImageEditor from './image_editor/index.jsx';
 class PageContentContainer extends Component {
   constructor(props) {
     super(props)
+    this.state = { newContents: [] };
+  }
+
+  addNewImage() {
+    let newContent = this.state.newContents;
+    newContent.push(
+      <ContentImageEditor key={ newContent.length + 1 } imageOptions={ { pageId: this.props.pageId, pageContentId: 'new', contentType: this.props.contentType, includeText: this.props.includeText } } className="col-lg-12 col-md-12 col-xs-12" />
+    );
+
+    this.setState({ newContents: newContent });
   }
 
   renderImages() {
@@ -34,7 +44,16 @@ class PageContentContainer extends Component {
           <h2>{ this.props.title }</h2>
           <ContentRow>
             { this.renderImages() }
+            { this.state.newContents }
           </ContentRow>
+          { this.props.multipleContents === true ?
+            <ContentRow>
+              <ContentColumn className="col-lg-12 col-md-12 col-xs-12">
+                <button className="btn btn-info" onClick={ this.addNewImage.bind(this) }>Add more content</button>
+              </ContentColumn>
+            </ContentRow>
+            : null
+          }
         </ContentColumn>
       </ContentRow>
     );
@@ -46,6 +65,7 @@ PageContentContainer.propTypes = {
   contentType: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   includeText: PropTypes.bool.isRequired,
+  multipleContents: PropTypes.bool.isRequired,
 };
 
 export default createContainer((props) => {

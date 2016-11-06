@@ -7,6 +7,7 @@ import { PageTypes } from '../../../../lib/collections/page_types.js';
 
 import Loading from '../../utils/containers/loading.jsx';
 import PublicHome1Template from './templates/home1/index.jsx';
+import PublicProduct1Template from './templates/product1/index.jsx';
 
 
 class PublicPagesShow extends Component {
@@ -33,7 +34,7 @@ class PublicPagesShow extends Component {
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />
         break;
       case 'Product 1':
-        pageTemplate = <PublicProduct1Template pageId={ this.props.page._id } />
+        pageTemplate = <PublicProduct1Template page={ this.props.page } />
         break;
       case 'Blog 1':
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />

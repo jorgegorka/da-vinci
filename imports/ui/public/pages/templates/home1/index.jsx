@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { createContainer } from 'meteor/react-meteor-data';
 import i18n from 'meteor/universe:i18n';
 
 import PublicHome1Slider from './slider.jsx'

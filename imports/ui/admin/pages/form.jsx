@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
 
 import FormTag from '../../utils/form/tag.jsx'

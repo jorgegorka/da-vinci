@@ -17,6 +17,7 @@ export default class DaVinciPublic extends Component {
   loadPublicCssResources() {
     let publicStyles = [
       'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+      'http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic',
       'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
       '/public/css/style.css',
       '/public/css/settings.css',
@@ -50,7 +51,7 @@ export default class DaVinciPublic extends Component {
     return (
       <div>
         <PublicHeader />
-        {this.props.children}
+          { this.props.children }
         <PublicFooter />
       </div>
     )
