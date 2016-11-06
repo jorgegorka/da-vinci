@@ -11,9 +11,9 @@ export default class MainFooter extends Component {
     return (
       <footer className="main-footer">
         <div className="pull-right hidden-xs">
-          <b>Version</b> 0.0.1
+          <b>Version</b> 0.2.0
         </div>
-        <strong>Copyright &copy; 2016 <a href="http://alvareznavarro.es">Jorge Alvarez</a>.</strong> MIT License
+        <strong>Copyright &copy; 2016 <a href="http://www.alvareznavarro.es">Jorge Alvarez</a>.</strong> MIT License
       </footer>
     );
   }
