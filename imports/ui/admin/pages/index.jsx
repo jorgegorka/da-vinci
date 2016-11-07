@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import i18n from 'meteor/universe:i18n';
 
 import { Pages } from '../../../../lib/collections/pages.js';
 import { PageTypes } from '../../../../lib/collections/page_types.js';
@@ -8,6 +9,7 @@ import Loading from '../../utils/containers/loading.jsx';
 import PageForm from './form.jsx';
 import PageList from './list.jsx';
 
+const T = i18n.createComponent();
 
 class PagesIndex extends Component {
   selectParentPages() {

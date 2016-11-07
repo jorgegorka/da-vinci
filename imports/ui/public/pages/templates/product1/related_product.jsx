@@ -20,7 +20,7 @@ export default class PublicProduct1RelatedProduct extends Component {
             </a>
           </div>
           <div className="figure-info">
-            <h4><a href={ '/page/' + this.props.relatedProduct._id }>{ this.props.relatedProduct.title }</a></h4>
+            <h4><a href={ i18n.__('settings.pageRoute') + '/' + this.props.relatedProduct._id }>{ this.props.relatedProduct.title }</a></h4>
             <div className="heading-divider"></div>
             <p>{ this.props.relatedProduct.info }</p>
           </div>

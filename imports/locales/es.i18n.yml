@@ -1,0 +1,4 @@
+settings:
+  header: 'Bienvenido'
+  pageRoute: 'pagina'
+  other:  'Otro'

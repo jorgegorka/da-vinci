@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import i18n from 'meteor/universe:i18n';
 
 import DaVinciPublic from './ui/public/da_vinci_public.jsx';
 import HomePage from './ui/public/home_page.jsx';
@@ -22,7 +23,7 @@ export const renderRoutes = () => (
     <Route path="/" component={ DaVinciPublic }>
       <IndexRoute component={ HomePage } />
       <Route path="login" component={ Login } />
-      <Route path="page/:pageId" component={ PublicPagesShow } />
+      <Route path={ i18n.__('settings.pageRoute') + '/:pageId' } component={ PublicPagesShow } />
     </Route>
     <Route path="/admin" component={ DaVinci }>
       <IndexRoute component={ DashboardIndex } />

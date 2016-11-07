@@ -1,4 +1,4 @@
 settings:
   header: 'Welcome'
-  pageRoute: 'page'
+  pageRoute: 'pagina'
   other:  'Other'
