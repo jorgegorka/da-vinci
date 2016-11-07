@@ -36,7 +36,8 @@ export default class DaVinciPublic extends Component {
   loadPublicJavascriptResources() {
     let publicStyles = [
       '/public/js/jquery.themepunch.tools.min.js',
-      '/public/js/jquery.themepunch.revolution.min.js'
+      '/public/js/jquery.themepunch.revolution.min.js',
+      '/public/js/superfish.min.js'
     ];
 
     publicStyles.forEach( function(jssStyle) {

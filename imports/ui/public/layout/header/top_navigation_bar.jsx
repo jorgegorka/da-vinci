@@ -9,6 +9,10 @@ import Loading from '../../../utils/containers/loading.jsx';
 import HeaderMenu from './menu.jsx';
 
 class TopNavigationBar extends Component {
+  componentDidUpdate() {
+    $('ul.sf-menu').superfish();
+  }
+
   render() {
     if (this.props.loading) {
       return(<Loading />);
@@ -16,7 +20,9 @@ class TopNavigationBar extends Component {
 
     return(
       <div id="navbar" className="navbar-collapse collapse pull-right">
-        <HeaderMenu key="top" parentId="top" pages={ Pages.find({ showInMenu: true, parentId: 'top' }).fetch() } />
+        <ul className="nav navbar-nav">
+          <HeaderMenu key="top" parentId="top" pages={ Pages.find({ showInMenu: true, parentId: 'top' }).fetch() } mainHeader={ true } />
+        </ul>
       </div>
     );
   }
