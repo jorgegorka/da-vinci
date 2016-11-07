@@ -1,24 +1,12 @@
 import { Pages } from '../../../lib/collections/pages.js';
 
+import { PagesRelatedProducts } from './related_products.js';
+
 export class PagesFinder {
-  constructor(parentId) {
-    this.parentId = parentId;
-  }
-
-  findRecursive() {
-    this._getPages(this.parentId);
-  }
-
-  _getPages(parentId) {
-    let pages = Pages.find({ parentId: parentId }, { $sort: { order: 0 }});
-    return pages.map(function(page) {
-      let subPages = Pages.find({ parentId: page._id }, { $sort: { order: 0 }}).count();
-      return {
-        _id: page._id,
-        name: page.name,
-        subPages: subPages,
-        subPages: 0,
-      }
-    });
+  static withRelatedProducts(pageId, qty=3) {
+    let currentPage = Pages.findOne( { _id: pageId } )
+    let relatedIds = new PagesRelatedProducts(currentPage._id, currentPage.tags, qty).find();
+    currentPage['relatedIds'] = relatedIds;
+    return currentPage;
   }
 }

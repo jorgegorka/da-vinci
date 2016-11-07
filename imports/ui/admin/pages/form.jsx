@@ -166,7 +166,7 @@ export default class PageForm extends Component {
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Tags (Press tab or comma to separate tags)' />
-                        <FormInputTag defaultValue={ this.state.tags } onChange={ this.updateMetaInfoContent.bind(this, 'tags') } />
+                        <FormInputTag defaultValue={ this.state.tags } onChange={ this.updateContent.bind(this, 'tags') } />
                       </FormGroup>
                     </div>
                   </div>

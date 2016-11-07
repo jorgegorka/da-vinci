@@ -54,7 +54,7 @@ class PublicPagesShow extends Component {
 }
 
 export default createContainer((props) => {
-  let subscription = Meteor.subscribe('pages');
+  let subscription = Meteor.subscribe('pageWithRelatedProducts', props.params.pageId);
   Meteor.subscribe('pageTypes');
 
   return {

@@ -13,6 +13,9 @@ env:
 
 # http://eslint.org/docs/rules/
 rules:
+  "react/jsx-closing-bracket-location": 1
+  "react/jsx-indent-props": 1
+  "react/jsx-indent": [2, 2]
   # Possible Errors
   comma-dangle: [2, never]
   no-cond-assign: 2
@@ -142,7 +145,7 @@ rules:
   func-style: 0
   id-length: 0
   id-match: 0
-  indent: 0
+  indent: 1
   jsx-quotes: 0
   key-spacing: 0
   linebreak-style: 0
