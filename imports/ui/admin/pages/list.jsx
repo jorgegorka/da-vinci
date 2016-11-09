@@ -23,7 +23,7 @@ export default class PageList extends Component {
 
     let allItems = this.props.pages.map((page, index) => (
       <li key={ this.props.parentId + index }>
-        <a href={ '/admin/page/' + page._id } title="Show page">{ page.name } { page.draft === true ? '(Draft)' : null }</a>
+        <a href={ '/admin/page/' + page.nameSlug } title="Show page">{ page.name } { page.draft === true ? '(Draft)' : null }</a>
         { this.countSubPages(page) > 0 ?
         <PageList key={ page._id } parentId={ page._id } pages={ this.findSubPages(page) } /> : null }
       </li>

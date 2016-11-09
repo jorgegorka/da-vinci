@@ -85,11 +85,12 @@ PagesShow.propTypes = {
 };
 
 export default createContainer((props) => {
+  // TODO: we are subscribing to all pages. Improve this.
   let subscription = Meteor.subscribe('pages');
   Meteor.subscribe('pageTypes');
 
   return {
-    page: Pages.findOne({ _id: props.params.pageId }, {}),
+    page: Pages.findOne({ nameSlug: props.params.nameSlug }, {}),
     loading: !subscription.ready(),
     pages: Pages.find({}, { sort: { name: 0 }}).fetch(),
     pageTypes: PageTypes.find({}, { $sort: { name: 0 }}).fetch(),

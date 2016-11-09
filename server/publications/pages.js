@@ -28,9 +28,13 @@ Meteor.publish('publicMenuPages', function() {
   return Pages.find({ showInMenu: true }, { $sort: { order: 0 }});
 });
 
-Meteor.publish('pageWithRelatedProducts', function(pageId) {
-  check(pageId, String);
+Meteor.publish('pageWithRelatedProducts', function(nameSlug) {
+  check(nameSlug, String);
+  let page = Pages.findOne({ nameSlug: nameSlug });
+  if (!page) {
+    return this.ready();
+  }
 
-  this.added('pages', pageId, PagesFinder.withRelatedProducts(pageId));
+  this.added('pages', page._id, PagesFinder.withRelatedProducts(page._id));
   return this.ready();
 });

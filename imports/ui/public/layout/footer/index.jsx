@@ -10,7 +10,7 @@ class PublicFooter extends Component {
   topMenuItems() {
     return this.props.pages.map( function(page){
       return(
-        <a key={ page._id } href={ '/page/' + page._id }>
+        <a key={ page._id } href={ i18n.__('settings.pageRoute') + page.nameSlug }>
           { page.name }
         </a>
       );

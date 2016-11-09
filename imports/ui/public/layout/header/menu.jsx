@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import i18n from 'meteor/universe:i18n';
 import classNames from 'classnames';
 
 import { Pages } from '../../../../../lib/collections/pages.js';
@@ -46,7 +47,7 @@ export default class HeaderMenu extends Component {
   menuItem(page, index) {
     return(
       <li key={ this.props.parentId + index } className={ this.activeClassNames(page) }>
-        <a href={ '/page/' + page._id } title="Show page">{ page.name }</a>
+        <a href={ i18n.__('settings.pageRoute') + page.nameSlug } title="Show page">{ page.name }</a>
       </li>
     )
   }
