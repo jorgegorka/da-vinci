@@ -15,9 +15,6 @@ class PublicRouteGenerator extends Component {
     };
 
     if (this.props.parentPage) {
-      console.log(this.props.parentPage.nameSlug );
-      console.log('-------------');
-      console.log(this.props.page.nameSlug);
       return(
         <a href={ '/' + this.props.parentPage.nameSlug + '/' + this.props.page.nameSlug }>
           { this.props.page.name }

@@ -7,7 +7,7 @@ import { PageTypes } from '../../../../lib/collections/page_types.js';
 import Loading from '../../utils/containers/loading.jsx';
 import Home1Template from './templates/home1.jsx';
 import Product1Template from './templates/product1.jsx';
-import Section11Template from './templates/section1.jsx';
+import Section1Template from './templates/section1.jsx';
 
 
 class ShowPageTemplate extends Component {
@@ -29,7 +29,7 @@ class ShowPageTemplate extends Component {
         pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'Section 1':
-        pageTemplate = <Section1Template page={ this.props.page._id } />
+        pageTemplate = <Section1Template pageId={ this.props.page._id } />
         break;
       case 'Product 1':
         pageTemplate = <Product1Template pageId={ this.props.page._id } />
