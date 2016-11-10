@@ -15,6 +15,7 @@ class ContentImageEditor extends Component {
       file: { name: '', type: '', size: 0 },
       imageTitle: props.pageContent.imageTitle,
       text: props.pageContent.text,
+      targetLink: props.pageContent.text,
       order: 0,
     }
   }
@@ -40,6 +41,7 @@ class ContentImageEditor extends Component {
       text: this.state.text,
       imageTitle: this.state.imageTitle,
       order: this.state.order,
+      targetLink: this.state.targetLink,
       fileName: this.state.file.name,
       fileSize: this.state.file.size,
       fileType: this.state.file.type,

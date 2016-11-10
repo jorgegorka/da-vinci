@@ -1,4 +1,5 @@
 import { check, Match } from 'meteor/check';
+import UrlParse from 'url-parse';
 
 import { PageContents } from '../../../lib/collections/page_contents.js';
 import { ImagesUploader } from '../../middleware/images/uploader.js';
@@ -18,6 +19,7 @@ export class PageContent {
     this.pageContentData["contentType"] = pageContentParams.contentType;
     this.pageContentData["imageTitle"] = pageContentParams.imageTitle;
     this.pageContentData["order"] = pageContentParams.order;
+    this.pageContentData["targetLink"] = this._parseTargetLink(pageContentParams.targetLink);
     this._uploadImage(pageContentParams);
 
     if (this.pageContentId) {
@@ -44,6 +46,7 @@ export class PageContent {
       pageId: Match.Maybe(String),
       contentType: Match.Maybe(String),
       text: Match.Maybe(String),
+      targetLink: Match.Maybe(String),
       imagePath: Match.Maybe(String),
       imageTitle: Match.Maybe(String),
       originalImageName: Match.Maybe(String),
@@ -81,5 +84,16 @@ export class PageContent {
     } else {
       return true;
     }
+  }
+
+  _parseTargetLink(targetLink) {
+    if (!targetLink) {
+      return '';
+    }
+
+    // Remove hostname from target link
+    let url = new UrlParse(targetLink);
+    return url.pathname;
+
   }
 }

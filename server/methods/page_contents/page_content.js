@@ -15,6 +15,7 @@ Meteor.methods({
         originalImageName: pageContentParams.fileName,
         originalImageSize: pageContentParams.fileSize,
         text: pageContentParams.text,
+        targetLink: pageContentParams.targetLink,
         order: parseInt(pageContentParams.order)
       };
       pageContent = new PageContent(pageContentParams.pageContentId);

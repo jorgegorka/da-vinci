@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import ContentColumn from '../column.jsx';
+import ContentRow from '../row.jsx';
 import ImageEditor from '../../editors/image.jsx';
 import RichTextEditor from '../../editors/rich_text.jsx';
 import FormGroup from '../../form/group.jsx';
@@ -21,8 +22,16 @@ export default class ContentImageEditorForm extends Component {
           <ImageEditor onChange={ this.props.onChange.bind(this, 'file') } editorName={ this.props.pageContent.contentType } id="file" />
         </FormGroup>
         <FormGroup>
-          <FormLabel htmlFor="order" text="Image order in slider (optional)" />
-          <FormInput onChange={ this.props.onChange.bind(this, 'order') } defaultValue={ this.props.pageContent.order.toString() } name="order" id="order" />
+          <ContentRow>
+            <ContentColumn className="col-lg-3 col-md-3 col-xs-4">
+              <FormLabel htmlFor="order" text="Image order (optional)" />
+              <FormInput onChange={ this.props.onChange.bind(this, 'order') } defaultValue={ this.props.pageContent.order.toString() } name="order" id="order" />
+            </ContentColumn>
+            <ContentColumn className="col-lg-9 col-md-9 col-xs-8">
+              <FormLabel htmlFor="targetLink" text="Link title and image to other page. (optional) " />
+              <FormInput onChange={ this.props.onChange.bind(this, 'targetLink') } defaultValue={ this.props.pageContent.targetLink } name="targetLink" id="targetLink" />
+            </ContentColumn>
+          </ContentRow>
         </FormGroup>
         { this.props.includeText === true ?
           <FormGroup>
