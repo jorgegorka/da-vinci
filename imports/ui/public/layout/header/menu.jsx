@@ -4,6 +4,7 @@ import i18n from 'meteor/universe:i18n';
 import classNames from 'classnames';
 
 import { Pages } from '../../../../../lib/collections/pages.js';
+import PublicRouteGenerator from '../../../utils/helpers/public_route_generator.jsx';
 
 export default class HeaderMenu extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ export default class HeaderMenu extends Component {
   menuItem(page, index) {
     return(
       <li key={ this.props.parentId + index } className={ this.activeClassNames(page) }>
-        <a href={ i18n.__('settings.pageRoute') + page.nameSlug } title="Show page">{ page.name }</a>
+        <PublicRouteGenerator page={ page } />
       </li>
     )
   }

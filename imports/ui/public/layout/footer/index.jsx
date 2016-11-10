@@ -5,14 +5,13 @@ import i18n from 'meteor/universe:i18n';
 import { Pages } from '../../../../../lib/collections/pages.js';
 
 import Loading from '../../../utils/containers/loading.jsx';
+import PublicRouteGenerator from '../../../utils/helpers/public_route_generator.jsx';
 
 class PublicFooter extends Component {
   topMenuItems() {
-    return this.props.pages.map( function(page){
+    return this.props.pages.map( function(page, index){
       return(
-        <a key={ page._id } href={ i18n.__('settings.pageRoute') + page.nameSlug }>
-          { page.name }
-        </a>
+        <PublicRouteGenerator key={ index } page={ page } />
       );
     });
   }

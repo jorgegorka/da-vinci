@@ -20,16 +20,17 @@ import PagesShow from './ui/admin/pages/show.jsx';
 
 export const renderRoutes = () => (
   <Router history={ browserHistory }>
-    <Route path="/" component={ DaVinciPublic }>
-      <IndexRoute component={ HomePage } />
-      <Route path="login" component={ Login } />
-      <Route path={ i18n.__('settings.pageRoute') + '/:nameSlug' } component={ PublicPagesShow } />
-    </Route>
     <Route path="/admin" component={ DaVinci }>
       <IndexRoute component={ DashboardIndex } />
       <Route path="settings" component={ SettingsIndex } />
       <Route path="pages" component={ PagesIndex } />
       <Route path="page/:nameSlug" component={ PagesShow } />
+    </Route>
+    <Route path="/" component={ DaVinciPublic }>
+      <IndexRoute component={ HomePage } />
+      <Route path="login" component={ Login } />
+      <Route path="/:parentSlug/:nameSlug" component={ PublicPagesShow } />
+      <Route path='/:nameSlug' component={ PublicPagesShow } />
     </Route>
     <Route path="*" component={ NotFound } />
   </Router>
