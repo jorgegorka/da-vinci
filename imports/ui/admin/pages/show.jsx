@@ -7,6 +7,7 @@ import { Pages } from '../../../../lib/collections/pages.js';
 import { PageTypes } from '../../../../lib/collections/page_types.js';
 
 import Loading from '../../utils/containers/loading.jsx';
+import PublicRouteGenerator from '../../utils/helpers/public_route_generator.jsx';
 import PageForm from './form.jsx';
 import PagesContentList from './content_list.jsx';
 
@@ -59,7 +60,7 @@ class PagesShow extends Component {
             <div className="col-md-10">
               <h1>
                 { this.props.page.name }
-                <small></small>
+                <small>Public link: <PublicRouteGenerator page={ this.props.page } /></small>
               </h1>
             </div>
             <div className="col-md-1">
