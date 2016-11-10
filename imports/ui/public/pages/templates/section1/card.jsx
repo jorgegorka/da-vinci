@@ -6,14 +6,18 @@ export default class PublicSection1Card extends Component {
     return(
 			<div className={ this.props.className }>
 				<div className="card card-image">
-					<h3>{ this.props.pageContent.imageTitle }</h3>
+					<h3>
+            <a href={ this.props.pageContent.targetLink } title={ this.props.pageContent.imageTitle }>
+              { this.props.pageContent.imageTitle }
+            </a>
+          </h3>
 					<figure className="figure">
-						<a href="">
+						<a href={ this.props.pageContent.targetLink } title={ this.props.pageContent.imageTitle }>
 							<img src={ this.props.pageContent.imagePath } alt={ this.props.pageContent.imageTitle } />
 						</a>
 						<div className="mask mask-light">
 							<nav>
-								<a className="icon icon-inverse icon-size-3 icon-bg-1 icon-rounded" href="">
+								<a className="icon icon-inverse icon-size-3 icon-bg-1 icon-rounded" href={ this.props.pageContent.targetLink }>
 									<i className="fa fa-link"></i>
 								</a>
 							</nav>

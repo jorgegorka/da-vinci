@@ -6,8 +6,24 @@ import { PageContents } from '../../../../../../lib/collections/page_contents.js
 
 import Loading from '../../../../utils/containers/loading.jsx';
 import PublicSection1Content2 from './content_2.jsx';
+import PublicSection1Content3 from './content_3.jsx';
+import PublicSection1Content4 from './content_4.jsx';
+import PublicSection1Content5 from './content_5.jsx';
+import PublicSection1Content6 from './content_6.jsx';
 
 class PublicSection1Template extends Component {
+  selectContentView() {
+    const content = {
+      2: PublicSection1Content2,
+      3: PublicSection1Content3,
+      4: PublicSection1Content4,
+      5: PublicSection1Content5,
+      6: PublicSection1Content6
+    };
+    const SectionContent = content[this.props.pageContents.length];
+    return <SectionContent pageContents={ this.props.pageContents } />
+  }
+
   render() {
     if (this.props.loading) {
       return(<Loading />);
@@ -16,7 +32,7 @@ class PublicSection1Template extends Component {
     return(
       <div className="wrapper">
         <div className="content">
-          <PublicSection1Content2 pageContents={ this.props.pageContents } />
+          { this.selectContentView() }
         </div>
       </div>
     );

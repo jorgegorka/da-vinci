@@ -3,10 +3,10 @@ import i18n from 'meteor/universe:i18n';
 
 import PublicSection1Card from './card.jsx';
 
-export default class PublicSection1Content2 extends Component {
+export default class PublicSection1Content3 extends Component {
   loadContent() {
     return this.props.pageContents.map( (pageContent) => {
-      return <PublicSection1Card key={ pageContent._id } pageContent={ pageContent } className="col-sm-6" />
+      return <PublicSection1Card key={ pageContent._id } pageContent={ pageContent } className="col-sm-4" />
     });
   }
 
@@ -14,7 +14,6 @@ export default class PublicSection1Content2 extends Component {
     return(
       <div className="container">
   			<div className="row irow-xs text-center cards cards-inside cards-images">
-          fdsafdsafdsafdsafdsa
   				{ this.loadContent() }
   			</div>
   		</div>
@@ -22,6 +21,6 @@ export default class PublicSection1Content2 extends Component {
   }
 }
 
-PublicSection1Content2.propTypes = {
+PublicSection1Content3.propTypes = {
   pageContents: PropTypes.array.isRequired
 };
