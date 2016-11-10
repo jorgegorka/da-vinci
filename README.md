@@ -70,6 +70,8 @@ It's in an early stage and not suitable to be used in production.
     meteor add aldeed:collection2
     meteor npm install moment --save
     meteor npm install react-tagsinput --save
+    meteor npm install slug --save
+    meteor npm install url-parse
 
 
     *Testing*
