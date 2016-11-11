@@ -28,10 +28,10 @@ Legal1Content.propTypes = {
 };
 
 export default createContainer((props) => {
-  let subscription = Meteor.subscribe('pageContentsForType', props.pageId, 'text-content');
+  let subscription = Meteor.subscribe('pageContentsForType', props.pageId, 'legal-content');
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: 'text-content' }, { $sort: { order: 0 }}).fetch(),
+    pageContents: PageContents.find({ contentType: 'legal-content' }, { $sort: { order: 0 }}).fetch(),
   };
 }, Legal1Content);

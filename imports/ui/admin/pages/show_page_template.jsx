@@ -8,6 +8,7 @@ import Loading from '../../utils/containers/loading.jsx';
 import Home1Template from './templates/home1.jsx';
 import Product1Template from './templates/product1.jsx';
 import Section1Template from './templates/section1.jsx';
+import Legal1Template from './templates/legal1.jsx';
 
 
 class ShowPageTemplate extends Component {
@@ -38,7 +39,7 @@ class ShowPageTemplate extends Component {
         pageTemplate = <Home1Template page={ this.props.page._id } />
         break;
       case 'Legal stuff 1':
-        pageTemplate = <Home1Template page={ this.props.page._id } />
+        pageTemplate = <Legal1Template page={ this.props.page._id } />
         break;
       case 'Footer 1':
         pageTemplate = <Home1Template page={ this.props.page._id } />
