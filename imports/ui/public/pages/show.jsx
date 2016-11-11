@@ -10,6 +10,7 @@ import HeaderMetaTag from '../../utils/helpers/header_meta_tag.jsx';
 import PublicHome1Template from './templates/home1/index.jsx';
 import PublicProduct1Template from './templates/product1/index.jsx';
 import PublicSection1Template from './templates/section1/index.jsx';
+import Legal1Template from './templates/legal1/index.jsx';
 
 
 class PublicPagesShow extends Component {
@@ -42,7 +43,7 @@ class PublicPagesShow extends Component {
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />
         break;
       case 'Legal stuff 1':
-        pageTemplate = <PublicHome1Template page={ this.props.page._id } />
+        pageTemplate = <Legal1Template page={ this.props.page._id } />
         break;
       case 'Footer 1':
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />
