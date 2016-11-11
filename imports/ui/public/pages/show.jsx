@@ -6,6 +6,7 @@ import { Pages } from '../../../../lib/collections/pages.js';
 import { PageTypes } from '../../../../lib/collections/page_types.js';
 
 import Loading from '../../utils/containers/loading.jsx';
+import HeaderMetaTag from '../../utils/helpers/header_meta_tag.jsx';
 import PublicHome1Template from './templates/home1/index.jsx';
 import PublicProduct1Template from './templates/product1/index.jsx';
 import PublicSection1Template from './templates/section1/index.jsx';
@@ -50,7 +51,12 @@ class PublicPagesShow extends Component {
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />
     }
 
-    return pageTemplate;
+    return(
+      <div>
+        <HeaderMetaTag  metaInfo={ this.props.page.metaInfo } />
+        { pageTemplate }
+      </div>
+    );
   }
 }
 

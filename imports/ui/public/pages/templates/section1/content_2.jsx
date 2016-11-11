@@ -14,7 +14,6 @@ export default class PublicSection1Content2 extends Component {
     return(
       <div className="container">
   			<div className="row irow-xs text-center cards cards-inside cards-images">
-          fdsafdsafdsafdsafdsa
   				{ this.loadContent() }
   			</div>
   		</div>
