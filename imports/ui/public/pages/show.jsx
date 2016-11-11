@@ -66,7 +66,7 @@ export default createContainer((props) => {
   Meteor.subscribe('pageTypes');
 
   return {
-    page: Pages.findOne({ nameSlug: props.params.nameSlug }, {}),
+    page: Pages.findOne({ nameSlug: props.params.nameSlug, draft: false }, {}),
     loading: !subscription.ready(),
   };
 }, PublicPagesShow);
