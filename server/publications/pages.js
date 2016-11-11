@@ -30,7 +30,14 @@ Meteor.publish('publicMenuPages', function() {
 
 Meteor.publish('pageWithRelatedProducts', function(nameSlug) {
   check(nameSlug, String);
-  let page = Pages.findOne({ nameSlug: nameSlug });
+  let page = {};
+
+  if (nameSlug === 'home') {
+    page = Pages.findOne({ isHomePage: true, draft: false });
+  } else {
+    page = Pages.findOne({ nameSlug: nameSlug, draft: false });
+  }
+
   if (!page) {
     return this.ready();
   }

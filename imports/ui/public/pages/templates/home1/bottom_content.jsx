@@ -8,7 +8,11 @@ import Loading from '../../../../utils/containers/loading.jsx';
 
 class PublicHome1BottomContent extends Component {
   findBottomContent() {
-    return this.props.pageContents[0].text;
+    if (this.props.pageContents.length > 0) {
+      return this.props.pageContents[0].text;
+    } else {
+      return '';
+    }
   }
 
   render() {

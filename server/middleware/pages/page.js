@@ -30,7 +30,7 @@ export class Page {
   _validate() {
     check(this.pageParams, {
       name: String,
-      nameSlug: String,
+      nameSlug: Match.Maybe(String),
       isHomePage: Boolean,
       showInMenu: Boolean,
       draft: Boolean,
