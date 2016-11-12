@@ -23,5 +23,6 @@ export default class PublicProduct1SliderImage extends Component {
 }
 
 PublicProduct1SliderImage.propTypes = {
-  pageContent: PropTypes.object.isRequired
+  pageContent: PropTypes.object.isRequired,
+  firstImage: PropTypes.bool.isRequired
 };
