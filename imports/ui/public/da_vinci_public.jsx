@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
 import Alert from 'react-s-alert';
 import i18n from 'meteor/universe:i18n';
 
+import { Settings } from '../../../lib/collections/settings.js';
+
+import Loading from '../utils/containers/loading.jsx';
 import PublicHeader from './layout/header/index.jsx';
 import PublicFooter from './layout/footer/index.jsx';
 
 i18n.setLocale('en')
 
-export default class DaVinciPublic extends Component {
+class DaVinciPublic extends Component {
   componentWillMount(){
     // Load resorces only used in public pages
     this.loadPublicCssResources();
@@ -44,12 +48,25 @@ export default class DaVinciPublic extends Component {
 
 
   render() {
+    if (this.props.loading) {
+      return(<Loading />);
+    };
+
     return (
       <div>
-        <PublicHeader />
+        <PublicHeader settings={ this.props.settings } />
           { this.props.children }
-        <PublicFooter />
+        <PublicFooter settings={ this.props.settings } />
       </div>
     )
   }
 }
+
+export default createContainer(() => {
+  let settings = Meteor.subscribe('defaultSettings');
+
+  return {
+    settings: Settings.findOne(),
+    loading: !settings.ready()
+  };
+}, DaVinciPublic);

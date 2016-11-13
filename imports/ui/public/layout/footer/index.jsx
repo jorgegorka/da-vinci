@@ -26,8 +26,8 @@ class PublicFooter extends Component {
         <div className="footer-extra">
       		<div className="container">
       			<nav className="contact-info pull-left">
-      				<a href="tel:+3706546340" className="phone"><i className="fa fa-phone"></i> +370 654 630 40</a>
-      				<a href="mailto:info@sample.com" className="email"><i className="fa fa-envelope-o"></i> info@sample.com</a>
+      				<a href={ 'tel:' + this.props.settings.publicPhone } className="phone"><i className="fa fa-phone"></i> { this.props.settings.publicPhone }</a>
+      				<a href={ 'mailto:' + this.props.settings.publicEmail } className="email"><i className="fa fa-envelope-o"></i> { this.props.settings.publicEmail }</a>
       			</nav>
       			<nav className="extra-menu pull-right">
       				{ this.topMenuItems() }
@@ -38,6 +38,10 @@ class PublicFooter extends Component {
     );
   }
 }
+
+PublicFooter.propTypes = {
+  settings: PropTypes.object.isRequired
+};
 
 export default createContainer(() => {
   let subscription = Meteor.subscribe('publicMenuPages');

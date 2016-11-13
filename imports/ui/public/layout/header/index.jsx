@@ -5,13 +5,17 @@ import i18n from 'meteor/universe:i18n';
 import TopNavigationBar from './top_navigation_bar.jsx'
 
 export default class PublicHeader extends Component {
+  siteSlogan() {
+    return this.props.settings.siteName + ' - ' + this.props.settings.siteSlogan;
+  }
+
   render() {
     return(
       <header className="header affix" data-spy="affix">
       	<nav className="navbar container sf-js-enabled sf-arrows">
       		<a className="navbar-brand pull-left" href="/">
-      			<img src="http://placehold.it/22x22" alt="Da Vinci - This is the public site" />
-      			Da Vinci
+      			<img src="/public/assets/logo.jpg" height="22" alt={ this.siteSlogan() } />
+      			{ this.props.settings.siteName }
       		</a>
           <TopNavigationBar />
       	</nav>
@@ -19,3 +23,7 @@ export default class PublicHeader extends Component {
     );
   }
 }
+
+PublicHeader.propTypes = {
+  settings: PropTypes.object.isRequired
+};
