@@ -44,7 +44,7 @@ PublicFooter.propTypes = {
 };
 
 export default createContainer(() => {
-  let subscription = Meteor.subscribe('publicMenuPages');
+  let subscription = Meteor.subscribe('parentPages', 'top');
 
   return {
     pages: Pages.find({ parentId: 'top' }, { $sort: { order: 0 }}).fetch(),

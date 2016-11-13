@@ -28,6 +28,12 @@ Meteor.publish('publicMenuPages', function() {
   return Pages.find({ showInMenu: true }, { $sort: { order: 0 }});
 });
 
+Meteor.publish('parentPages', function(parentId) {
+  check(parentId, String);
+
+  return Pages.find({ parentId: parentId }, { $sort: { order: 0 }});
+});
+
 Meteor.publish('pageWithRelatedProducts', function(nameSlug) {
   check(nameSlug, String);
   let page = {};
