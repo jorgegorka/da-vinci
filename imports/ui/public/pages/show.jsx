@@ -43,7 +43,7 @@ class PublicPagesShow extends Component {
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />
         break;
       case 'Legal stuff 1':
-        pageTemplate = <Legal1Template page={ this.props.page._id } />
+        pageTemplate = <Legal1Template page={ this.props.page } />
         break;
       case 'Footer 1':
         pageTemplate = <PublicHome1Template page={ this.props.page._id } />

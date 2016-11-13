@@ -15,10 +15,10 @@ export class PageContent {
 
   upsertContent(pageContentParams) {
     this.pageContentData["pageId"] = pageContentParams.pageId;
-    this.pageContentData["text"] = pageContentParams.text;
+    this.pageContentData["text"] = pageContentParams.text || '';
     this.pageContentData["contentType"] = pageContentParams.contentType;
     this.pageContentData["imageTitle"] = pageContentParams.imageTitle;
-    this.pageContentData["order"] = pageContentParams.order;
+    this.pageContentData["order"] = pageContentParams.order || 0;
     this.pageContentData["targetLink"] = this._parseTargetLink(pageContentParams.targetLink);
     this._uploadImage(pageContentParams);
 
