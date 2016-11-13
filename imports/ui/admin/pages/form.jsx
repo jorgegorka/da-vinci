@@ -139,7 +139,7 @@ export default class PageForm extends Component {
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.pageParentId } onChange={ this.updateContent.bind(this, 'parentId') }/>
+                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.parentId } onChange={ this.updateContent.bind(this, 'parentId') }/>
                       </FormGroup>
                       <FormGroup>
                         <FormLabel text='Order' htmlFor="order" />
