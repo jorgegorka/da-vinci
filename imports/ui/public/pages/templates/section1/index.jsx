@@ -10,6 +10,7 @@ import PublicSection1Content3 from './content_3.jsx';
 import PublicSection1Content4 from './content_4.jsx';
 import PublicSection1Content5 from './content_5.jsx';
 import PublicSection1Content6 from './content_6.jsx';
+import HeaderMetaTag from '../../../../utils/helpers/header_meta_tag.jsx';
 
 class PublicSection1Template extends Component {
   selectContentView() {
@@ -34,6 +35,7 @@ class PublicSection1Template extends Component {
         <div className="content">
           { this.selectContentView() }
         </div>
+        <HeaderMetaTag  metaInfo={ this.props.page.metaInfo } />
       </div>
     );
   }

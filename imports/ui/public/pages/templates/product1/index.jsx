@@ -4,6 +4,7 @@ import i18n from 'meteor/universe:i18n';
 import PublicProduct1MainContent from './main_content.jsx';
 import PublicProduct1Sidebar from './sidebar.jsx';
 import RelatedProducts from './related_products.jsx';
+import HeaderMetaTag from '../../../../utils/helpers/header_meta_tag.jsx';
 
 export default class PublicProduct1Template extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class PublicProduct1Template extends Component {
             </div>
           </div>
         </div>
+        <HeaderMetaTag  metaInfo={ this.props.page.metaInfo } />
       </div>
     );
   }
