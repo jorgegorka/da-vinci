@@ -73,7 +73,6 @@ It's in an early stage and not suitable to be used in production.
     meteor npm install slug --save
     meteor npm install url-parse
 
-
     *Testing*
     meteor add practicalmeteor:mocha
     meteor add xolvio:cleaner
@@ -82,6 +81,11 @@ It's in an early stage and not suitable to be used in production.
     meteor npm i --save-dev faker
     meteor add hwillson:stub-collections
     meteor npm install --save meteor-node-stubs react react-addons-test-utils
+
+### Deployment
+
+    npm install -g mupx
+    abernix/meteord:base
 
 ### Acknowledgments
 

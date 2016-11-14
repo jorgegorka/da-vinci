@@ -66,6 +66,6 @@ export default createContainer((props) => {
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: 'home-slider' }, { $sort: { order: 0 }}).fetch(),
+    pageContents: PageContents.find({ contentType: 'home-slider' }, { sort: { order: 1 }}).fetch(),
   };
 }, PublicHome1Slider);

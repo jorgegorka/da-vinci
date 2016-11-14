@@ -21,7 +21,7 @@ class TopNavigationBar extends Component {
     return(
       <div id="navbar" className="navbar-collapse collapse pull-right">
         <ul className="nav navbar-nav">
-          <HeaderMenu key="top" parentId="top" pages={ Pages.find({ showInMenu: true, parentId: 'top' }).fetch() } mainHeader={ true } />
+          <HeaderMenu key="top" parentId="top" pages={ Pages.find({ showInMenu: true, parentId: 'top' }, { sort: { order: 1 }}).fetch() } mainHeader={ true } />
         </ul>
       </div>
     );
@@ -32,7 +32,7 @@ export default createContainer(() => {
   let subscription = Meteor.subscribe('publicMenuPages');
 
   return {
-    pages: Pages.find({ showInMenu: true }, { $sort: { order: 0 }}).fetch(),
+    pages: Pages.find({ showInMenu: true }, { sort: { order: 1 }}).fetch(),
     loading: !subscription.ready()
   };
 }, TopNavigationBar);

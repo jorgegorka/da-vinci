@@ -73,6 +73,6 @@ export default createContainer((props) => {
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: props.contentType }, { $sort: { order: 0 }}).fetch(),
+    pageContents: PageContents.find({ contentType: props.contentType }, { sort: { order: 1 }}).fetch(),
   };
 }, PageContentContainer);

@@ -8,7 +8,7 @@ Meteor.publish('pageContentsForPage', function(pageId) {
 
   check(pageId, String);
 
-  return PageContents.find({ pageId: pageId }, { $sort: { order: 0 }});
+  return PageContents.find({ pageId: pageId }, { sort: { order: 1 }});
 });
 
 Meteor.publish('pageContentsForType', function(pageId, contentType) {
@@ -18,7 +18,7 @@ Meteor.publish('pageContentsForType', function(pageId, contentType) {
   check(contentType, String);
   check(pageId, String);
 
-  return PageContents.find({ pageId: pageId, contentType: contentType }, { $sort: { order: 0 }});
+  return PageContents.find({ pageId: pageId, contentType: contentType }, { sort: { order: 1 }});
 });
 
 

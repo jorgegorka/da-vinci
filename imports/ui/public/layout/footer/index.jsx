@@ -47,7 +47,7 @@ export default createContainer(() => {
   let subscription = Meteor.subscribe('parentPages', 'top');
 
   return {
-    pages: Pages.find({ parentId: 'top' }, { $sort: { order: 0 }}).fetch(),
+    pages: Pages.find({ parentId: 'top' }, { sort: { order: 1 }}).fetch(),
     loading: !subscription.ready()
   };
 }, PublicFooter);

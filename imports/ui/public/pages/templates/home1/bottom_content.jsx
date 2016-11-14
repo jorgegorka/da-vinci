@@ -35,6 +35,6 @@ export default createContainer((props) => {
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: 'bottom-content' }, { $sort: { order: 0 }}).fetch(),
+    pageContents: PageContents.find({ contentType: 'bottom-content' }, { sort: { order: 1 }}).fetch(),
   };
 }, PublicHome1BottomContent);

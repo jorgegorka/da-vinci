@@ -48,7 +48,7 @@ class PagesIndex extends Component {
           <button type="button" className="btn btn-primary pull-right" data-toggle="modal" data-target="#page-form">New page</button>
         </section>
         <section className="content">
-          <PageList key="top" parentId="top" pages={ Pages.find({ parentId: 'top' }).fetch() } />
+          <PageList key="top" parentId="top" pages={ Pages.find({ parentId: 'top' }, { sort: { order: 1 }}).fetch() } />
           <PageForm selectParentPages={ this.selectParentPages() } selectPageTypes={ this.selectPageTypes() } methodName={ 'pages.create' } formTitle='Add new page' />
         </section>
       </div>
@@ -66,8 +66,8 @@ export default createContainer(() => {
   let subscription = Meteor.subscribe('pageTypes');
 
   return {
-    pages: Pages.find({}, { $sort: { name: 0 }}).fetch(),
+    pages: Pages.find({}, { sort: { order: 1 }}).fetch(),
     loading: !subscription.ready(),
-    pageTypes: PageTypes.find({}, { $sort: { name: 0 }}).fetch(),
+    pageTypes: PageTypes.find({}, { sort: { name: 1 }}).fetch(),
   };
 }, PagesIndex);

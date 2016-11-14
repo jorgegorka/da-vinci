@@ -40,6 +40,6 @@ export default createContainer((props) => {
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: 'product-attachment' }, { $sort: { order: 0 }}).fetch(),
+    pageContents: PageContents.find({ contentType: 'product-attachment' }, { sort: { order: 1 }}).fetch(),
   };
 }, PublicProduct1Sidebar);

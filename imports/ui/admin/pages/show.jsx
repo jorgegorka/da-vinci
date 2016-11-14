@@ -93,7 +93,7 @@ export default createContainer((props) => {
   return {
     page: Pages.findOne({ nameSlug: props.params.nameSlug }, {}),
     loading: !subscription.ready(),
-    pages: Pages.find({}, { sort: { name: 0 }}).fetch(),
-    pageTypes: PageTypes.find({}, { $sort: { name: 0 }}).fetch(),
+    pages: Pages.find({}, { sort: { name: 1 }}).fetch(),
+    pageTypes: PageTypes.find({}, { sort: { name: 1 }}).fetch(),
   };
 }, PagesShow);

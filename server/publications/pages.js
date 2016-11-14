@@ -8,7 +8,7 @@ Meteor.publish('pages', function() {
     return this.ready();
   }
 
-  return Pages.find({}, { $sort: { order: 0 }});
+  return Pages.find({}, { sort: { order: 1 }});
 });
 
 Meteor.publish('showPage', function(pageId) {
@@ -20,18 +20,18 @@ Meteor.publish('showPage', function(pageId) {
 Meteor.publish('findPages', function(pageIds) {
   check(pageIds, [String]);
 
-  return Pages.find({ _id: { $in: pageIds } }, { $sort: { order: 0 }, limit: 30 });
+  return Pages.find({ _id: { $in: pageIds } }, { sort: { order: 1 }, limit: 30 });
 });
 
 
 Meteor.publish('publicMenuPages', function() {
-  return Pages.find({ showInMenu: true }, { $sort: { order: 0 }});
+  return Pages.find({ showInMenu: true }, { sort: { order: 1 }});
 });
 
 Meteor.publish('parentPages', function(parentId) {
   check(parentId, String);
 
-  return Pages.find({ parentId: parentId }, { $sort: { order: 0 }});
+  return Pages.find({ parentId: parentId }, { sort: { order: 1 }});
 });
 
 Meteor.publish('pageWithRelatedProducts', function(nameSlug) {

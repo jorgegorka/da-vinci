@@ -16,7 +16,7 @@ class ContentImageEditor extends Component {
       imageTitle: props.pageContent.imageTitle,
       text: props.pageContent.text,
       targetLink: props.pageContent.text,
-      order: 0,
+      order: 1,
     }
   }
 
@@ -101,7 +101,7 @@ export default createContainer((props) => {
         imagePath: '',
         imageTitle: '',
         pageId: props.imageOptions.pageId,
-        order: 0
+        order: 1
       }
     }
   }

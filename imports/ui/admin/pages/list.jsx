@@ -13,7 +13,7 @@ export default class PageList extends Component {
   }
 
   findSubPages(page) {
-    return Pages.find({ parentId: page._id }).fetch();
+    return Pages.find({ parentId: page._id }, { sort: { order: 1 }}).fetch();
   }
 
   render() {

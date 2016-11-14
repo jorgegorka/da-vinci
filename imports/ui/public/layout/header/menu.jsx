@@ -16,7 +16,7 @@ export default class HeaderMenu extends Component {
   }
 
   findSubPages(page) {
-    return Pages.find({ showInMenu: true, parentId: page._id }).fetch();
+    return Pages.find({ showInMenu: true, parentId: page._id }, { sort: { order: 1 }}).fetch();
   }
 
   activeClassNames(page) {

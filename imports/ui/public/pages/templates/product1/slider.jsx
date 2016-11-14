@@ -69,6 +69,6 @@ export default createContainer((props) => {
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: 'product-image' }, { $sort: { order: 0 }}).fetch(),
+    pageContents: PageContents.find({ contentType: 'product-image' }, { sort: { order: 1 }}).fetch(),
   };
 }, PublicProduct1Slider);

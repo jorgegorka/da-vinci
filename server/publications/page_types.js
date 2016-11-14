@@ -6,5 +6,5 @@ Meteor.publish('pageTypes', function() {
     return this.ready();
   }
 
-  return PageTypes.find({}, { $sort: { name: 0 }});
+  return PageTypes.find({}, { sort: { name: 1 }});
 });
