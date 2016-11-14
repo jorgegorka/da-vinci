@@ -1,19 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import i18n from 'meteor/universe:i18n';
 
-import PublicSection1Content2 from './content_2.jsx';
+import PublicSection1Card from './card.jsx';
 
-export default class PublicSection1Content4 extends Component {
+export default class PublicSection1Content3 extends Component {
+  loadContent() {
+    return this.props.pageContents.map( (pageContent) => {
+      return <PublicSection1Card key={ pageContent._id } pageContent={ pageContent } className="col-sm-3" />
+    });
+  }
+
   render() {
     return(
-      <div>
-  			<PublicSection1Content2 pageContents={ this.props.pageContents.slice(0, 2) } />
-        <PublicSection1Content2 pageContents={ this.props.pageContents.slice(2, 4) } />
+      <div className="container">
+  			<div className="row irow-xs text-center cards cards-inside cards-images">
+  				{ this.loadContent() }
+  			</div>
   		</div>
     );
   }
 }
 
-PublicSection1Content4.propTypes = {
+PublicSection1Content3.propTypes = {
   pageContents: PropTypes.array.isRequired
 };

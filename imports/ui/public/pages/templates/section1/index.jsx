@@ -10,6 +10,11 @@ import PublicSection1Content3 from './content_3.jsx';
 import PublicSection1Content4 from './content_4.jsx';
 import PublicSection1Content5 from './content_5.jsx';
 import PublicSection1Content6 from './content_6.jsx';
+import PublicSection1Content7 from './content_7.jsx';
+import PublicSection1Content8 from './content_8.jsx';
+import PublicSection1Content9 from './content_9.jsx';
+import PublicSection1Content10 from './content_10.jsx';
+import PublicSection1Content11 from './content_11.jsx';
 import HeaderMetaTag from '../../../../utils/helpers/header_meta_tag.jsx';
 
 class PublicSection1Template extends Component {
@@ -19,7 +24,12 @@ class PublicSection1Template extends Component {
       3: PublicSection1Content3,
       4: PublicSection1Content4,
       5: PublicSection1Content5,
-      6: PublicSection1Content6
+      6: PublicSection1Content6,
+      7: PublicSection1Content7,
+      8: PublicSection1Content8,
+      9: PublicSection1Content9,
+      10: PublicSection1Content10,
+      11: PublicSection1Content11
     };
     const SectionContent = content[this.props.pageContents.length];
     return <SectionContent pageContents={ this.props.pageContents } />
