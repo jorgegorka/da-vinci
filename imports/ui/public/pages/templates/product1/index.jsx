@@ -16,7 +16,7 @@ export default class PublicProduct1Template extends Component {
               <article className="col-md-9 col-sm-8 maincontent">
                 <PublicProduct1MainContent pageId={ this.props.page._id } title={ this.props.page.name }/>
                 <hr className="hr-nobg hr-sm" />
-                <RelatedProducts relatedProducts={ this.props.page.relatedIds } />
+                <RelatedProducts relatedProducts={ this.props.page.relatedIds || [] } />
               </article>
               <section className="col-md-3 col-sm-4 sidebar">
                 <PublicProduct1Sidebar pageId={ this.props.page._id } />

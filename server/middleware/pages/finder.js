@@ -6,7 +6,7 @@ export class PagesFinder {
   static withRelatedProducts(pageId, qty=3) {
     let currentPage = Pages.findOne( { _id: pageId } )
     let relatedIds = new PagesRelatedProducts(currentPage._id, currentPage.tags, qty).find();
-    currentPage['relatedIds'] = relatedIds;
+    currentPage['relatedIds'] = relatedIds || [];
     return currentPage;
   }
 }

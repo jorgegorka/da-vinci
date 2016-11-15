@@ -12,12 +12,14 @@ export class PagesRelatedProducts {
     let results = Pages.find({ _id: { $ne: this.pageId }, tags: { $in: this.tags } }, { limit: this.qty });
     return results.map( function(result) {
       let image = PageContents.findOne({ pageId: result._id, contentType: 'product-image' }, { sort: { order: 1 } });
-      return {
-        _id: result._id,
-        title: result.name,
-        info: result.metaInfo['description'],
-        imagePath: image.imagePath
-      };
+      if (image) {
+        return {
+          _id: result._id,
+          title: result.name,
+          info: result.metaInfo['description'],
+          imagePath: image.imagePath
+        };
+      }
     });
   }
 }

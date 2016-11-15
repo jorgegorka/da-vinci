@@ -8,11 +8,18 @@ export default class PublicProduct1RelatedProducts extends Component {
     let totalProducts = this.props.relatedProducts.length;
 
     return this.props.relatedProducts.map( (relatedProduct) => {
+      if (!relatedProduct) {
+        return(null);
+      }
       return <PublicProduct1RelatedProduct key={ relatedProduct._id } relatedProduct={ relatedProduct } totalProducts={ totalProducts } />
     });
   }
 
   render() {
+    if (this.props.relatedProducts.length < 1) {
+      return(null);
+    };
+
     return(
       <div className="container-wrap">
         <div className="page-header text-center">
