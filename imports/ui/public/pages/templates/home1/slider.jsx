@@ -8,7 +8,10 @@ import PublicHome1SliderImage from './slider_image.jsx'
 
 class PublicHome1Slider extends Component {
   componentDidMount() {
-
+    $('.carousel').carousel({
+      interval: 8000,
+      pause: 'hover'
+    });
   }
 
   loadSliders() {
@@ -37,7 +40,7 @@ class PublicHome1Slider extends Component {
 
   render() {
     return(
-      <div id="homepage-carousel" className="carousel slide" data-ride="carousel" data-interval="10000" data-pause="hover">
+      <div id="homepage-carousel" className="carousel slide">
         <ol className="carousel-indicators">
           { this.loadThumbs() }
         </ol>

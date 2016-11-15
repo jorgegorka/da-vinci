@@ -11,7 +11,9 @@ export default class PublicHome1Template extends Component {
     return(
       <div className="wrapper">
         <PublicHome1Slider pageId={ this.props.page._id } />
+        <hr className="hr-nobg" />
         <PublicHome1MainContent pageId={ this.props.page._id } />
+        <hr className="hr-nobg" />
         <PublicHome1BottomContent pageId={ this.props.page._id } />
         <HeaderMetaTag  metaInfo={ this.props.page.metaInfo } />
       </div>

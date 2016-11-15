@@ -72,6 +72,7 @@ It's in an early stage and not suitable to be used in production.
     meteor npm install react-tagsinput --save
     meteor npm install slug --save
     meteor npm install url-parse
+    meteor npm install --save babel-runtime
 
     *Testing*
     meteor add practicalmeteor:mocha

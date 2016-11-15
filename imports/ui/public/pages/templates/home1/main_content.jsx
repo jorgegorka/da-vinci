@@ -22,8 +22,12 @@ class PublicHome1MainContent extends Component {
     				<div className="heading-divider"></div>
             <div dangerouslySetInnerHTML={ { __html: pageContent.text } } ></div>
     			</div>
-    			<div className="col-md-7 col-sm-7 col-sm-offset-1 img-wrap img-wrap-right" style={ { height: '488px', position: 'relative' } }>
-    				<img src={ pageContent.imagePath } data-animate="fadeInRight" alt="" className="animated fadeInRight" />
+    			<div className="col-md-7 col-sm-7" >
+            <div className="card card-image">
+  						<figure className="figure">
+  							<img src={ pageContent.imagePath } />
+  						</figure>
+            </div>
     			</div>
     		</div>
     	</div>
