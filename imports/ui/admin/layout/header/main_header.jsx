@@ -1,11 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-//import ReactDOM from 'react-dom';
-//import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 
 import TopNavigation from '../navigation/top_navigation.jsx'
-
-const T = i18n.createComponent();
 
 // App component - represents the whole app
 export default class MainHeader extends Component {
@@ -13,8 +9,8 @@ export default class MainHeader extends Component {
     return (
       <header  className="main-header">
         <a href="index2.html" className="logo">
-          <span className="logo-mini"><b>D</b>V</span>
-          <span className="logo-lg"><b>Da</b> Vinci</span>
+          <span className="logo-mini">{ this.props.settings.siteName }</span>
+          <span className="logo-lg"><b>{ this.props.settings.siteName }</b></span>
         </a>
         <TopNavigation currentUser={ this.props.currentUser }/>
       </header>
@@ -24,4 +20,5 @@ export default class MainHeader extends Component {
 
 MainHeader.propTypes = {
   currentUser: PropTypes.object,
+  settings: PropTypes.object.isRequired,
 };

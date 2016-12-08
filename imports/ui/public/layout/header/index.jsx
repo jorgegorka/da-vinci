@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Alert from 'react-s-alert';
-import i18n from 'meteor/universe:i18n';
 
 import TopNavigationBar from './top_navigation_bar.jsx'
 
@@ -17,7 +15,7 @@ export default class PublicHeader extends Component {
       			<img src="/public/assets/logo.jpg" height="22" alt={ this.siteSlogan() } />
       			{ this.props.settings.siteName }
       		</a>
-          <TopNavigationBar />
+          <TopNavigationBar selectedPage={ this.props.selectedPage } />
       	</nav>
       </header>
     );

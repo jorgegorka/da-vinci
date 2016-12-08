@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import i18n from 'meteor/universe:i18n';
 
 export default class Loading extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class Loading extends Component {
   render() {
     return(
       <div>
-        Loading page...
+        { i18n.__('utils.containers.loading.header') }
       </div>
     );
   }

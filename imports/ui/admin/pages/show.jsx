@@ -12,23 +12,6 @@ import PageForm from './form.jsx';
 import PagesContentList from './content_list.jsx';
 
 class PagesShow extends Component {
-  selectParentPages() {
-    let allItems = this.props.pages.map((page) => (
-      { value: page._id, title: page.name }
-    ));
-
-    allItems.unshift({ value: 'top', title: '---' });
-    return allItems;
-  }
-
-  selectPageTypes() {
-    let allItems = this.props.pageTypes.map((pageType) => (
-      { value: pageType._id, title: pageType.name }
-    ));
-
-    return allItems;
-  }
-
   deletePage() {
     if (!this.props.page) {
       return;
@@ -60,21 +43,21 @@ class PagesShow extends Component {
             <div className="col-md-10">
               <h1>
                 { this.props.page.name }
-                <small>Public link: <PublicRouteGenerator page={ this.props.page } /></small>
+                <small>{ i18n.__('admin.pages.show.public_link') }: <PublicRouteGenerator page={ this.props.page } /></small>
               </h1>
             </div>
             <div className="col-md-1">
-              <button type="button" className="btn btn-info" data-toggle="modal" data-target="#page-form">Edit</button>
+              <button type="button" className="btn btn-info" data-toggle="modal" data-target="#page-form">{ i18n.__('settings.edit') }</button>
             </div>
             <div className="col-md-1">
-              <button type="button" className="btn btn-danger" onClick={ this.deletePage.bind(this) }>Delete</button>
+              <button type="button" className="btn btn-danger" onClick={ this.deletePage.bind(this) }>{ i18n.__('settings.delete') }</button>
             </div>
           </div>
         </section>
         <section className="content">
           <div className="row">
             <PagesContentList page={ this.props.page } />
-            <PageForm selectParentPages={ this.selectParentPages() } selectPageTypes={ this.selectPageTypes() } methodName={ 'pages.update' } page={ this.props.page } formTitle='Edit page' />
+            <PageForm pages={ this.props.pages } pageTypes={ this.props.pageTypes } methodName={ 'pages.update' } page={ this.props.page } formTitle={ i18n.__('admin.pages.show.edit_page') } />
           </div>
         </section>
       </div>
@@ -87,12 +70,12 @@ PagesShow.propTypes = {
 
 export default createContainer((props) => {
   // TODO: we are subscribing to all pages. Improve this.
-  let subscription = Meteor.subscribe('pages');
-  Meteor.subscribe('pageTypes');
+  let subPages = Meteor.subscribe('pages');
+  let subPageTypes = Meteor.subscribe('pageTypes');
 
   return {
     page: Pages.findOne({ nameSlug: props.params.nameSlug }, {}),
-    loading: !subscription.ready(),
+    loading: (!subPages.ready() && !subPageTypes.ready()),
     pages: Pages.find({}, { sort: { name: 1 }}).fetch(),
     pageTypes: PageTypes.find({}, { sort: { name: 1 }}).fetch(),
   };

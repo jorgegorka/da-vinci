@@ -12,9 +12,9 @@ export default class Home1Template extends Component {
   render() {
     return(
       <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
-        <PageContentContainer pageId={ this.props.pageId } contentType='home-slider' title='Slider'  includeText={ true } multipleContents={ true } />
-        <PageContentContainer pageId={ this.props.pageId } contentType='main-content' title='Main content'  includeText={ true } multipleContents={ false } />
-        <PageContentContainer pageId={ this.props.pageId } contentType='bottom-content' title='Bottom content'  includeText={ true } multipleContents={ false } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='home-slider' title={ i18n.__('home1.slider.header') }  includeText={ true } multipleContents={ true } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='main-content' title={ i18n.__('home1.main_content.header') }  includeText={ true } multipleContents={ false } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='bottom-content' title={ i18n.__('home1.bottom_content.header') }  includeText={ true } multipleContents={ false } />
       </ContentColumn>
     );
   }

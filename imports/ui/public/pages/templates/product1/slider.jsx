@@ -49,11 +49,11 @@ class PublicProduct1Slider extends Component {
         </div>
         <a className="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
           <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span className="sr-only">Previous</span>
+          <span className="sr-only">{ i18n.__('settings.previous') }</span>
         </a>
         <a className="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
           <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span className="sr-only">Next</span>
+          <span className="sr-only">{ i18n.__('settings.next') }</span>
         </a>
       </div>
     );
@@ -69,6 +69,6 @@ export default createContainer((props) => {
 
   return {
     loading: !subscription.ready(),
-    pageContents: PageContents.find({ contentType: 'product-image' }, { sort: { order: 1 }}).fetch(),
+    pageContents: PageContents.find({ contentType: 'product-image' }, { sort: { order: 0 }}).fetch(),
   };
 }, PublicProduct1Slider);

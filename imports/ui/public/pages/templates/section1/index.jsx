@@ -2,21 +2,22 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import i18n from 'meteor/universe:i18n';
 
-import { PageContents } from '../../../../../../lib/collections/page_contents.js';
+import { PageContents } from '../../../../../../lib/collections/page_contents';
 
-import Loading from '../../../../utils/containers/loading.jsx';
-import PublicSection1Content2 from './content_2.jsx';
-import PublicSection1Content3 from './content_3.jsx';
-import PublicSection1Content4 from './content_4.jsx';
-import PublicSection1Content5 from './content_5.jsx';
-import PublicSection1Content6 from './content_6.jsx';
-import PublicSection1Content7 from './content_7.jsx';
-import PublicSection1Content8 from './content_8.jsx';
-import PublicSection1Content9 from './content_9.jsx';
-import PublicSection1Content10 from './content_10.jsx';
-import PublicSection1Content11 from './content_11.jsx';
-import PublicSection1Content12 from './content_12.jsx';
-import HeaderMetaTag from '../../../../utils/helpers/header_meta_tag.jsx';
+import Loading from '../../../../utils/containers/loading';
+import PublicSection1Header from './header';
+import PublicSection1Content2 from './content_2';
+import PublicSection1Content3 from './content_3';
+import PublicSection1Content4 from './content_4';
+import PublicSection1Content5 from './content_5';
+import PublicSection1Content6 from './content_6';
+import PublicSection1Content7 from './content_7';
+import PublicSection1Content8 from './content_8';
+import PublicSection1Content9 from './content_9';
+import PublicSection1Content10 from './content_10';
+import PublicSection1Content11 from './content_11';
+import PublicSection1Content12 from './content_12';
+import HeaderMetaTag from '../../../../utils/helpers/header_meta_tag';
 
 class PublicSection1Template extends Component {
   selectContentView() {
@@ -45,6 +46,7 @@ class PublicSection1Template extends Component {
     return(
       <div className="wrapper">
         <div className="content">
+          <PublicSection1Header pageId={ this.props.page._id } />
           { this.selectContentView() }
         </div>
         <HeaderMetaTag  metaInfo={ this.props.page.metaInfo } />

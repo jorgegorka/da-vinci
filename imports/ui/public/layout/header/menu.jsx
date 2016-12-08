@@ -22,7 +22,7 @@ export default class HeaderMenu extends Component {
   activeClassNames(page) {
     return(
       classNames({
-        'active': false,
+        'active': page.nameSlug === this.props.selectedPage,
       })
     );
   }

@@ -5,14 +5,16 @@ import Alert from 'react-s-alert';
 import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 
+import { Settings } from '../../../lib/collections/settings.js';
+
+import Loading from '../utils/containers/loading.jsx';
 import MainHeader from './layout/header/main_header.jsx';
 import LeftColumn from './layout/header/left_column.jsx';
-
 import MainFooter from './layout/footer/main_footer.jsx';
 import ControlSidebar from './layout/footer/control_sidebar.jsx';
 
 
-i18n.setLocale('en');
+i18n.setLocale('es');
 
 class DaVinci extends Component {
   constructor(props){
@@ -78,9 +80,13 @@ class DaVinci extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return(<Loading />);
+    };
+
     return (
       <div id="main-app" className="wrapper">
-        <MainHeader currentUser={ this.props.currentUser } />
+        <MainHeader settings={ this.props.settings } currentUser={ this.props.currentUser } />
         <LeftColumn />
         <Alert stack={{ limit: 5 }} />
         { this.props.children }
@@ -96,7 +102,11 @@ DaVinci.propTypes = {
 };
 
 export default createContainer(() => {
+  let settings = Meteor.subscribe('defaultSettings');
+
   return {
     currentUser: Meteor.user(),
+    settings: Settings.findOne(),
+    loading: !settings.ready()
   };
 }, DaVinci);

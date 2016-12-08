@@ -14,9 +14,6 @@ export default class PublicProduct1SliderImage extends Component {
     return(
       <div className={ selectedClass }>
         <img src={ this.props.pageContent.imagePath } alt={ this.props.pageContent.imageTitle } />
-        <div className="carousel-caption">
-          <h3>{ this.props.pageContent.imageTitle }</h3>
-        </div>
       </div>
     );
   }

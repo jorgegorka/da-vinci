@@ -1,21 +1,25 @@
 import React, { Component, PropTypes } from 'react';
+import i18n from 'meteor/universe:i18n';
 import update from 'react-addons-update';
 
-import FormTag from '../../utils/form/index.jsx'
-import FormGroup from '../../utils/form/group.jsx'
-import FormSelect from '../../utils/form/select.jsx'
-import FormLabel from '../../utils/form/label.jsx'
-import FormCheckBox from '../../utils/form/check_box.jsx'
-import FormInput from '../../utils/form/input.jsx'
-import FormTextArea from '../../utils/form/text_area.jsx'
-import FormInputTag from '../../utils/form/tag.jsx'
-import AlertMessage from '../../utils/containers/alert_message.jsx'
+import { Pages } from '../../../../lib/collections/pages';
+
+import FormTag from '../../utils/form/index';
+import FormGroup from '../../utils/form/group';
+import FormSelect from '../../utils/form/select';
+import FormLabel from '../../utils/form/label';
+import FormCheckBox from '../../utils/form/check_box';
+import FormInput from '../../utils/form/input';
+import FormTextArea from '../../utils/form/text_area';
+import FormInputTag from '../../utils/form/tag';
+import AlertMessage from '../../utils/containers/alert_message';
 
 export default class PageForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     let defaultParentId = 'top';
-    let defaultPageTypeId = props.selectPageTypes[0].value;
+    let defaultPageTypeId = 'Home 1';
     let defaultHomePage = false;
     let defaultOrder = '0';
     let defaultName = '';
@@ -33,7 +37,7 @@ export default class PageForm extends Component {
       defaultShowInMenu = props.page.showInMenu;
       defaultDraft = props.page.draft;
       defaultMetaInfo = props.page.metaInfo;
-      defaultTags = props.page.tags || [];
+      defaultTags = props.page.tags;
     };
 
     this.state = {
@@ -46,8 +50,30 @@ export default class PageForm extends Component {
       order: defaultOrder,
       name: defaultName,
       metaInfo: defaultMetaInfo,
-      tags: defaultTags,
+      tags: defaultTags
     };
+  }
+
+  selectParentPages() {
+    let allItems = this.props.pages.map(function(page) {
+      if (page.parentId && (page.parentId !=='top')) {
+        parent = Pages.findOne({ _id: page.parentId });
+        return { value: page._id, title: `${parent.name} -> ${page.name}` }
+      } else {
+        return { value: page._id, title: page.name }
+      }
+    });
+
+    allItems.unshift({ value: 'top', title: '---' });
+    return allItems;
+  }
+
+  selectPageTypes() {
+    let allItems = this.props.pageTypes.map((pageType) => (
+      { value: pageType._id, title: pageType.name }
+    ));
+
+    return allItems;
   }
 
   updateContent(fieldName, fieldValue) {
@@ -117,55 +143,55 @@ export default class PageForm extends Component {
             </div>
             <FormTag onSubmit={ this.submitEvent.bind(this) }>
               <div className="modal-body">
-                <AlertMessage alertText={ this.state.errorMessage } alertTitle="An error has occurred!" alertType="danger" />
+                <AlertMessage alertText={ this.state.errorMessage } alertTitle={ i18n.__('admin.pages.form.error_occurred') } alertType="danger" />
                 <div className="nav-tabs-custom">
                   <ul className="nav nav-tabs">
                     <li className="active">
-                      <a href="#tab_1" data-toggle="tab" aria-expanded="false">Page info</a>
+                      <a href="#tab_1" data-toggle="tab" aria-expanded="false">{ i18n.__('admin.pages.form.page_info') }</a>
                     </li>
                     <li className="">
-                      <a href="#tab_2" data-toggle="tab" aria-expanded="false">Metadata</a>
+                      <a href="#tab_2" data-toggle="tab" aria-expanded="false">{ i18n.__('admin.pages.form.metadata') }</a>
                     </li>
                   </ul>
                   <div className="tab-content">
                     <div className="tab-pane active" id="tab_1">
                       <FormGroup>
-                        <FormLabel text='Name' htmlFor="name" />
+                        <FormLabel text={ i18n.__('admin.pages.form.name') } htmlFor="name" />
                         <FormInput defaultValue={ this.state.name } onChange={ this.updateContent.bind(this, 'name') } name="name" />
                       </FormGroup>
                       <FormGroup>
-                        <FormLabel text='Select the type of page' htmlFor="pageTypeId" />
-                        <FormSelect selectOptions={ this.props.selectPageTypes } name="pageTypeId" defaultValue={ this.state.pageTypeId } onChange={ this.updateContent.bind(this, 'pageTypeId') }/>
+                        <FormLabel text={ i18n.__('admin.pages.form.page_type') } htmlFor="pageTypeId" />
+                        <FormSelect selectOptions={ this.selectPageTypes() } name="pageTypeId" defaultValue={ this.state.pageTypeId } onChange={ this.updateContent.bind(this, 'pageTypeId') }/>
                       </FormGroup>
                       <FormGroup>
-                        <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.parentId } onChange={ this.updateContent.bind(this, 'parentId') }/>
+                        <FormLabel text={ i18n.__('admin.pages.form.parent_id') } htmlFor="pageParentId" />
+                        <FormSelect selectOptions={ this.selectParentPages() } name="pageParentId" defaultValue={ this.state.parentId } onChange={ this.updateContent.bind(this, 'parentId') }/>
                       </FormGroup>
                       <FormGroup>
-                        <FormLabel text='Order' htmlFor="order" />
+                        <FormLabel text={ i18n.__('admin.pages.form.order') } htmlFor="order" />
                         <FormInput defaultValue={ this.state.order } onChange={ this.updateContent.bind(this, 'order') } name="order" />
                       </FormGroup>
                       <FormGroup>
-                        <FormCheckBox text='Set page as homepage?' checked={ this.state.isHomePage } htmlFor="homePage" onChange={ this.updateContent.bind(this, 'isHomePage') } />
+                        <FormCheckBox text={ i18n.__('admin.pages.form.is_home_page') } checked={ this.state.isHomePage } htmlFor="homePage" onChange={ this.updateContent.bind(this, 'isHomePage') } />
                       </FormGroup>
                       <FormGroup>
-                        <FormCheckBox text='Show page in main menu?' checked={ this.state.showInMenu } htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
+                        <FormCheckBox text={ i18n.__('admin.pages.form.show_in_menu') } checked={ this.state.showInMenu } htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
                       </FormGroup>
                       <FormGroup>
-                        <FormCheckBox text='This page is a draft (Draft pages do not appear in the public website).' checked={ this.state.draft } htmlFor="draft" onChange={ this.updateContent.bind(this, 'draft') } />
+                        <FormCheckBox text={ i18n.__('admin.pages.form.draft') } checked={ this.state.draft } htmlFor="draft" onChange={ this.updateContent.bind(this, 'draft') } />
                       </FormGroup>
                     </div>
                     <div className="tab-pane" id="tab_2">
                       <FormGroup>
-                        <FormLabel text='Title' htmlFor="metaTitle" />
+                        <FormLabel text={ i18n.__('admin.pages.form.meta_title') } htmlFor="metaTitle" />
                         <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateMetaInfoContent.bind(this, 'title') } name="metaTitle" />
                       </FormGroup>
                       <FormGroup>
-                        <FormLabel text='Description' htmlFor="metaDescription" />
+                        <FormLabel text={ i18n.__('admin.pages.form.meta_description') } htmlFor="metaDescription" />
                         <FormTextArea defaultValue={ this.state.metaInfo.description } onChange={ this.updateMetaInfoContent.bind(this, 'description') } name="metaDescription" />
                       </FormGroup>
                       <FormGroup>
-                        <FormLabel text='Tags (Press tab or comma to separate tags)' />
+                        <FormLabel text={ i18n.__('admin.pages.form.tags') } />
                         <FormInputTag defaultValue={ this.state.tags } onChange={ this.updateContent.bind(this, 'tags') } />
                       </FormGroup>
                     </div>
@@ -173,8 +199,8 @@ export default class PageForm extends Component {
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-default pull-left" data-dismiss="modal">Discard</button>
-                <button type="submit" className="btn btn-primary">Save</button>
+                <button type="button" className="btn btn-default pull-left" data-dismiss="modal">{ i18n.__('admin.pages.form.discard') }</button>
+                <button type="submit" className="btn btn-primary">{ i18n.__('admin.pages.form.save') }</button>
               </div>
             </FormTag>
           </div>
@@ -185,9 +211,9 @@ export default class PageForm extends Component {
 }
 
 PageForm.propTypes = {
-  selectParentPages: PropTypes.array.isRequired,
-  selectPageTypes: PropTypes.array.isRequired,
   formTitle: PropTypes.string.isRequired,
   methodName: PropTypes.string.isRequired,
   page: PropTypes.object,
+  pages: PropTypes.array.isRequired,
+  pageTypes: PropTypes.array.isRequired,
 };

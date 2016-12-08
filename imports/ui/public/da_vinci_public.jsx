@@ -6,10 +6,11 @@ import i18n from 'meteor/universe:i18n';
 import { Settings } from '../../../lib/collections/settings.js';
 
 import Loading from '../utils/containers/loading.jsx';
+import GoogleAnalytics from '../utils/helpers/google_analytics';
 import PublicHeader from './layout/header/index.jsx';
 import PublicFooter from './layout/footer/index.jsx';
 
-i18n.setLocale('en')
+i18n.setLocale('es')
 
 class DaVinciPublic extends Component {
   componentWillMount(){
@@ -23,7 +24,8 @@ class DaVinciPublic extends Component {
       'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
       'http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic',
       'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
-      '/public/css/style.css'
+      '/public/css/style.css',
+      '/public/css/custom-style.css'
     ];
 
     publicStyles.forEach( function(cssStyle) {
@@ -46,7 +48,6 @@ class DaVinciPublic extends Component {
     });
   }
 
-
   render() {
     if (this.props.loading) {
       return(<Loading />);
@@ -54,7 +55,8 @@ class DaVinciPublic extends Component {
 
     return (
       <div>
-        <PublicHeader settings={ this.props.settings } />
+        <GoogleAnalytics googleAnalyticsID={ this.props.settings.googleAnalytics } />
+        <PublicHeader settings={ this.props.settings } selectedPage= { this.props.params.nameSlug } />
           { this.props.children }
         <PublicFooter settings={ this.props.settings } />
       </div>

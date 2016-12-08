@@ -12,9 +12,9 @@ export default class Product1Template extends Component {
   render() {
     return(
       <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
-        <PageContentContainer pageId={ this.props.pageId } contentType='product-image' title='Product images'  includeText={ false } multipleContents={ true } />
-        <PageContentContainer pageId={ this.props.pageId } contentType='product-description' title='Product description'  includeText={ true } multipleContents={ false } />
-        <PageContentContainer pageId={ this.props.pageId } contentType='product-attachment' title='Attachments'  includeText={ false } multipleContents={ true } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='product-image' title={ i18n.__('product1.images.header') }  includeText={ false } multipleContents={ true } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='product-description' title={ i18n.__('product1.content.header') }  includeText={ true } multipleContents={ false } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='product-attachment' title={ i18n.__('product1.attachments.header') }  includeText={ false } multipleContents={ true } />
       </ContentColumn>
     );
   }

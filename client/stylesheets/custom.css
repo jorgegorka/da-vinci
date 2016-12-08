@@ -1,0 +1,14 @@
+div.col-sm-6 div.card-image img {
+  height: 360px;
+  width: 540px;
+}
+
+div.col-sm-4 div.card-image img {
+  height: 215px;
+  width: 340px;
+}
+
+div.col-sm-3 div.card-image img {
+  height: 152px;
+  width: 240px;
+}

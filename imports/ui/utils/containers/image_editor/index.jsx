@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import i18n from 'meteor/universe:i18n';
 
 import { PageContents } from '../../../../../lib/collections/page_contents.js';
 
@@ -13,19 +14,21 @@ class ContentImageEditor extends Component {
     super(props);
     this.state = {
       file: { name: '', type: '', size: 0 },
-      imageTitle: props.pageContent.imageTitle,
-      text: props.pageContent.text,
-      targetLink: props.pageContent.text,
-      order: 1,
+      imageTitle: props.pageContent.imageTitle || '',
+      text: props.pageContent.text || '',
+      targetLink: props.pageContent.targetLink || '',
+      order: props.pageContent.order || 10,
     }
   }
 
   addImage(pageContentParams, fileData) {
+    let that = this;
     Meteor.call('pageContents.addImage', pageContentParams, fileData, function(error) {
       if (error) {
         console.log(error);
       } else {
         console.log('all fine');
+        $("#content-" + that.props.imageOptions.pageContentId).modal('hide');
       }
     });
   }
@@ -67,20 +70,25 @@ class ContentImageEditor extends Component {
     };
 
     return(
-      <ContentColumn className={ this.props.className }>
-        <ContentRow>
-          <ContentImageEditorForm onChange={ this.onChange.bind(this) } includeText={ this.props.imageOptions.includeText } pageContent={ this.props.pageContent } onSubmit={ this.onSubmit.bind(this) } />
-          <ContentColumn className="col-lg-6 col-md-6 col-xs-12">
-            <ContentRow>
-              <img src={ this.props.pageContent.imagePath } alt={ this.props.pageContent.imageTitle } width={ this.props.previewSize || 500 } />
-            </ContentRow>
-            <ContentRow>
-              <div dangerouslySetInnerHTML={ { __html: this.state.text } } >
-              </div>
-            </ContentRow>
-          </ContentColumn>
-        </ContentRow>
-      </ContentColumn>
+      <div className="modal" id={ "content-" + this.props.imageOptions.pageContentId }>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 className="modal-title">{ this.props.formTitle }</h4>
+            </div>
+            <div className="modal-body">
+              <ContentImageEditorForm onChange={ this.onChange.bind(this) } includeText={ this.props.imageOptions.includeText } pageContent={ this.props.pageContent } onSubmit={ this.onSubmit.bind(this) } />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-default pull-left" data-dismiss="modal">{ i18n.__('utils.containers.image_editor.index.discard') }</button>
+              <button type="submit" onClick={ this.onSubmit.bind(this) }  className="btn btn-primary">{ i18n.__('utils.containers.image_editor.index.save_content') }</button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
@@ -89,10 +97,11 @@ ContentImageEditor.propTypes = {
   previewSize: PropTypes.string,
   imageOptions: PropTypes.object.isRequired,
   className: PropTypes.string,
+  formTitle: PropTypes.string.isRequired,
 };
 
 export default createContainer((props) => {
-  if (!props.imageOptions.pageContentId || (props.imageOptions.pageContentId === 'new')) {
+  if (!props.imageOptions.pageContentId || (props.imageOptions.pageContentId.substring(0, 3) === 'new')) {
     return {
       loading: false,
       pageContent: {

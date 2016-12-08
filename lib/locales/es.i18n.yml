@@ -1,4 +1,100 @@
 settings:
-  header: 'Welcome'
+  header: 'Bienvenido'
   pageRoute: 'pagina'
-  other:  'Other'
+  other:  'Otro'
+  are_you_sure: 'Estas seguro?'
+  edit: 'Modificar'
+  delete: 'Borrar'
+product1:
+  sidebar:
+    header: 'Ficha técnica'
+  related_products:
+    header: 'Productos similares'
+  images:
+    header: 'Images'
+  content:
+    header: 'Description'
+  attachments:
+    header: 'Adjuntos'
+legal1:
+  content:
+    header: 'Contenido'
+home1:
+  slider:
+    header: 'Imágenes del carrusel'
+  main_content:
+    header: 'Contenido principal (con imágen lateral)'
+  bottom_content:
+    header: 'Contenido secundario (solo texto)'
+section1:
+  main_content:
+    header: 'Contenido principal'
+containers:
+  page_content:
+    image: 'Imagen'
+    title: 'Título'
+    options: 'Opciones'
+    new_content: 'Añadir contenido'
+    edit_content: 'Modificar contenido'
+admin:
+  pages:
+    templates:
+      section1:
+        description_header: 'Título principal de la página'
+    form:
+      page_info: 'Datos de la página'
+      metadata: 'Metadata'
+      name: 'Nombre'
+      page_type: 'Tipo de página'
+      parent_id: 'Página padre (si no tiene una página padre dejar en blanco)'
+      order: 'Orden'
+      is_home_page: 'Seleccionar como página de inicio'
+      show_in_menu: 'Mostrar en el menú principal?'
+      draft: 'Borrador (Los borradores no aparecen en la zona pública de la web).'
+      meta_title: 'Título'
+      meta_description: 'Descripción'
+      tags: 'Etiquetas (pulsa coma o espacio para añadir otra etiqueta)'
+      discard: 'Descartar cambios'
+      save: 'Guardar cambios'
+      error_occurred: 'Ha ocurrido un error'
+    index:
+      pages: 'Páginas'
+      list_pages: 'Listado de páginas'
+      new_page: 'Nueva página'
+      form_title: 'Añadir una página'
+    list:
+      draft: '(borrador)'
+      show_page: 'Mostrar página'
+    show:
+      public_link: 'Enlace púbico'
+      edit_page: 'Modificar página'
+  settings:
+    index:
+      header: 'Configuración'
+      options: 'Opciones de configuración'
+      home: 'Inicio'
+  layout:
+    header:
+      left_column:
+        search: 'Buscar...'
+    navigation:
+      main_navigation:
+        main_menu: 'Menú principal'
+        manage_pages: 'Mantenimiento de páginas'
+        pages: 'Páginas'
+        update_settings: 'Datos principales del sitio web'
+        settings: 'Configuración'
+        log_out: 'Cerrar sesión'
+utils:
+  containers:
+    loading:
+      header: 'Cargando datos...'
+    image_editor:
+      index:
+        discard: 'Descartar cambios'
+        save_content: 'Guardar cambios'
+      form:
+        title: 'Título de la imagen (opcional)'
+        file: 'Imagen'
+        order: 'Orden (opcional)'
+        target_link: 'Enlazar a otra página. (opcional)'

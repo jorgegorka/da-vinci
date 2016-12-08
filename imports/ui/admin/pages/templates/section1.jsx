@@ -12,7 +12,8 @@ export default class Section1Template extends Component {
   render() {
     return(
       <ContentColumn className="col-lg-12 col-xs-12 col-md-12">
-        <PageContentContainer pageId={ this.props.pageId } contentType='section-content' title='Section content'  includeText={ true } multipleContents={ true } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='section-content' title={ i18n.__('home1.main_content.header') }  includeText={ true } multipleContents={ true } />
+        <PageContentContainer pageId={ this.props.pageId } contentType='section-description' title={ i18n.__('admin.pages.templates.section1.description_header') }  includeText={ true } multipleContents={ false } />
       </ContentColumn>
     );
   }

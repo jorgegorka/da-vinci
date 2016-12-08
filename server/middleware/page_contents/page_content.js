@@ -7,7 +7,7 @@ import { ImagesUploader } from '../../middleware/images/uploader.js';
 export class PageContent {
   constructor(pageContentId) {
     check(pageContentId, String);
-    if (pageContentId !== 'new') {
+    if (pageContentId.substring(0, 3) !== 'new') {
       this.pageContentId = pageContentId;
     }
     this.pageContentData = {};
@@ -27,6 +27,15 @@ export class PageContent {
     } else {
       return this._insertContent()
     }
+  }
+
+  destroy() {
+    pageContent = PageContents.findOne({ _id: this.pageContentId });
+    if (pageContent.imagePath) {
+      let imageUploader = new ImagesUploader();
+      imageUploader.destroy(pageContent.imagePath);
+    }
+    PageContents.remove({ _id: this.pageContentId });
   }
 
   _insertContent() {
@@ -62,8 +71,8 @@ export class PageContent {
         fileType: pageContentParams.fileType,
         fileData: pageContentParams.fileData
       };
-      let imageUploader = new ImagesUploader(image);
-      this.pageContentData["imagePath"] = imageUploader.upload().Location;
+      let imageUploader = new ImagesUploader();
+      this.pageContentData["imagePath"] = imageUploader.upload(image).Location;
       this.pageContentData["originalImageName"] = pageContentParams.originalImageName;
       this.pageContentData["originalImageSize"] = pageContentParams.originalImageSize;
     };
@@ -94,6 +103,5 @@ export class PageContent {
     // Remove hostname from target link
     let url = new UrlParse(targetLink);
     return url.pathname;
-
   }
 }

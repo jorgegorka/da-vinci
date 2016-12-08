@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import { check, Match } from 'meteor/check';
+
 import { Page } from '../../middleware/pages/page.js';
 import { PageContent } from '../../middleware/page_contents/page_content.js';
 
@@ -21,5 +23,16 @@ Meteor.methods({
       pageContent = new PageContent(pageContentParams.pageContentId);
       pageContent.upsertContent(pageContentData);
     };
+  }
+});
+
+Meteor.methods({
+  'pageContents.destroy'(pageContentId) {
+    if (Roles.userIsInRole(this.userId, ['admin', 'manager', 'publisher'])) {
+      check(pageContentId, String);
+
+      pageContent = new PageContent(pageContentId);
+      pageContent.destroy();
+    }
   }
 });

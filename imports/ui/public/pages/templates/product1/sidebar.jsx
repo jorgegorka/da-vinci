@@ -22,7 +22,7 @@ class PublicProduct1Sidebar extends Component {
 
     return(
       <div className="widget widget_about">
-      	<h2 className="widget-title">About Shop</h2>
+      	<h2 className="widget-title">{ i18n.__('product1.sidebar.header') }</h2>
       	<ul className="widget_contact_list">
           { this.loadContent() }
       	</ul>

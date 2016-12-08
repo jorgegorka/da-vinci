@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Page } from '../../middleware/pages/page.js';
-import { ImagesUploader } from '../../middleware/images/uploader.js';
 const fs = require('fs');
 
 Meteor.methods({

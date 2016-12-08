@@ -2,3 +2,101 @@ settings:
   header: 'Welcome'
   pageRoute: 'page'
   other:  'Other'
+  previous: 'Previous'
+  next: 'Next'
+  are_you_sure: 'Are you sure?'
+  edit: 'Edit'
+  delete: 'Delete'
+product1:
+  sidebar:
+    header: 'Technical info'
+  related_products:
+    header: 'Related products'
+  images:
+    header: 'Product images'
+  content:
+    header: 'Product description'
+  attachments:
+    header: 'Product attachments'
+legal1:
+  content:
+    header: 'Content'
+home1:
+  slider:
+    header: 'Slider'
+  main_content:
+    header: 'Main content'
+  bottom_content:
+    header: 'Bottom content'
+section1:
+  main_content:
+    header: 'Main content'
+containers:
+  page_content:
+    image: 'Image'
+    title: 'Title'
+    options: 'Options'
+    new_content: 'New content'
+    edit_content: 'Modificar contenido'
+admin:
+  pages:
+    templates:
+      section1:
+        description_header: 'Main page title'
+    form:
+      page_info: 'Page info'
+      metadata: 'Metadata'
+      name: 'Name'
+      page_type: 'Select the type of page'
+      parent_id: 'Select parent page (leave it blank if none)'
+      order: 'Order'
+      is_home_page: 'Set page as homepage?'
+      show_in_menu: 'Show page in main menu?'
+      draft: 'This page is a draft (Draft pages do not appear in the public website).'
+      meta_title: 'Title'
+      meta_description: 'Description'
+      tags: 'Tags (Press tab or comma to separate tags)'
+      discard: 'Discard'
+      save: 'Save'
+      error_occurred: 'An error has occurred!'
+    index:
+      pages: 'Pages'
+      list_pages: 'List of pages'
+      new_page: 'New page'
+      form_title: 'Add new page'
+    list:
+      draft: '(Draft)'
+      show_page: 'Show page'
+    show:
+      public_link: 'Public link'
+      edit_page: 'Edit page'
+  settings:
+    index:
+      header: 'Settings'
+      options: 'Main configuration options'
+      home: 'Home'
+  layout:
+    header:
+      left_column:
+        search: 'Search...'
+    navigation:
+      main_navigation:
+        main_menu: 'Main menu'
+        manage_pages: 'Manage your pages'
+        pages: 'Pages'
+        update_settings: 'Update your settings'
+        settings: 'Settings'
+        log_out: 'Log out'
+utils:
+  containers:
+    loading:
+      header: 'Loading page...'
+    image_editor:
+      index:
+        discard: 'Discard'
+        save_content: 'Save content'
+      form:
+        title: 'Add a title for the image (optional)'
+        file: 'Select an image'
+        order: 'Image order (optional)'
+        target_link: 'Link title and image to other page. (optional)'

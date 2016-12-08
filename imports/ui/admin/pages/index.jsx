@@ -9,30 +9,7 @@ import Loading from '../../utils/containers/loading.jsx';
 import PageForm from './form.jsx';
 import PageList from './list.jsx';
 
-const T = i18n.createComponent();
-
 class PagesIndex extends Component {
-  selectParentPages() {
-    let allItems = this.props.pages.map((page) => (
-      { value: page._id, title: page.name }
-    ));
-
-    allItems.unshift({ value: 'top', title: '---' });
-    return allItems;
-  }
-
-  selectPageTypes() {
-    let allItems = this.props.pageTypes.map((pageType) => (
-      { value: pageType._id, title: pageType.name }
-    ));
-
-    return allItems;
-  }
-
-  countSubpages(page) {
-    return Pages.find({ parentId: page._id }).count();
-  }
-
   render() {
     if (this.props.loading) {
       return(<Loading />);
@@ -42,14 +19,14 @@ class PagesIndex extends Component {
       <div className="content-wrapper">
         <section className="content-header">
           <h1>
-            Pages
-            <small>List of pages</small>
+            { i18n.__('admin.pages.index.pages') }
+            <small>{ i18n.__('admin.pages.index.list_pages') }</small>
           </h1>
-          <button type="button" className="btn btn-primary pull-right" data-toggle="modal" data-target="#page-form">New page</button>
+          <button type="button" className="btn btn-primary pull-right" data-toggle="modal" data-target="#page-form">{ i18n.__('admin.pages.index.new_page') }</button>
         </section>
         <section className="content">
           <PageList key="top" parentId="top" pages={ Pages.find({ parentId: 'top' }, { sort: { order: 1 }}).fetch() } />
-          <PageForm selectParentPages={ this.selectParentPages() } selectPageTypes={ this.selectPageTypes() } methodName={ 'pages.create' } formTitle='Add new page' />
+          <PageForm pages={ this.props.pages } pageTypes={ this.props.pageTypes } methodName={ 'pages.create' } formTitle={ i18n.__('admin.pages.index.form_title') } />
         </section>
       </div>
     );
@@ -62,12 +39,12 @@ PagesIndex.propTypes = {
 };
 
 export default createContainer(() => {
-  Meteor.subscribe('pages');
-  let subscription = Meteor.subscribe('pageTypes');
+  let subPages = Meteor.subscribe('pages');
+  let subPageTypes = Meteor.subscribe('pageTypes');
 
   return {
     pages: Pages.find({}, { sort: { order: 1 }}).fetch(),
-    loading: !subscription.ready(),
+    loading: (!subPages.ready() && !subPageTypes.ready()),
     pageTypes: PageTypes.find({}, { sort: { name: 1 }}).fetch(),
   };
 }, PagesIndex);

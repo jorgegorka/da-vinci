@@ -23,7 +23,7 @@ export default class PublicProduct1RelatedProducts extends Component {
     return(
       <div className="container-wrap">
         <div className="page-header text-center">
-          <h2>Related Products</h2>
+          <h2>{ i18n.__('product1.related_products.header') }</h2>
           <div className="heading-divider"></div>
         </div>
         <div className="row irow-xs text-center cards cards-inside cards-images">
