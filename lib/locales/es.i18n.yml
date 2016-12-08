@@ -37,6 +37,17 @@ containers:
     new_content: 'Añadir contenido'
     edit_content: 'Modificar contenido'
 admin:
+  settings:
+    index:
+      header: 'Configuración'
+      options: 'Opciones de configuración'
+      home: 'Inicio'
+    form:
+      site_name: 'Nombre de la web'
+      site_slogan: 'Slogan'
+      public_email: 'Email público'
+      public_phone: 'Teléfono público'
+      google_analytics: 'Código de Google analytics (UI-xxxxxx-x)'
   pages:
     templates:
       section1:
@@ -68,11 +79,6 @@ admin:
     show:
       public_link: 'Enlace púbico'
       edit_page: 'Modificar página'
-  settings:
-    index:
-      header: 'Configuración'
-      options: 'Opciones de configuración'
-      home: 'Inicio'
   layout:
     header:
       left_column:

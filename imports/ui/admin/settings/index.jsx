@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
+import i18n from 'meteor/universe:i18n';
 
-import SettingsForm from './form.jsx';
+import { Settings } from '../../../../lib/collections/settings.js';
 
-export default class SettingsIndex extends Component {
+import SettingsForm from './form';
+
+class SettingsIndex extends Component {
   render() {
     return(
       <div className="content-wrapper">
@@ -15,10 +19,9 @@ export default class SettingsIndex extends Component {
             <li><a href="/admin"><i className="fa fa-dashboard"></i> { i18n.__('admin.settings.index.home') }</a></li>
             <li className="active">{ i18n.__('admin.settings.index.header') }</li>
           </ol>
-          <button type="button" className="btn btn-primary pull-right" data-toggle="modal" data-target="#settings-form">{ i18n.__('settings.edit') }</button>
         </section>
         <section className="content">
-          {/* <SettingsForm formTitle='Edit settings' /> */}
+          <SettingsForm settings={ this.props.settings } />
         </section>
       </div>
     );
@@ -28,3 +31,12 @@ export default class SettingsIndex extends Component {
 
 SettingsIndex.propTypes = {
 };
+
+export default createContainer((props) => {
+  let settings = Meteor.subscribe('defaultSettings');
+
+  return {
+    settings: Settings.findOne(),
+    loading: !settings.ready()
+  };
+}, SettingsIndex);

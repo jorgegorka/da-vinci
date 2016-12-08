@@ -1,77 +1,47 @@
 import React, { Component, PropTypes } from 'react';
-import update from 'react-addons-update';
 
-import FormTag from '../../utils/form/index.jsx'
-import FormGroup from '../../utils/form/group.jsx'
-import FormSelect from '../../utils/form/select.jsx'
-import FormLabel from '../../utils/form/label.jsx'
-import FormCheckBox from '../../utils/form/check_box.jsx'
-import FormInput from '../../utils/form/input.jsx'
-import FormTextArea from '../../utils/form/text_area.jsx'
-import FormInputTag from '../../utils/form/tag.jsx'
-import AlertMessage from '../../utils/containers/alert_message.jsx'
+import FormTag from '../../utils/form/index';
+import FormGroup from '../../utils/form/group';
+import FormLabel from '../../utils/form/label';
+import FormCheckBox from '../../utils/form/check_box';
+import FormInput from '../../utils/form/input';
+import FormTextArea from '../../utils/form/text_area';
+import FormInputTag from '../../utils/form/tag';
+import AlertMessage from '../../utils/containers/alert_message';
 
 export default class SettingsForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       errorMessage: '',
-      parentId: props.settings.siteName,
-      pageTypeId: props.settings.publicEmail,
-      isHomePage: props.settings.contactInfo
-    };
+      siteName: props.settings.siteName || '',
+      siteSlogan: props.settings.siteSlogan || '',
+      publicEmail: props.settings.publicEmail || '',
+      publicPhone: props.settings.publicPhone || '',
+      googleAnalytics: props.settings.googleAnalytics || ''
+    }
   }
 
   updateContent(fieldName, fieldValue) {
     this.setState({ [fieldName]: fieldValue });
   }
 
-  updateContactInfoContent(fieldName, fieldValue) {
-    let newContactInfo = update(this.state.metaInfo, {
-       [fieldName]: { $set: fieldValue }
-    });
-
-    this.setState({ contactInfo: newContactInfo });
-  }
-
-  methodParams() {
-    let methodParams = [this.props.methodName]
-
-    if (this.props.page) {
-      methodParams.push(this.props.page._id);
-    }
-
-    return methodParams;
-  }
-
-  submitEvent() {
+  submitEvent(event) {
     let that = this;
-    let page = {
-      name: this.state.name,
-      parentId: this.state.parentId,
-      order: parseInt(this.state.order),
-      isHomePage: this.state.isHomePage,
-      draft: this.state.draft,
-      showInMenu: this.state.showInMenu,
-      pageTypeId: this.state.pageTypeId,
-      metaInfo: this.state.metaInfo,
-      tags: this.state.tags
+    let settings = {
+      errorMessage: '',
+      siteName: this.state.siteName || '',
+      siteSlogan: this.state.siteSlogan || '',
+      publicEmail: this.state.publicEmail || '',
+      publicPhone: this.state.publicPhone || '',
+      googleAnalytics: this.state.googleAnalytics || ''
     };
 
-    let methodParams = [this.props.methodName, page]
-
-    if (this.props.page) {
-      methodParams.splice(1, 0, this.props.page._id);
-    }
-
-    Meteor.call(...methodParams, function(error, result) {
+    Meteor.call('settings.update', settings, function(error, result) {
       if (error) {
         that.setState({ errorMessage: error.message });
         return
       } else {
-        //Alert.info('Page created successfully', { position: 'top' });
-        $('#page-form').modal('hide');
         return
       }
     });
@@ -79,85 +49,36 @@ export default class SettingsForm extends Component {
 
   render() {
     return(
-      <div className="modal" id="page-form">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-              <h4 className="modal-title">{ this.props.formTitle }</h4>
-            </div>
-            <FormTag onSubmit={ this.submitEvent.bind(this) }>
-              <div className="modal-body">
-                <AlertMessage alertText={ this.state.errorMessage } alertTitle="An error has occurred!" alertType="danger" />
-                <div className="nav-tabs-custom">
-                  <ul className="nav nav-tabs">
-                    <li className="active">
-                      <a href="#tab_1" data-toggle="tab" aria-expanded="false">Page info</a>
-                    </li>
-                    <li className="">
-                      <a href="#tab_2" data-toggle="tab" aria-expanded="false">Metadata</a>
-                    </li>
-                  </ul>
-                  <div className="tab-content">
-                    <div className="tab-pane active" id="tab_1">
-                      <FormGroup>
-                        <FormLabel text='Name' htmlFor="name" />
-                        <FormInput defaultValue={ this.state.name } onChange={ this.updateContent.bind(this, 'name') } name="name" />
-                      </FormGroup>
-                      <FormGroup>
-                        <FormLabel text='Select the type of page' htmlFor="pageTypeId" />
-                        <FormSelect selectOptions={ this.props.selectPageTypes } name="pageTypeId" defaultValue={ this.state.pageTypeId } onChange={ this.updateContent.bind(this, 'pageTypeId') }/>
-                      </FormGroup>
-                      <FormGroup>
-                        <FormLabel text='Select parent page (leave it blank if none)' htmlFor="pageParentId" />
-                        <FormSelect selectOptions={ this.props.selectParentPages } name="pageParentId" defaultValue={ this.state.pageParentId } onChange={ this.updateContent.bind(this, 'parentId') }/>
-                      </FormGroup>
-                      <FormGroup>
-                        <FormLabel text='Order' htmlFor="order" />
-                        <FormInput defaultValue={ this.state.order } onChange={ this.updateContent.bind(this, 'order') } name="order" />
-                      </FormGroup>
-                      <FormGroup>
-                        <FormCheckBox text='Set page as homepage?' checked={ this.state.isHomePage } htmlFor="homePage" onChange={ this.updateContent.bind(this, 'isHomePage') } />
-                      </FormGroup>
-                      <FormGroup>
-                        <FormCheckBox text='Show page in main menu?' checked={ this.state.showInMenu } htmlFor="showMenu" onChange={ this.updateContent.bind(this, 'showInMenu') } />
-                      </FormGroup>
-                      <FormGroup>
-                        <FormCheckBox text='This page is a draft (Draft pages do not appear in the public website).' checked={ this.state.draft } htmlFor="draft" onChange={ this.updateContent.bind(this, 'draft') } />
-                      </FormGroup>
-                    </div>
-                    <div className="tab-pane" id="tab_2">
-                      <FormGroup>
-                        <FormLabel text='Title' htmlFor="metaTitle" />
-                        <FormInput defaultValue={ this.state.metaInfo.title } onChange={ this.updateMetaInfoContent.bind(this, 'title') } name="metaTitle" />
-                      </FormGroup>
-                      <FormGroup>
-                        <FormLabel text='Description' htmlFor="metaDescription" />
-                        <FormTextArea defaultValue={ this.state.metaInfo.description } onChange={ this.updateMetaInfoContent.bind(this, 'description') } name="metaDescription" />
-                      </FormGroup>
-                      <FormGroup>
-                        <FormLabel text='Tags (Press tab or comma to separate tags)' />
-                        <FormInputTag defaultValue={ this.state.tags } onChange={ this.updateContent.bind(this, 'tags') } />
-                      </FormGroup>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-default pull-left" data-dismiss="modal">Discard</button>
-                <button type="submit" className="btn btn-primary">Save</button>
-              </div>
-            </FormTag>
-          </div>
-        </div>
-      </div>
+      <FormTag onSubmit={ this.submitEvent.bind(this) }>
+        <AlertMessage alertText={ this.state.errorMessage } alertTitle={ i18n.__('admin.pages.form.error_occurred') } alertType="danger" />
+        <FormGroup>
+          <FormLabel text={ i18n.__('admin.settings.form.site_name') } htmlFor="name" />
+          <FormInput defaultValue={ this.state.siteName } onChange={ this.updateContent.bind(this, 'siteName') } name="siteName" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel text={ i18n.__('admin.settings.form.site_slogan') } htmlFor="siteSlogan" />
+          <FormInput defaultValue={ this.state.siteSlogan } onChange={ this.updateContent.bind(this, 'siteSlogan') } name="siteSlogan" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel text={ i18n.__('admin.settings.form.public_email') } htmlFor="publicEmail" />
+          <FormInput defaultValue={ this.state.publicEmail } onChange={ this.updateContent.bind(this, 'publicEmail') } name="publicEmail" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel text={ i18n.__('admin.settings.form.public_phone') } htmlFor="publicPhone" />
+          <FormInput defaultValue={ this.state.publicPhone } onChange={ this.updateContent.bind(this, 'publicPhone') } name="publicPhone" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel text={ i18n.__('admin.settings.form.google_analytics') } htmlFor="googleAnalytics" />
+          <FormInput defaultValue={ this.state.googleAnalytics } onChange={ this.updateContent.bind(this, 'googleAnalytics') } name="googleAnalytics" />
+        </FormGroup>
+        <FormGroup>
+          <button type="submit" className="btn btn-primary">{ i18n.__('admin.pages.form.save') }</button>
+        </FormGroup>
+      </FormTag>
     );
   }
 }
 
 SettingsForm.propTypes = {
-  formTitle: PropTypes.string.isRequired,
   settings: PropTypes.object.isRequired,
 };

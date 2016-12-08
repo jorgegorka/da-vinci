@@ -39,6 +39,17 @@ containers:
     new_content: 'New content'
     edit_content: 'Modificar contenido'
 admin:
+  settings:
+    index:
+      header: 'Settings'
+      options: 'Main configuration options'
+      home: 'Home'
+    form:
+      site_name: 'Site name'
+      site_slogan: 'Site slogan'
+      public_email: 'Public email'
+      public_phone: 'Public phone'
+      google_analytics: 'Google analytics identifier (UI-xxxxxx-x)'
   pages:
     templates:
       section1:
@@ -70,11 +81,6 @@ admin:
     show:
       public_link: 'Public link'
       edit_page: 'Edit page'
-  settings:
-    index:
-      header: 'Settings'
-      options: 'Main configuration options'
-      home: 'Home'
   layout:
     header:
       left_column:
